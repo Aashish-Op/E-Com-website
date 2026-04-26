@@ -1,0 +1,69 @@
+# Sunny Furniture Production E-Commerce MVP Plan
+
+## Summary
+Convert the current static Sunny Furniture site into a production MVP while preserving the existing HTML/CSS luxury storefront. Build one Heroku-deployed Node.js + Express app that serves the storefront, API, and React admin dashboard; use MongoDB Atlas, Mongoose, Razorpay, Cloudinary, and Nodemailer/SendGrid SMTP.
+
+Current repo reality: the storefront is static but has simulated cart/auth/checkout via `localStorage`; the new `backend/` is incomplete and currently references missing route files. The first implementation step is to turn that backend shell into a working API and connect the existing UI to it.
+
+## Key Changes
+- Keep the customer storefront as vanilla HTML/CSS/JS. Fix deployment pathing by serving `src/pages`, `src/styles`, `src/scripts`, and `src/assets/images` through Express so existing relative references resolve cleanly.
+- Replace simulated frontend behavior with API-backed behavior:
+  - Cart uses server-side cart records, with an anonymous cart cookie for guests and automatic merge after login.
+  - Checkout supports guest + account orders.
+  - Wishlist is account-backed; guest wishlist clicks can prompt login or stay local until login.
+  - Search, filters, product modals, product grids, order confirmation, and track-order read from API data.
+- Auto-seed the current catalog by parsing existing `.prod-card` HTML into MongoDB seed data, including name, slug, category, price, compare-at price, image path, material, size, description, sale/featured flags.
+- Build React/Vite admin at `/admin` for product CRUD, Cloudinary uploads, inventory, coupon management, order status updates, and simple sales/inventory analytics.
+- Use email/password auth only. No OTP/SMS in v1. Send transactional emails for account/password flows, order confirmation, and status changes.
+- Use simple pricing rules: INR product prices, WELCOME10-style coupons, configurable free-delivery threshold. No GST invoice module, dynamic shipping, or courier API in v1.
+- Track orders internally with admin-updated statuses: placed, confirmed, packed, shipped, delivered, cancelled.
+
+## Public APIs And Data
+- Core models:
+  - `User`: email, passwordHash, name, phone, role, addresses, emailVerified, timestamps.
+  - `Product`: slug, name, category, description, pricePaise, compareAtPricePaise, currency `INR`, stock, reservedStock, dimensions, materials, images, tags, featured/sale flags.
+  - `Cart`: userId or anonymous cart token, items with product snapshot, quantity, applied coupon.
+  - `Order`: orderNumber, userId optional, guest contact, address, item snapshots, totals, coupon, paymentMethod, paymentStatus, fulfillmentStatus, Razorpay ids, timeline.
+  - `Coupon`, `Review`, `Wishlist`.
+- API groups:
+  - Auth: `POST /api/auth/register`, `POST /api/auth/login`, `POST /api/auth/logout`, `GET /api/auth/me`, password reset and email verification routes.
+  - Products: `GET /api/products`, `GET /api/products/:slug`, `GET /api/search`, reviews read/write.
+  - Cart: `GET /api/cart`, add/update/remove item, apply/remove coupon.
+  - Checkout/orders: Razorpay checkout create, COD checkout create, user order history, public order lookup by order number + email/phone.
+  - Payments: Razorpay payment verification and webhook endpoint using raw-body signature verification.
+  - Admin: product CRUD, image upload, order queue, status updates, inventory updates, coupon CRUD, dashboard metrics.
+- Razorpay flow:
+  - Server creates Razorpay order in paise.
+  - Frontend opens Razorpay Checkout.
+  - Backend verifies payment signature before marking paid.
+  - Webhook is also handled so paid orders are not lost if the browser redirect fails.
+- Inventory flow:
+  - Razorpay checkout reserves stock for a short expiry window.
+  - Payment success converts reserved stock into sold stock.
+  - Payment failure/expiry releases reserved stock.
+  - COD orders decrement available stock immediately with atomic stock checks.
+
+## Test Plan
+- Backend automated tests with Jest + Supertest:
+  - Auth success/failure, protected routes, admin role guards.
+  - Product list/search/filter/pagination.
+  - Cart guest flow, login merge, coupon validation.
+  - Checkout stock validation, COD order creation, Razorpay signature verification, webhook idempotency.
+  - Inventory race checks using conditional updates.
+- Frontend acceptance tests with Playwright:
+  - Product pages load real API data.
+  - Add to cart, update quantity, apply coupon, guest checkout.
+  - Razorpay test-mode happy path and failed payment path.
+  - Track order lookup and logged-in order history.
+  - Admin creates/edits product and storefront reflects it.
+- Deployment checks:
+  - `npm test`, admin build, API health endpoint, seed script dry run.
+  - Heroku app boots with `web: npm start`.
+  - Required env vars are present; `.env` remains untracked.
+
+## Assumptions And References
+- One Heroku app will serve API, static storefront, and built admin; MongoDB runs on Atlas, not Heroku.
+- Use Node `24.x` in `package.json` `engines`, with a root `Procfile`.
+- Add missing production dependencies: `razorpay`, `helmet`, `express-rate-limit`, `multer`, `cheerio`, test tooling, and admin build tooling.
+- Use HttpOnly JWT cookies plus CSRF protection for mutating web requests.
+- External references checked: [Razorpay Node integration](https://razorpay.com/docs/payments/server-integration/nodejs/integration-steps//?preferred-country=US), [Heroku Node support](https://devcenter.heroku.com/articles/nodejs-support), [Heroku Procfile/start behavior](https://devcenter.heroku.com/articles/getting-started-with-nodejs), [MongoDB Atlas Node connection](https://www.mongodb.com/docs/drivers/node/current/connect/connection-targets/), and [Mongoose connection guidance](https://mongoosejs.com/docs/connections.html).

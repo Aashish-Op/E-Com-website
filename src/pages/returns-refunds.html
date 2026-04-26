@@ -1,0 +1,505 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Returns &amp; Refunds — Sunny Furniture</title>
+    <meta name="description"
+        content="Sunny Furniture's 30-day hassle-free return and refund policy. Learn how to initiate a return, refund timelines, and eligibility conditions.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:opsz,wght@9..40,200;9..40,300;9..40,400;9..40,500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./index.css">
+    <style>
+        .rr-hero {
+            padding-top: 180px;
+            padding-bottom: 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-left: 5%;
+            padding-right: 5%;
+            text-align: center;
+        }
+
+        .rr-hero h1 {
+            font-family: var(--serif);
+            font-size: clamp(2.8rem, 5vw, 4.2rem);
+            font-weight: 400;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: var(--espresso);
+        }
+
+        .rr-hero .rr-intro {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--walnut);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* ── Promise strip ── */
+        .rr-promises {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            max-width: 1000px;
+            margin: 50px auto 80px;
+            padding: 0 5%;
+        }
+
+        .rr-promise {
+            text-align: center;
+            padding: 2rem 1.5rem;
+            border: 1px solid var(--linen);
+            background: var(--warm-white);
+            transition: all 0.4s var(--ease-out);
+        }
+
+        .rr-promise:hover {
+            border-color: var(--gold);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(44, 30, 18, 0.06);
+        }
+
+        .rr-promise-num {
+            font-family: var(--serif);
+            font-size: 2.8rem;
+            color: var(--gold);
+            line-height: 1;
+            margin-bottom: 0.4rem;
+        }
+
+        .rr-promise-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--tan);
+            margin-bottom: 0.6rem;
+        }
+
+        .rr-promise p {
+            font-size: 0.92rem;
+            line-height: 1.6;
+            color: var(--walnut);
+        }
+
+        /* ── Steps ── */
+        .rr-steps {
+            max-width: 1400px;
+            margin: 0 auto 80px;
+            padding: 0 5%;
+        }
+
+        .rr-steps-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .rr-steps-header h2 {
+            font-family: var(--serif);
+            font-size: clamp(2rem, 3.5vw, 2.8rem);
+            font-weight: 400;
+            color: var(--espresso);
+        }
+
+        .rr-steps-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .rr-step {
+            padding: 2rem;
+            background: var(--warm-white);
+            border: 1px solid var(--linen);
+            position: relative;
+            transition: all 0.4s var(--ease-out);
+        }
+
+        .rr-step::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--espresso));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s var(--ease-out);
+        }
+
+        .rr-step:hover::before {
+            transform: scaleX(1);
+        }
+
+        .rr-step:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(44, 30, 18, 0.06);
+        }
+
+        .rr-step-num {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--espresso);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--serif);
+            font-size: 1.1rem;
+            margin-bottom: 1.2rem;
+            transition: background 0.3s;
+        }
+
+        .rr-step:hover .rr-step-num {
+            background: var(--gold);
+        }
+
+        .rr-step h3 {
+            font-family: var(--serif);
+            font-size: 1.25rem;
+            font-weight: 400;
+            color: var(--espresso);
+            margin-bottom: 0.6rem;
+        }
+
+        .rr-step p {
+            font-size: 0.92rem;
+            line-height: 1.7;
+            color: var(--walnut);
+        }
+
+        /* ── Policy sections ── */
+        .rr-policy {
+            max-width: 1400px;
+            margin: 0 auto 100px;
+            padding: 0 5%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .rr-policy-card {
+            padding: 2.5rem;
+            background: var(--warm-white);
+            border: 1px solid var(--linen);
+            position: relative;
+        }
+
+        .rr-policy-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), transparent);
+        }
+
+        .rr-policy-card h2 {
+            font-family: var(--serif);
+            font-size: 1.6rem;
+            font-weight: 400;
+            color: var(--espresso);
+            margin-bottom: 1.2rem;
+        }
+
+        .rr-policy-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .rr-policy-card ul li {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--walnut);
+            padding: 0.5rem 0;
+            padding-left: 1.4rem;
+            position: relative;
+        }
+
+        .rr-policy-card ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.95rem;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--gold);
+        }
+
+        .rr-policy-card p {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: var(--walnut);
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 1024px) {
+            .rr-steps-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .rr-hero { padding-top: 140px; }
+            .rr-promises { grid-template-columns: 1fr; max-width: 400px; }
+            .rr-steps-grid { grid-template-columns: 1fr; }
+            .rr-policy { grid-template-columns: 1fr; }
+            .rr-policy-card { padding: 2rem 1.5rem; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Page Intro -->
+    <div class="page-intro" aria-hidden="true">
+        <div class="intro-logo">Sunny Furniture</div>
+        <div class="intro-line"></div>
+    </div>
+
+    <!-- Cursor -->
+    <div class="cursor" id="cursor" aria-hidden="true"></div>
+    <div class="cursor-follower" id="cursorFollower" aria-hidden="true"></div>
+
+    <!-- Page transition -->
+    <div class="page-transition" id="pageTransition" aria-hidden="true"></div>
+
+    <!-- ─── ANNOUNCEMENT BAR ─────────────────────────── -->
+    <div class="ann-bar" role="marquee" aria-label="Site announcements">
+        <div class="ann-track" id="annTrack">
+            <span class="ann-item">Free delivery on orders above ₹15,000</span>
+            <span class="ann-item">New arrivals — <span>Summer 2026 collection</span></span>
+            <span class="ann-item">Use code <span>WELCOME10</span> for 10% off</span>
+            <span class="ann-item">Free installation on all furniture</span>
+            <span class="ann-item">30-day hassle-free returns</span>
+            <span class="ann-item">2-year warranty on every piece</span>
+            <span class="ann-item">Customisations also available</span>
+            <span class="ann-item">Free delivery on orders above ₹15,000</span>
+            <span class="ann-item">New arrivals — <span>Summer 2026 collection</span></span>
+            <span class="ann-item">Use code <span>WELCOME10</span> for 10% off</span>
+            <span class="ann-item">Free installation on all furniture</span>
+            <span class="ann-item">30-day hassle-free returns</span>
+            <span class="ann-item">2-year warranty on every piece</span>
+            <span class="ann-item">Customisations also available</span>
+        </div>
+    </div>
+
+    <!-- ─── NAVIGATION ───────────────────────────────── -->
+    <nav class="nav" id="mainNav" role="navigation" aria-label="Main navigation">
+        <a href="index.html" class="nav-logo">Sunny Furniture</a>
+        <ul class="nav-links">
+            <li><a href="living-room.html">Living</a></li>
+            <li><a href="bedroom.html">Bedroom</a></li>
+            <li><a href="dining.html">Dining</a></li>
+            <li><a href="storage.html">Storage</a></li>
+            <li><a href="outdoor.html">Outdoor</a></li>
+            <li><a href="study.html">Study</a></li>
+            <li><a href="newdecor.html">Decor</a></li>
+            <li><a href="sale.html" class="nav-sale">Sale</a></li>
+        </ul>
+        <div class="nav-actions">
+            <button class="nav-btn hoverable" aria-label="Search">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                    <circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1" />
+                    <line x1="12.5" y1="12.5" x2="16.5" y2="16.5" stroke="currentColor" stroke-width="1"
+                        stroke-linecap="round" />
+                </svg>
+            </button>
+            <button class="nav-btn hoverable" aria-label="Wishlist">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                    <path d="M9 15.5S2 10.8 2 6.5a4 4 0 0 1 7-2.64A4 4 0 0 1 16 6.5c0 4.3-7 9-7 9z"
+                        stroke="currentColor" stroke-width="1" stroke-linejoin="round" />
+                </svg>
+            </button>
+            <button class="nav-btn cart-wrap hoverable" aria-label="Cart — 2 items">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                    <path d="M2 2h1.8L6 10.5h7.5l2-7H5" stroke="currentColor" stroke-width="1" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <circle cx="7.5" cy="14" r="1.2" fill="currentColor" />
+                    <circle cx="12.5" cy="14" r="1.2" fill="currentColor" />
+                </svg>
+                <span class="cart-badge" aria-hidden="true">2</span>
+            </button>
+            <button class="nav-btn hoverable" aria-label="Account">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                    <circle cx="9" cy="6" r="3.5" stroke="currentColor" stroke-width="1" />
+                    <path d="M2.5 16.5c0-3.5 2.9-5.5 6.5-5.5s6.5 2 6.5 5.5" stroke="currentColor" stroke-width="1"
+                        stroke-linecap="round" />
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ─── RETURNS & REFUNDS CONTENT ────────────────── -->
+    <main>
+        <div
+            style="max-width: 1400px; margin: 0 auto; padding: 160px 5% 20px; display: flex; justify-content: flex-end;">
+            <a href="index.html" class="link-arrow reveal hoverable">Back to Home</a>
+        </div>
+
+        <section class="rr-hero" style="padding-top: 20px;">
+            <div class="section-eyebrow reveal" style="justify-content: center">Help centre</div>
+            <h1 class="reveal delay-1">Returns &amp; Refunds</h1>
+            <p class="rr-intro reveal delay-2">
+                We want you to love every piece. If something isn't right, our 30-day hassle-free return policy has you
+                covered — no questions asked.
+            </p>
+        </section>
+
+        <!-- ─── PROMISE STRIP ────────────────────────────── -->
+        <section class="rr-promises" aria-label="Return promises">
+            <div class="rr-promise reveal">
+                <div class="rr-promise-num">30</div>
+                <div class="rr-promise-label">Day return window</div>
+                <p>From the date of delivery</p>
+            </div>
+            <div class="rr-promise reveal delay-1">
+                <div class="rr-promise-num">5–7</div>
+                <div class="rr-promise-label">Day refund processing</div>
+                <p>Back to your original payment method</p>
+            </div>
+            <div class="rr-promise reveal delay-2">
+                <div class="rr-promise-num">₹0</div>
+                <div class="rr-promise-label">Return pickup fee</div>
+                <p>Free pickup from your doorstep</p>
+            </div>
+        </section>
+
+        <!-- ─── HOW TO RETURN ────────────────────────────── -->
+        <section class="rr-steps" aria-label="How to return">
+            <div class="rr-steps-header reveal">
+                <div class="section-eyebrow" style="justify-content:center">Simple process</div>
+                <h2>How to initiate a return</h2>
+            </div>
+            <div class="rr-steps-grid">
+                <div class="rr-step reveal">
+                    <div class="rr-step-num">1</div>
+                    <h3>Contact us</h3>
+                    <p>Call us or email with your order ID. You can also reach us via the contact form on our website.</p>
+                </div>
+                <div class="rr-step reveal delay-1">
+                    <div class="rr-step-num">2</div>
+                    <h3>Pickup scheduled</h3>
+                    <p>Our team schedules a free pickup within 48 hours. You'll receive an SMS with the date and time slot.</p>
+                </div>
+                <div class="rr-step reveal delay-2">
+                    <div class="rr-step-num">3</div>
+                    <h3>Quality check</h3>
+                    <p>Once the item is picked up and reaches our warehouse, we complete a quick quality inspection within 24 hours.</p>
+                </div>
+                <div class="rr-step reveal delay-3">
+                    <div class="rr-step-num">4</div>
+                    <h3>Refund processed</h3>
+                    <p>Your refund is initiated within 5–7 working days to your original payment method. You'll receive a confirmation email.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ─── ELIGIBILITY & NON-RETURNABLE ─────────────── -->
+        <section class="rr-policy" aria-label="Return policy details">
+            <div class="rr-policy-card reveal">
+                <div class="section-eyebrow">What qualifies</div>
+                <h2>Eligible for return</h2>
+                <ul>
+                    <li>Item is within 30 days of delivery date</li>
+                    <li>Manufacturing defect or damage on arrival</li>
+                    <li>Wrong item delivered</li>
+                    <li>Missing parts or accessories</li>
+                    <li>Significant colour or finish mismatch from listing</li>
+                    <li>Item unused and in original packaging (change of mind)</li>
+                </ul>
+            </div>
+
+            <div class="rr-policy-card reveal delay-1">
+                <div class="section-eyebrow">Exceptions</div>
+                <h2>Non-returnable items</h2>
+                <ul>
+                    <li>Customised or made-to-order furniture</li>
+                    <li>Items with visible signs of use, stains, or damage caused after delivery</li>
+                    <li>Mattresses and bedding (hygiene policy)</li>
+                    <li>Items without original packaging or tags</li>
+                    <li>Sale items marked as "final sale" or "clearance"</li>
+                </ul>
+                <p style="margin-top: 1.2rem; font-size: 0.88rem; color: var(--tan);">
+                    Still unsure? Contact our team — we'll review your case and find the best solution.
+                </p>
+            </div>
+        </section>
+
+        <!-- Newsletter -->
+        <section class="newsletter" aria-label="Newsletter signup">
+            <div class="reveal">
+                <p class="nl-eyebrow">Stay inspired</p>
+                <h2 class="nl-title">Beautiful homes<br>start here</h2>
+                <p class="nl-sub">Join 50,000 homeowners. Get new arrivals, design ideas, and an exclusive 10% off your
+                    first order.</p>
+                <div class="nl-form" role="form" aria-label="Email subscription">
+                    <input class="nl-input" type="email" placeholder="Your email address" aria-label="Email address">
+                    <button class="nl-btn hoverable" type="submit">Subscribe</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ─── FOOTER ───────────────────────────────────── -->
+    <footer role="contentinfo">
+        <div class="footer-top">
+            <div>
+                <span class="footer-logo">Sunny Furniture</span>
+                <p class="footer-about">Furniture crafted for modern Indian homes. Designed with care, built to last a
+                    lifetime. Free delivery, free installation, always.</p>
+            </div>
+            <div>
+                <h3 class="footer-col-title">Shop</h3>
+                <a href="living-room.html" class="footer-link hoverable">Living room</a>
+                <a href="bedroom.html" class="footer-link hoverable">Bedroom</a>
+                <a href="dining.html" class="footer-link hoverable">Dining</a>
+                <a href="storage.html" class="footer-link hoverable">Storage</a>
+                <a href="study.html" class="footer-link hoverable">Study</a>
+                <a href="outdoor.html" class="footer-link hoverable">Outdoor</a>
+                <a href="sale.html" class="footer-link hoverable">Sale</a>
+            </div>
+            <div>
+                <h3 class="footer-col-title">Help</h3>
+                <a href="track-order.html" class="footer-link hoverable">Track your order</a>
+                <a href="delivery-info.html" class="footer-link hoverable">Delivery info</a>
+                <a href="returns-refunds.html" class="footer-link hoverable">Returns &amp; refunds</a>
+                <a href="installation.html" class="footer-link hoverable">Installation</a>
+                <a href="faqs.html" class="footer-link hoverable">FAQs</a>
+                <a href="contact-us.html" class="footer-link hoverable">Contact us</a>
+            </div>
+            <div>
+                <h3 class="footer-col-title">Company</h3>
+                <a href="about.html" class="footer-link hoverable">About Sunny Furniture</a>
+                <a href="philosophy.html#craftsmen" class="footer-link hoverable">Our craftsmen</a>
+                <a href="philosophy.html#sustainability" class="footer-link hoverable">Sustainability</a>
+                <a href="philosophy.html#blog" class="footer-link hoverable">Blog &amp; ideas</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span class="footer-copy">&copy; 2026 Sunny Furniture Pvt Ltd &nbsp;&middot;&nbsp; Privacy Policy
+                &nbsp;&middot;&nbsp; Terms of Service</span>
+            <div class="footer-pay" aria-label="Accepted payment methods">
+                <span class="pay-icon" title="UPI"><svg width="36" height="22" viewBox="0 0 36 22"><rect width="36" height="22" rx="3" fill="#fff" stroke="#ddd" stroke-width=".5"/><text x="18" y="15" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" font-weight="600" fill="#4B286D">UPI</text></svg></span>
+                <span class="pay-icon" title="Visa"><svg width="36" height="22" viewBox="0 0 36 22"><rect width="36" height="22" rx="3" fill="#fff" stroke="#ddd" stroke-width=".5"/><text x="18" y="15" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" font-weight="700" font-style="italic" fill="#1A1F71">VISA</text></svg></span>
+                <span class="pay-icon" title="Mastercard"><svg width="36" height="22" viewBox="0 0 36 22"><rect width="36" height="22" rx="3" fill="#fff" stroke="#ddd" stroke-width=".5"/><circle cx="14" cy="11" r="6" fill="#EB001B" opacity=".8"/><circle cx="22" cy="11" r="6" fill="#F79E1B" opacity=".8"/></svg></span>
+                <span class="pay-icon" title="RuPay"><svg width="36" height="22" viewBox="0 0 36 22"><rect width="36" height="22" rx="3" fill="#fff" stroke="#ddd" stroke-width=".5"/><text x="18" y="15" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" font-weight="600" fill="#097A44">RuPay</text></svg></span>
+                <span class="pay-icon" title="Cash on Delivery"><svg width="36" height="22" viewBox="0 0 36 22"><rect width="36" height="22" rx="3" fill="#fff" stroke="#ddd" stroke-width=".5"/><text x="18" y="15" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" font-weight="500" fill="#555">COD</text></svg></span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,978 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunny Furniture — Furniture for the Modern Home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:opsz,wght@9..40,200;9..40,300;9..40,400;9..40,500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+
+    <!-- Page Intro -->
+    <div class="page-intro" aria-hidden="true">
+        <div class="intro-logo">Sunny Furniture</div>
+        <div class="intro-line"></div>
+    </div>
+
+    <!-- Cursor -->
+    <div class="cursor" id="cursor" aria-hidden="true"></div>
+    <div class="cursor-follower" id="cursorFollower" aria-hidden="true"></div>
+
+    <!-- Page transition -->
+    <div class="page-transition" id="pageTransition" aria-hidden="true"></div>
+
+    <!-- --- ANNOUNCEMENT BAR --------------------------- -->
+    <div class="ann-bar" role="marquee" aria-label="Site announcements">
+        <div class="ann-track" id="annTrack">
+            <span class="ann-item">Free delivery on orders above ₹15,000</span>
+            <span class="ann-item">New arrivals — <span>Summer 2026 collection</span></span>
+            <span class="ann-item">Use code <span>WELCOME10</span> for 10% off</span>
+            <span class="ann-item">Free installation on all furniture</span>
+            <span class="ann-item">30-day hassle-free returns</span>
+            <span class="ann-item">2-year warranty on every piece</span>
+            <span class="ann-item">Customisations also available</span>
+
+            <!-- Duplicate for seamless loop -->
+            <span class="ann-item">Free delivery on orders above ₹15,000</span>
+            <span class="ann-item">New arrivals — <span>Summer 2026 collection</span></span>
+            <span class="ann-item">Use code <span>WELCOME10</span> for 10% off</span>
+            <span class="ann-item">Free installation on all furniture</span>
+            <span class="ann-item">30-day hassle-free returns</span>
+            <span class="ann-item">2-year warranty on every piece</span>
+            <span class="ann-item">Customisations also available</span>
+
+        </div>
+    </div>
+
+    <!-- --- NAVIGATION --------------------------------- -->
+    <nav class="nav" id="mainNav" role="navigation" aria-label="Main navigation">
+        <a href="index.html" class="nav-logo">Sunny Furniture</a>
+
+        <ul class="nav-links">
+            <li><a href="living-room.html">Living</a></li>
+            <li><a href="bedroom.html">Bedroom</a></li>
+            <li><a href="dining.html">Dining</a></li>
+            <li><a href="storage.html">Storage</a></li>
+            <li><a href="outdoor.html">Outdoor</a></li>
+            <li><a href="study.html">Study</a></li>
+            <li><a href="newdecor.html">Decor</a></li>
+            <li><a href="sale.html" class="nav-sale">Sale</a></li>
+        </ul>
+
+        <div class="nav-actions">
+            <button class="nav-btn hoverable" aria-label="Search">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                    <circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1" />
+                    <line x1="12.5" y1="12.5" x2="16.5" y2="16.5" stroke="currentColor" stroke-width="1"
+                        stroke-linecap="round" />
+                </svg>
+            </button>
+            <button class="nav-btn hoverable wish-wrap" aria-label="Wishlist — 0 items">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                    <path d="M9 15.5S2 10.8 2 6.5a4 4 0 0 1 7-2.64A4 4 0 0 1 16 6.5c0 4.3-7 9-7 9z"
+                        stroke="currentColor" stroke-width="1" stroke-linejoin="round" />
+                </svg>
+                <span class="wishlist-badge" style="display:none;" aria-hidden="true">0</span>
+            </button>
+            <button class="nav-btn cart-wrap hoverable" aria-label="Cart — 2 items">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                    <path d="M2 2h1.8L6 10.5h7.5l2-7H5" stroke="currentColor" stroke-width="1" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <circle cx="7.5" cy="14" r="1.2" fill="currentColor" />
+                    <circle cx="12.5" cy="14" r="1.2" fill="currentColor" />
+                </svg>
+                <span class="cart-badge" aria-hidden="true">2</span>
+            </button>
+            <button class="nav-btn hoverable" aria-label="Account">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                    <circle cx="9" cy="6" r="3.5" stroke="currentColor" stroke-width="1" />
+                    <path d="M2.5 16.5c0-3.5 2.9-5.5 6.5-5.5s6.5 2 6.5 5.5" stroke="currentColor" stroke-width="1"
+                        stroke-linecap="round" />
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- --- HERO --------------------------------------- -->
+    <section class="hero" aria-label="Hero section">
+
+        <div class="hero-content">
+            <div class="hero-eyebrow" aria-hidden="true">
+                <div class="hero-eyebrow-line"></div>
+                <span class="hero-eyebrow-text">New · Summer 2026</span>
+            </div>
+            <h1 class="hero-h1">
+                Spaces that feel<br>like <em>home</em>
+            </h1>
+            <p class="hero-desc">
+                Handcrafted furniture that brings warmth, character, and lasting beauty to every room you call your own.
+            </p>
+            <div class="hero-ctas">
+                <a href="#shop-by-room" class="btn-primary hoverable"><span>Shop collection</span></a>
+            </div>
+        </div>
+
+        <div class="hero-visual">
+            <div class="hero-img-wrap">
+                <img src="./aura3seater.jpg" alt="Aura 3-seater sofa"
+                    style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+
+            <!-- Floating product tag -->
+            <div class="hero-tag hoverable" aria-label="Product: Aura sofa, ₹42,000">
+                <div class="hero-tag-label">Featured piece</div>
+                <div class="hero-tag-name">Aura 3-seater sofa</div>
+                <div class="hero-tag-price">₹42,000 <span style="font-size:11px;font-weight:300;color:var(--tan)">
+
+                    </span></div>
+            </div>
+
+            <!-- Corner ornament -->
+            <div class="hero-ornament" aria-hidden="true"></div>
+        </div>
+
+        <div class="hero-scroll" aria-hidden="true">
+            <div class="hero-scroll-line"></div>
+            <span class="hero-scroll-label">Scroll to explore</span>
+        </div>
+    </section>
+
+    <!-- --- TRUST STRIP -------------------------------- -->
+    <div class="trust-strip" role="list" aria-label="Service promises">
+        <div class="trust-item reveal" role="listitem">
+            <svg class="trust-icon" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1"
+                aria-hidden="true">
+                <path d="M11 2L3 7.5V15a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L11 2z" />
+            </svg>
+            <span class="trust-text">Free delivery above ₹15,000</span>
+        </div>
+        <div class="trust-item reveal delay-1" role="listitem">
+            <svg class="trust-icon" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1"
+                aria-hidden="true">
+                <circle cx="11" cy="11" r="8.5" />
+                <polyline points="8,11 10,13 14,9" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <span class="trust-text">Free installation included</span>
+        </div>
+        <div class="trust-item reveal delay-2" role="listitem">
+            <svg class="trust-icon" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1"
+                aria-hidden="true">
+                <path d="M3 8l4-4 4 2 4-2 4 4-3 2.5V19H6V10.5L3 8z" />
+            </svg>
+            <span class="trust-text">30-day easy returns</span>
+        </div>
+        <div class="trust-item reveal delay-3" role="listitem">
+            <svg class="trust-icon" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1"
+                aria-hidden="true">
+                <rect x="3" y="9" width="16" height="11" rx="1" />
+                <path d="M8 9V7a3 3 0 0 1 6 0v2" stroke-linecap="round" />
+            </svg>
+            <span class="trust-text">2-year warranty on all pieces</span>
+        </div>
+    </div>
+
+    <!-- --- CATEGORIES --------------------------------- -->
+    <section id="shop-by-room" class="categories" aria-label="Shop by room">
+        <div class="categories-header">
+            <div>
+                <div class="section-eyebrow reveal">Explore spaces</div>
+                <h2 class="section-title reveal delay-1">Shop by room</h2>
+            </div>
+            <a href="#" class="link-arrow reveal hoverable">All categories</a>
+        </div>
+
+        <div class="cat-grid" role="list">
+            <a href="living-room.html" class="cat-card reveal hoverable" role="listitem"
+                aria-label="Living room — 30 pieces">
+                <div class="cat-card-bg cat-living"></div>
+                <div class="cat-card-overlay"></div>
+                <div class="cat-card-body">
+                    <div class="cat-card-name">Living room</div>
+                    <div class="cat-card-count">30 pieces</div>
+                </div>
+            </a>
+            <a href="bedroom.html" class="cat-card reveal delay-1 hoverable" role="listitem"
+                aria-label="Bedroom — 15 pieces">
+                <div class="cat-card-bg cat-bedroom"></div>
+                <div class="cat-card-overlay"></div>
+                <div class="cat-card-body">
+                    <div class="cat-card-name">Bedroom</div>
+                    <div class="cat-card-count">15 pieces</div>
+                </div>
+            </a>
+            <a href="dining.html" class="cat-card reveal delay-2 hoverable" role="listitem"
+                aria-label="Dining — 11 pieces">
+                <div class="cat-card-bg cat-dining"></div>
+                <div class="cat-card-overlay"></div>
+                <div class="cat-card-body">
+                    <div class="cat-card-name">Dining</div>
+                    <div class="cat-card-count">11 pieces</div>
+                </div>
+            </a>
+            <a href="study.html" class="cat-card reveal delay-3 hoverable" role="listitem"
+                aria-label="Study — 13 pieces">
+                <div class="cat-card-bg cat-study"></div>
+                <div class="cat-card-overlay"></div>
+                <div class="cat-card-body">
+                    <div class="cat-card-name">Study</div>
+                    <div class="cat-card-count">13 pieces</div>
+                </div>
+            </a>
+            <a href="outdoor.html" class="cat-card reveal delay-4 hoverable" role="listitem"
+                aria-label="Outdoor — 7 pieces">
+                <div class="cat-card-bg cat-outdoor"></div>
+                <div class="cat-card-overlay"></div>
+                <div class="cat-card-body">
+                    <div class="cat-card-name">Outdoor</div>
+                    <div class="cat-card-count">7 pieces</div>
+                </div>
+            </a>
+            <a href="storage.html" class="cat-card reveal delay-5 hoverable" role="listitem"
+                aria-label="Storage — 8 pieces">
+                <div class="cat-card-bg cat-storage"></div>
+                <div class="cat-card-overlay"></div>
+                <div class="cat-card-body">
+                    <div class="cat-card-name">Storage</div>
+                    <div class="cat-card-count">8 pieces</div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- --- PRODUCTS ----------------------------------- -->
+    <section class="products" aria-label="Featured products">
+        <div class="products-header">
+            <div>
+                <div class="section-eyebrow reveal">Handpicked for you</div>
+                <h2 class="section-title reveal delay-1">New arrivals</h2>
+            </div>
+            <a href="#" class="link-arrow reveal hoverable">View all pieces</a>
+        </div>
+
+        <div class="filter-tabs reveal" role="tablist">
+            <button class="filter-tab active hoverable" role="tab" aria-selected="true">All</button>
+            <button class="filter-tab hoverable" role="tab">Sofas</button>
+            <button class="filter-tab hoverable" role="tab">Beds</button>
+            <button class="filter-tab hoverable" role="tab">Dining</button>
+            <button class="filter-tab hoverable" role="tab">Storage</button>
+            <button class="filter-tab hoverable" role="tab">Decor</button>
+            <button class="filter-tab hoverable" role="tab">Sale</button>
+        </div>
+
+        <div class="products-grid" role="list">
+
+            <!-- Card 1 -->
+            <article class="prod-card reveal hoverable" role="listitem">
+                <div class="prod-img-wrap">
+                    <div class="prod-img-inner">
+                        <img src="./aura3seater.jpg" alt="Aura 3-seater sofa" loading="lazy">
+                    </div>
+                    <div class="prod-badges" aria-label="New item">
+                        <span class="badge badge-new">New</span>
+                    </div>
+                    <button class="wish-btn hoverable" aria-label="Add Aura sofa to wishlist">
+                        <svg width="14" height="13" viewBox="0 0 14 13" fill="none" aria-hidden="true">
+                            <path d="M7 12S1 8 1 4.5a3 3 0 0 1 6 0 3 3 0 0 1 6 0C13 8 7 12 7 12z" stroke="#9C8265"
+                                stroke-width="1" />
+                        </svg>
+                    </button>
+                    <button class="quick-add-btn hoverable" aria-label="Quick add Aura sofa to cart">Quick add to
+                        cart</button>
+                </div>
+                <div class="prod-info">
+                    <div class="prod-cat">Sofas</div>
+                    <div class="prod-name">Aura 3-seater</div>
+                    <div class="prod-material">Solid teak · Linen blend</div>
+                    <div class="prod-bottom">
+                        <div class="prod-price-wrap">
+                            <div class="prod-price">₹42,000</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card 2 -->
+            <article class="prod-card reveal delay-1 hoverable" role="listitem">
+                <div class="prod-img-wrap">
+                    <div class="prod-img-inner">
+                        <img src="./altoQueenBed.webp" alt="Alto queen bed" loading="lazy">
+                    </div>
+                    <div class="prod-badges">
+                        <span class="badge badge-new">New</span>
+                    </div>
+                    <button class="wish-btn hoverable" aria-label="Add Alto bed to wishlist">
+                        <svg width="14" height="13" viewBox="0 0 14 13" fill="none" aria-hidden="true">
+                            <path d="M7 12S1 8 1 4.5a3 3 0 0 1 6 0 3 3 0 0 1 6 0C13 8 7 12 7 12z" stroke="#9C8265"
+                                stroke-width="1" />
+                        </svg>
+                    </button>
+                    <button class="quick-add-btn hoverable" aria-label="Quick add Alto bed to cart">Quick add to
+                        cart</button>
+                </div>
+                <div class="prod-info">
+                    <div class="prod-cat">Beds</div>
+                    <div class="prod-name">Alto queen bed</div>
+                    <div class="prod-material">Sheesham wood · Walnut finish</div>
+                    <div class="prod-bottom">
+                        <div class="prod-price-wrap">
+                            <div class="prod-price">₹55,500</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card 3 -->
+            <article class="prod-card reveal delay-2 hoverable" role="listitem">
+                <div class="prod-img-wrap">
+                    <div class="prod-img-inner">
+                        <img src="./mesaRoundtable.webp" alt="Mesa round table" loading="lazy">
+                    </div>
+                    <div class="prod-badges">
+                        <span class="badge badge-sale">Sale</span>
+                    </div>
+                    <button class="wish-btn hoverable" aria-label="Add Mesa table to wishlist">
+                        <svg width="14" height="13" viewBox="0 0 14 13" fill="none" aria-hidden="true">
+                            <path d="M7 12S1 8 1 4.5a3 3 0 0 1 6 0 3 3 0 0 1 6 0C13 8 7 12 7 12z" stroke="#9C8265"
+                                stroke-width="1" />
+                        </svg>
+                    </button>
+                    <button class="quick-add-btn hoverable" aria-label="Quick add Mesa table to cart">Quick add to
+                        cart</button>
+                </div>
+                <div class="prod-info">
+                    <div class="prod-cat">Dining</div>
+                    <div class="prod-name">Mesa round table</div>
+                    <div class="prod-material">Mango wood · Natural finish</div>
+                    <div class="prod-bottom">
+                        <div class="prod-price-wrap">
+                            <div class="prod-price">₹18,000</div>
+                            <div class="prod-old">₹24,000</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card 4 -->
+            <article class="prod-card reveal delay-3 hoverable" role="listitem">
+                <div class="prod-img-wrap">
+                    <div class="prod-img-inner">
+                        <img src="./voltaDesk.jpg" alt="Volta writing desk" loading="lazy">
+                    </div>
+                    <div class="prod-badges">
+                        <span class="badge badge-low">Only 3 left</span>
+                    </div>
+                    <button class="wish-btn hoverable" aria-label="Add Volta desk to wishlist">
+                        <svg width="14" height="13" viewBox="0 0 14 13" fill="none" aria-hidden="true">
+                            <path d="M7 12S1 8 1 4.5a3 3 0 0 1 6 0 3 3 0 0 1 6 0C13 8 7 12 7 12z" stroke="#9C8265"
+                                stroke-width="1" />
+                        </svg>
+                    </button>
+                    <button class="quick-add-btn hoverable" aria-label="Quick add Volta desk to cart">Quick add to
+                        cart</button>
+                </div>
+                <div class="prod-info">
+                    <div class="prod-cat">Study</div>
+                    <div class="prod-name">Volta writing desk</div>
+                    <div class="prod-material">Solid acacia · Brass hardware</div>
+                    <div class="prod-bottom">
+                        <div class="prod-price-wrap">
+                            <div class="prod-price">₹28,000</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card 5 -->
+            <article class="prod-card reveal delay-4 hoverable" role="listitem">
+                <div class="prod-img-wrap">
+                    <div class="prod-img-inner">
+                        <img src="./oasisSideboard.webp" alt="Oasis sideboard" loading="lazy">
+                    </div>
+                    <div class="prod-badges">
+                        <span class="badge badge-new">New</span>
+                    </div>
+                    <button class="wish-btn hoverable" aria-label="Add Oasis sideboard to wishlist">
+                        <svg width="14" height="13" viewBox="0 0 14 13" fill="none" aria-hidden="true">
+                            <path d="M7 12S1 8 1 4.5a3 3 0 0 1 6 0 3 3 0 0 1 6 0C13 8 7 12 7 12z" stroke="#9C8265"
+                                stroke-width="1" />
+                        </svg>
+                    </button>
+                    <button class="quick-add-btn hoverable" aria-label="Quick add Oasis sideboard to cart">Quick add to
+                        cart</button>
+                </div>
+                <div class="prod-info">
+                    <div class="prod-cat">Storage</div>
+                    <div class="prod-name">Oasis sideboard</div>
+                    <div class="prod-material">Mango wood · Fluted detail</div>
+                    <div class="prod-bottom">
+                        <div class="prod-price-wrap">
+                            <div class="prod-price">₹34,000</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card 6 -->
+            <article class="prod-card reveal delay-5 hoverable" role="listitem">
+                <div class="prod-img-wrap">
+                    <div class="prod-img-inner">
+                        <img src="./luminaMirror.webp" alt="Lumina floor mirror" loading="lazy">
+                    </div>
+                    <button class="wish-btn hoverable" aria-label="Add Lumina mirror to wishlist">
+                        <svg width="14" height="13" viewBox="0 0 14 13" fill="none" aria-hidden="true">
+                            <path d="M7 12S1 8 1 4.5a3 3 0 0 1 6 0 3 3 0 0 1 6 0C13 8 7 12 7 12z" stroke="#9C8265"
+                                stroke-width="1" />
+                        </svg>
+                    </button>
+                    <button class="quick-add-btn hoverable" aria-label="Quick add Lumina mirror to cart">Quick add to
+                        cart</button>
+                </div>
+                <div class="prod-info">
+                    <div class="prod-cat">Decor</div>
+                    <div class="prod-name">Lumina floor mirror</div>
+                    <div class="prod-material">Brass frame · Beveled edge</div>
+                    <div class="prod-bottom">
+                        <div class="prod-price-wrap">
+                            <div class="prod-price">₹12,500</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+
+
+            <!-- Card 7 (Sale) -->
+            <article class="prod-card reveal delay-6 hoverable" role="listitem">
+                <div class="prod-img-wrap">
+                    <div class="prod-img-inner">
+                        <img src="./loomNightstand.webp" alt="Loom nightstand" loading="lazy">
+                    </div>
+                    <div class="prod-badges">
+                        <span class="badge badge-sale">Sale</span>
+                    </div>
+                    <button class="wish-btn hoverable" aria-label="Add Loom nightstand to wishlist">
+                        <svg width="14" height="13" viewBox="0 0 14 13" fill="none" aria-hidden="true">
+                            <path d="M7 12S1 8 1 4.5a3 3 0 0 1 6 0 3 3 0 0 1 6 0C13 8 7 12 7 12z" stroke="#9C8265"
+                                stroke-width="1" />
+                        </svg>
+                    </button>
+                    <button class="quick-add-btn hoverable" aria-label="Quick add Loom nightstand to cart">Quick add to
+                        cart</button>
+                </div>
+                <div class="prod-info">
+                    <div class="prod-cat">Sale</div>
+                    <div class="prod-name">Loom nightstand (Clearance)</div>
+                    <div class="prod-material">Solid teak · Natural finish</div>
+                    <div class="prod-bottom">
+                        <div class="prod-price-wrap">
+                            <div class="prod-price">₹9,000</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card 8 (Storage) -->
+            <article class="prod-card reveal delay-7 hoverable" role="listitem">
+                <div class="prod-img-wrap">
+                    <div class="prod-img-inner">
+                        <img src="./linearSide.webp" alt="Linear sideboard" loading="lazy">
+                    </div>
+                    <button class="wish-btn hoverable" aria-label="Add Linear sideboard to wishlist">
+                        <svg width="14" height="13" viewBox="0 0 14 13" fill="none" aria-hidden="true">
+                            <path d="M7 12S1 8 1 4.5a3 3 0 0 1 6 0 3 3 0 0 1 6 0C13 8 7 12 7 12z" stroke="#9C8265"
+                                stroke-width="1" />
+                        </svg>
+                    </button>
+                    <button class="quick-add-btn hoverable" aria-label="Quick add Linear sideboard to cart">Quick add to
+                        cart</button>
+                </div>
+                <div class="prod-info">
+                    <div class="prod-cat">Storage</div>
+                    <div class="prod-name">Linear sideboard</div>
+                    <div class="prod-material">Mango wood · Matte finish</div>
+                    <div class="prod-bottom">
+                        <div class="prod-price-wrap">
+                            <div class="prod-price">₹36,000</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card 9 (Decor) -->
+            <article class="prod-card reveal delay-8 hoverable" role="listitem">
+                <div class="prod-img-wrap">
+                    <div class="prod-img-inner">
+                        <img src="./ceramicvase.jpg" alt="Artisan ceramic vase" loading="lazy">
+                    </div>
+                    <button class="wish-btn hoverable" aria-label="Add Ceramic vase to wishlist">
+                        <svg width="14" height="13" viewBox="0 0 14 13" fill="none" aria-hidden="true">
+                            <path d="M7 12S1 8 1 4.5a3 3 0 0 1 6 0 3 3 0 0 1 6 0C13 8 7 12 7 12z" stroke="#9C8265"
+                                stroke-width="1" />
+                        </svg>
+                    </button>
+                    <button class="quick-add-btn hoverable" aria-label="Quick add Ceramic vase to cart">Quick add to
+                        cart</button>
+                </div>
+                <div class="prod-info">
+                    <div class="prod-cat">Decor</div>
+                    <div class="prod-name">Artisan ceramic vase</div>
+                    <div class="prod-material">Handcrafted ceramic</div>
+                    <div class="prod-bottom">
+                        <div class="prod-price-wrap">
+                            <div class="prod-price">₹2,800</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card 10 (Dining new) -->
+            <article class="prod-card reveal delay-9 hoverable" role="listitem">
+                <div class="prod-img-wrap">
+                    <div class="prod-img-inner">
+                        <img src="./formaChair.webp" alt="Forma dining chair" loading="lazy">
+                    </div>
+                    <button class="wish-btn hoverable" aria-label="Add Forma dining chair to wishlist">
+                        <svg width="14" height="13" viewBox="0 0 14 13" fill="none" aria-hidden="true">
+                            <path d="M7 12S1 8 1 4.5a3 3 0 0 1 6 0 3 3 0 0 1 6 0C13 8 7 12 7 12z" stroke="#9C8265"
+                                stroke-width="1" />
+                        </svg>
+                    </button>
+                    <button class="quick-add-btn hoverable" aria-label="Quick add Forma dining chair to cart">Quick add
+                        to cart</button>
+                </div>
+                <div class="prod-info">
+                    <div class="prod-cat">Dining</div>
+                    <div class="prod-name">Forma dining chair</div>
+                    <div class="prod-material">Teak wood · Upholstered seat</div>
+                    <div class="prod-bottom">
+                        <div class="prod-price-wrap">
+                            <div class="prod-price">₹7,500</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card 11 (Storage) -->
+            <article class="prod-card reveal delay-10 hoverable" role="listitem">
+                <div class="prod-img-wrap">
+                    <div class="prod-img-inner">
+                        <img src="./nylaSideboard.webp" alt="Nyla Sideboard" loading="lazy">
+                    </div>
+                    <button class="wish-btn hoverable" aria-label="Add Nyla Sideboard to wishlist">
+                        <svg width="14" height="13" viewBox="0 0 14 13" fill="none" aria-hidden="true">
+                            <path d="M7 12S1 8 1 4.5a3 3 0 0 1 6 0 3 3 0 0 1 6 0C13 8 7 12 7 12z" stroke="#9C8265"
+                                stroke-width="1" />
+                        </svg>
+                    </button>
+                    <button class="quick-add-btn hoverable" aria-label="Quick add Nyla Sideboard to cart">Quick add to
+                        cart</button>
+                </div>
+                <div class="prod-info">
+                    <div class="prod-cat">Storage</div>
+                    <div class="prod-name">Nyla Sideboard</div>
+                    <div class="prod-material">Mango wood · Iron base</div>
+                    <div class="prod-bottom">
+                        <div class="prod-price-wrap">
+                            <div class="prod-price">₹36,500</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card 12 (Storage) -->
+            <article class="prod-card reveal delay-11 hoverable" role="listitem">
+                <div class="prod-img-wrap">
+                    <div class="prod-img-inner">
+                        <img src="./havenCabinet.webp" alt="Haven Cabinet" loading="lazy">
+                    </div>
+                    <button class="wish-btn hoverable" aria-label="Add Haven Cabinet to wishlist">
+                        <svg width="14" height="13" viewBox="0 0 14 13" fill="none" aria-hidden="true">
+                            <path d="M7 12S1 8 1 4.5a3 3 0 0 1 6 0 3 3 0 0 1 6 0C13 8 7 12 7 12z" stroke="#9C8265"
+                                stroke-width="1" />
+                        </svg>
+                    </button>
+                    <button class="quick-add-btn hoverable" aria-label="Quick add Haven Cabinet to cart">Quick add to
+                        cart</button>
+                </div>
+                <div class="prod-info">
+                    <div class="prod-cat">Storage</div>
+                    <div class="prod-name">Haven Cabinet</div>
+                    <div class="prod-material">Acacia wood · Metal base</div>
+                    <div class="prod-bottom">
+                        <div class="prod-price-wrap">
+                            <div class="prod-price">₹28,000</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card 13 (Storage) -->
+            <article class="prod-card reveal delay-12 hoverable" role="listitem">
+                <div class="prod-img-wrap">
+                    <div class="prod-img-inner">
+                        <img src="./terraCabinet.webp" alt="Terra Cabinet" loading="lazy">
+                    </div>
+                    <button class="wish-btn hoverable" aria-label="Add Terra Cabinet to wishlist">
+                        <svg width="14" height="13" viewBox="0 0 14 13" fill="none" aria-hidden="true">
+                            <path d="M7 12S1 8 1 4.5a3 3 0 0 1 6 0 3 3 0 0 1 6 0C13 8 7 12 7 12z" stroke="#9C8265"
+                                stroke-width="1" />
+                        </svg>
+                    </button>
+                    <button class="quick-add-btn hoverable" aria-label="Quick add Terra Cabinet to cart">Quick add to
+                        cart</button>
+                </div>
+                <div class="prod-info">
+                    <div class="prod-cat">Storage</div>
+                    <div class="prod-name">Terra Cabinet</div>
+                    <div class="prod-material">Solid teak wood</div>
+                    <div class="prod-bottom">
+                        <div class="prod-price-wrap">
+                            <div class="prod-price">₹34,000</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card 14 (Dining) -->
+            <article class="prod-card reveal delay-13 hoverable" role="listitem">
+                <div class="prod-img-wrap">
+                    <div class="prod-img-inner">
+                        <img src="./lyraBench.webp" alt="Lyra Bench" loading="lazy">
+                    </div>
+                    <button class="wish-btn hoverable" aria-label="Add Lyra Bench to wishlist">
+                        <svg width="14" height="13" viewBox="0 0 14 13" fill="none" aria-hidden="true">
+                            <path d="M7 12S1 8 1 4.5a3 3 0 0 1 6 0 3 3 0 0 1 6 0C13 8 7 12 7 12z" stroke="#9C8265"
+                                stroke-width="1" />
+                        </svg>
+                    </button>
+                    <button class="quick-add-btn hoverable" aria-label="Quick add Lyra Bench to cart">Quick add to
+                        cart</button>
+                </div>
+                <div class="prod-info">
+                    <div class="prod-cat">Dining</div>
+                    <div class="prod-name">Lyra Bench</div>
+                    <div class="prod-material">Oak wood · Premium upholstery</div>
+                    <div class="prod-bottom">
+                        <div class="prod-price-wrap">
+                            <div class="prod-price">₹12,500</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card 15 (Dining) -->
+            <article class="prod-card reveal delay-14 hoverable" role="listitem">
+                <div class="prod-img-wrap">
+                    <div class="prod-img-inner">
+                        <img src="./stellaChair.webp" alt="Stella Dining Chair" loading="lazy">
+                    </div>
+                    <button class="wish-btn hoverable" aria-label="Add Stella Dining Chair to wishlist">
+                        <svg width="14" height="13" viewBox="0 0 14 13" fill="none" aria-hidden="true">
+                            <path d="M7 12S1 8 1 4.5a3 3 0 0 1 6 0 3 3 0 0 1 6 0C13 8 7 12 7 12z" stroke="#9C8265"
+                                stroke-width="1" />
+                        </svg>
+                    </button>
+                    <button class="quick-add-btn hoverable" aria-label="Quick add Stella Dining Chair to cart">Quick add
+                        to cart</button>
+                </div>
+                <div class="prod-info">
+                    <div class="prod-cat">Dining</div>
+                    <div class="prod-name">Stella Dining Chair</div>
+                    <div class="prod-material">Mango wood · Iron base</div>
+                    <div class="prod-bottom">
+                        <div class="prod-price-wrap">
+                            <div class="prod-price">₹16,000</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card 16 (Living) -->
+            <article class="prod-card reveal delay-15 hoverable" role="listitem">
+                <div class="prod-img-wrap">
+                    <div class="prod-img-inner">
+                        <img src="./zenTable.jpg" alt="Zen End Table" loading="lazy">
+                    </div>
+                    <button class="wish-btn hoverable" aria-label="Add Zen End Table to wishlist">
+                        <svg width="14" height="13" viewBox="0 0 14 13" fill="none" aria-hidden="true">
+                            <path d="M7 12S1 8 1 4.5a3 3 0 0 1 6 0 3 3 0 0 1 6 0C13 8 7 12 7 12z" stroke="#9C8265"
+                                stroke-width="1" />
+                        </svg>
+                    </button>
+                    <button class="quick-add-btn hoverable" aria-label="Quick add Zen End Table to cart">Quick add to
+                        cart</button>
+                </div>
+                <div class="prod-info">
+                    <div class="prod-cat">Living Room</div>
+                    <div class="prod-name">Zen End Table</div>
+                    <div class="prod-material">Mango wood · Iron base</div>
+                    <div class="prod-bottom">
+                        <div class="prod-price-wrap">
+                            <div class="prod-price">₹11,000</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- --- EDITORIAL / SHOP THE LOOK ----------------- -->
+    <div class="editorial reveal" aria-label="Shop the room feature">
+        <div class="editorial-visual">
+            <div class="editorial-visual-bg">
+                <img src="./shopBylook.png" alt="Shop the room" style="width: 100%; height: 100%; object-fit: cover;"
+                    loading="lazy">
+            </div>
+
+            <!-- Hotspots -->
+            <a href="living-room.html#aura2" class="hotspot hoverable" style="top:57%;left:43%"
+                aria-label="Aura sofa — view details">
+                <div class="hotspot-pulse"></div>
+                <div class="hotspot-core"></div>
+                <div class="hotspot-tooltip">Aura sofa · ₹32,000</div>
+            </a>
+            <a href="living-room.html#mesaCoffee" class="hotspot hoverable" style="top:72%;left:52%"
+                aria-label="Mesa table — view details">
+                <div class="hotspot-pulse" style="animation-delay:0.8s"></div>
+                <div class="hotspot-core"></div>
+                <div class="hotspot-tooltip">Mesa coffee table · ₹18,000</div>
+            </a>
+            <a href="living-room.html#aeroLamp" class="hotspot hoverable" style="top:50%;left:12%"
+                aria-label="Aero lamp — view details">
+                <div class="hotspot-pulse" style="animation-delay:1.6s"></div>
+                <div class="hotspot-core"></div>
+                <div class="hotspot-tooltip">Aero floor lamp · ₹8,500</div>
+            </a>
+        </div>
+
+        <div class="editorial-content">
+            <div class="editorial-eyebrow reveal-left">Shop the room</div>
+            <h2 class="editorial-title reveal-left delay-1">The living room<br>you've been<br>dreaming of</h2>
+            <p class="editorial-body reveal-left delay-2">Every element in this room is available at Sunny Furniture.
+                Tap the golden dots to discover each piece — or shop the entire look at once.</p>
+            <a href="living-room.html" class="btn-gold hoverable reveal-left delay-3"
+                style="display: inline-block;"><span>Shop this look</span></a>
+        </div>
+    </div>
+
+    <!-- --- STATS --------------------------------------- -->
+    <div class="stats" role="list" aria-label="Key facts about Sunny Furniture">
+        <div class="stat-item reveal" role="listitem">
+            <div class="stat-num" data-target="10000" data-suffix="+" aria-label="Over 10,000">0</div>
+            <div class="stat-label">Happy homes furnished</div>
+        </div>
+        <div class="stat-item reveal delay-1" role="listitem">
+            <div class="stat-num" data-target="5000" data-suffix="+" aria-label="Over 5,000">0</div>
+            <div class="stat-label">Curated designs</div>
+        </div>
+        <div class="stat-item reveal delay-2" role="listitem">
+            <div class="stat-num" data-target="48" data-suffix="hr" aria-label="48 hours">0</div>
+            <div class="stat-label">Average delivery time</div>
+        </div>
+        <div class="stat-item reveal delay-3" role="listitem">
+            <div class="stat-num" data-target="4.9" data-suffix="★" data-decimal="true" aria-label="4.9 stars">0</div>
+            <div class="stat-label">Average customer rating</div>
+        </div>
+    </div>
+
+    <!-- --- TESTIMONIALS ------------------------------- -->
+    <section class="testimonials" aria-label="Customer testimonials">
+        <div style="text-align:center;margin-bottom:64px">
+            <div class="section-eyebrow reveal" style="justify-content:center">What our customers say</div>
+            <h2 class="section-title reveal delay-1" style="margin-bottom:0">Loved by 10,000+ homes</h2>
+        </div>
+
+        <div class="testi-grid">
+            <blockquote class="testi-card reveal">
+                <div class="testi-stars" aria-label="5 star rating">
+                    <span class="star" aria-hidden="true">★</span><span class="star" aria-hidden="true">★</span>
+                    <span class="star" aria-hidden="true">★</span><span class="star" aria-hidden="true">★</span>
+                    <span class="star" aria-hidden="true">★</span>
+                </div>
+                <p class="testi-quote">The Aura sofa transformed our living room completely. The quality is
+                    extraordinary — feels like it cost twice the price.</p>
+                <div class="testi-divider" aria-hidden="true"></div>
+                <footer class="testi-name">Priya M. &mdash; New Delhi</footer>
+            </blockquote>
+
+            <blockquote class="testi-card reveal delay-2">
+                <div class="testi-stars" aria-label="5 star rating">
+                    <span class="star" aria-hidden="true">★</span><span class="star" aria-hidden="true">★</span>
+                    <span class="star" aria-hidden="true">★</span><span class="star" aria-hidden="true">★</span>
+                    <span class="star" aria-hidden="true">★</span>
+                </div>
+                <p class="testi-quote">Delivery was flawless, installation done in under an hour. The Alto bed is
+                    everything we imagined. Simply stunning craftsmanship.</p>
+                <div class="testi-divider" aria-hidden="true"></div>
+                <footer class="testi-name">Rahul &amp; Ananya &mdash; Noida</footer>
+            </blockquote>
+
+            <blockquote class="testi-card reveal delay-4">
+                <div class="testi-stars" aria-label="5 star rating">
+                    <span class="star" aria-hidden="true">★</span><span class="star" aria-hidden="true">★</span>
+                    <span class="star" aria-hidden="true">★</span><span class="star" aria-hidden="true">★</span>
+                    <span class="star" aria-hidden="true">★</span>
+                </div>
+                <p class="testi-quote">We furnished our entire home with Sunny Furniture. Every piece exceeded
+                    expectations. This is what Indian furniture should be.</p>
+                <div class="testi-divider" aria-hidden="true"></div>
+                <footer class="testi-name">Kavita &mdash; Chandigarh</footer>
+            </blockquote>
+        </div>
+    </section>
+
+    <!-- --- NEWSLETTER --------------------------------- -->
+    <section class="newsletter" aria-label="Newsletter signup">
+        <div class="reveal">
+            <p class="nl-eyebrow">Stay inspired</p>
+            <h2 class="nl-title">Beautiful homes<br>start here</h2>
+            <p class="nl-sub">Join 50,000 homeowners. Get new arrivals, design ideas, and an exclusive 10% off your
+                first order.</p>
+            <div class="nl-form" role="form" aria-label="Email subscription">
+                <input class="nl-input" type="email" placeholder="Your email address" aria-label="Email address">
+                <button class="nl-btn hoverable" type="submit">Subscribe</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- --- WISHLIST SECTION --------------------------- -->
+    <section class="wishlist-section reveal" id="wishlistSection"
+        style="display:none; background: var(--warm-white); padding-bottom: 120px;">
+        <div class="products-header">
+            <div>
+                <div class="section-eyebrow">Saved for later</div>
+                <h2 class="section-title">Your Wishlist</h2>
+            </div>
+        </div>
+        <div class="products-grid" id="wishlistGrid">
+            <!-- Dynamically populated -->
+        </div>
+    </section>
+
+    <!-- --- FOOTER ------------------------------------- -->
+    <footer role="contentinfo">
+        <div class="footer-top">
+            <div>
+                <span class="footer-logo">Sunny Furniture</span>
+                <p class="footer-about">Furniture crafted for modern Indian homes. Designed with care, built to last a
+                    lifetime. Free delivery, free installation, always.</p>
+
+            </div>
+
+            <div>
+                <h3 class="footer-col-title">Shop</h3>
+                <a href="living-room.html" class="footer-link hoverable">Living room</a>
+                <a href="bedroom.html" class="footer-link hoverable">Bedroom</a>
+                <a href="dining.html" class="footer-link hoverable">Dining</a>
+                <a href="storage.html" class="footer-link hoverable">Storage</a>
+                <a href="study.html" class="footer-link hoverable">Study</a>
+                <a href="outdoor.html" class="footer-link hoverable">Outdoor</a>
+                <a href="sale.html" class="footer-link hoverable">Sale</a>
+            </div>
+
+            <div>
+                <h3 class="footer-col-title">Help</h3>
+                <a href="track-order.html" class="footer-link hoverable">Track your order</a>
+                <a href="delivery-info.html" class="footer-link hoverable">Delivery info</a>
+                <a href="returns-refunds.html" class="footer-link hoverable">Returns &amp; refunds</a>
+                <a href="installation.html" class="footer-link hoverable">Installation</a>
+                <a href="faqs.html" class="footer-link hoverable">FAQs</a>
+                <a href="contact-us.html" class="footer-link hoverable">Contact us</a>
+            </div>
+
+            <div>
+                <h3 class="footer-col-title">Company</h3>
+                <a href="about.html" class="footer-link hoverable">About Sunny Furniture</a>
+                <a href="philosophy.html#craftsmen" class="footer-link hoverable">Our craftsmen</a>
+                <a href="philosophy.html#sustainability" class="footer-link hoverable">Sustainability</a>
+                <a href="philosophy.html#blog" class="footer-link hoverable">Blog &amp; ideas</a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <span class="footer-copy">&copy; 2026 Sunny Furniture Pvt Ltd &nbsp;&middot;&nbsp; Privacy Policy
+                &nbsp;&middot;&nbsp; Terms of Service</span>
+            <div class="footer-pay" aria-label="Accepted payment methods">
+                <span class="pay-icon" title="UPI"><svg width="36" height="22" viewBox="0 0 36 22">
+                        <rect width="36" height="22" rx="3" fill="#fff" stroke="#ddd" stroke-width=".5" /><text x="18"
+                            y="15" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" font-weight="600"
+                            fill="#4B286D">UPI</text>
+                    </svg></span>
+                <span class="pay-icon" title="Visa"><svg width="36" height="22" viewBox="0 0 36 22">
+                        <rect width="36" height="22" rx="3" fill="#fff" stroke="#ddd" stroke-width=".5" /><text x="18"
+                            y="15" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" font-weight="700"
+                            font-style="italic" fill="#1A1F71">VISA</text>
+                    </svg></span>
+                <span class="pay-icon" title="Mastercard"><svg width="36" height="22" viewBox="0 0 36 22">
+                        <rect width="36" height="22" rx="3" fill="#fff" stroke="#ddd" stroke-width=".5" />
+                        <circle cx="14" cy="11" r="6" fill="#EB001B" opacity=".8" />
+                        <circle cx="22" cy="11" r="6" fill="#F79E1B" opacity=".8" />
+                    </svg></span>
+                <span class="pay-icon" title="RuPay"><svg width="36" height="22" viewBox="0 0 36 22">
+                        <rect width="36" height="22" rx="3" fill="#fff" stroke="#ddd" stroke-width=".5" /><text x="18"
+                            y="15" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" font-weight="600"
+                            fill="#097A44">RuPay</text>
+                    </svg></span>
+                <span class="pay-icon" title="Cash on Delivery"><svg width="36" height="22" viewBox="0 0 36 22">
+                        <rect width="36" height="22" rx="3" fill="#fff" stroke="#ddd" stroke-width=".5" /><text x="18"
+                            y="15" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" font-weight="500"
+                            fill="#555">COD</text>
+                    </svg></span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- --- PRODUCT MODAL ------------------------------ -->
+    <div class="product-modal" id="productModal" role="dialog" aria-modal="true" style="display:none;"
+        aria-hidden="true">
+        <div class="pm-overlay" id="pmOverlay"></div>
+        <div class="pm-content">
+            <button class="pm-close hoverable" id="pmClose" aria-label="Close modal">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <div class="pm-body">
+                <div class="pm-image-wrap" id="pmImageWrap"></div>
+                <div class="pm-info">
+                    <div class="pm-cat" id="pmCat"></div>
+                    <h2 class="pm-name" id="pmName"></h2>
+                    <div class="pm-price" id="pmPrice"></div>
+                    <p class="pm-desc" id="pmDesc">A beautiful handcrafted piece designed for modern Indian homes.</p>
+                    <div class="pm-details"
+                        style="margin-top: 1rem; font-size: 0.95rem; color: var(--espresso); line-height: 1.5;">
+                        <p style="margin-bottom: 0.5rem;"><strong>Material:</strong> <span id="pmMaterial">Premium
+                                Quality Options</span></p>
+                        <p><strong>Size:</strong> <span id="pmSize">Standard Dimensions</span></p>
+                    </div>
+                    <div class="pm-actions" style="margin-top: 2rem; display: flex; gap: 1rem;">
+                        <button class="pm-btn pm-add-cart hoverable"
+                            style="flex: 1; padding: 1rem; background: var(--espresso); color: #fff; border: none; cursor: pointer; border-radius: 0; font-family: 'DM Sans', sans-serif; font-size: 1rem; transition: background 0.3s ease;">Add
+                            to Cart</button>
+                        <button class="pm-btn pm-like hoverable wish-btn"
+                            style="padding: 1rem; background: none; border: 1px solid var(--espresso); cursor: pointer; border-radius: 0; display: flex; align-items: center; justify-content: center; width: 60px; transition: all 0.3s ease;">
+                            <svg width="20" height="20" viewBox="0 0 18 18" fill="none">
+                                <path d="M9 15.5S2 10.8 2 6.5a4 4 0 0 1 7-2.64A4 4 0 0 1 16 6.5c0 4.3-7 9-7 9z"
+                                    stroke="currentColor" stroke-width="1" stroke-linejoin="round" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./script.js?v=1776975860"></script>
+
+</body>
+
+</html>

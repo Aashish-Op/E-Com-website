@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQs — Sunny Furniture</title>
+    <meta name="description"
+        content="Frequently asked questions about Sunny Furniture — orders, delivery, returns, installation, payments, and more.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:opsz,wght@9..40,200;9..40,300;9..40,400;9..40,500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./index.css">
+    <style>
+        .faq-hero{padding-top:180px;padding-bottom:60px;max-width:1400px;margin:0 auto;padding-left:5%;padding-right:5%;text-align:center}
+        .faq-hero h1{font-family:var(--serif);font-size:clamp(2.8rem,5vw,4.2rem);font-weight:400;line-height:1.1;margin-bottom:1.5rem;color:var(--espresso)}
+        .faq-hero .faq-intro{font-size:1.1rem;line-height:1.8;color:var(--walnut);max-width:650px;margin:0 auto}
+
+        .faq-cats{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;max-width:800px;margin:0 auto 60px;padding:0 5%}
+        .faq-cat-btn{padding:.7rem 1.4rem;border:1px solid var(--linen);background:transparent;font-family:'DM Sans',sans-serif;font-size:.85rem;text-transform:uppercase;letter-spacing:.1em;color:var(--walnut);cursor:pointer;transition:all .3s}
+        .faq-cat-btn:hover,.faq-cat-btn.active{background:var(--espresso);color:#fff;border-color:var(--espresso)}
+
+        .faq-sections{max-width:860px;margin:0 auto 100px;padding:0 5%}
+        .faq-group{margin-bottom:48px}
+        .faq-group-title{font-family:var(--serif);font-size:1.6rem;font-weight:400;color:var(--espresso);margin-bottom:20px;padding-bottom:12px;border-bottom:2px solid var(--linen)}
+
+        .faq-item{border-bottom:1px solid var(--linen)}
+        .faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;padding:1.3rem 0;background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:1.02rem;color:var(--espresso);text-align:left;transition:color .3s}
+        .faq-q:hover{color:var(--gold)}
+        .faq-q .fq-icon{width:24px;height:24px;flex-shrink:0;position:relative;margin-left:1rem}
+        .faq-q .fq-icon::before,.faq-q .fq-icon::after{content:'';position:absolute;background:currentColor;transition:transform .3s}
+        .faq-q .fq-icon::before{width:14px;height:1.5px;top:50%;left:50%;transform:translate(-50%,-50%)}
+        .faq-q .fq-icon::after{width:1.5px;height:14px;top:50%;left:50%;transform:translate(-50%,-50%)}
+        .faq-item.active .faq-q .fq-icon::after{transform:translate(-50%,-50%) rotate(90deg)}
+        .faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease}
+        .faq-item.active .faq-a{max-height:300px}
+        .faq-a p{padding:0 0 1.3rem;font-size:.95rem;line-height:1.8;color:var(--walnut)}
+
+        .faq-cta{text-align:center;margin-bottom:100px;padding:0 5%}
+        .faq-cta p{font-size:1.05rem;color:var(--walnut);margin-bottom:1.5rem}
+        .faq-cta a{display:inline-block;padding:1rem 2.5rem;background:var(--espresso);color:#fff;text-decoration:none;font-family:'DM Sans',sans-serif;font-size:.9rem;text-transform:uppercase;letter-spacing:.12em;transition:background .3s}
+        .faq-cta a:hover{background:var(--gold)}
+
+        @media(max-width:768px){.faq-hero{padding-top:140px}.faq-cats{gap:8px}.faq-cat-btn{padding:.5rem 1rem;font-size:.78rem}}
+    </style>
+</head>
+
+<body>
+    <div class="page-intro" aria-hidden="true"><div class="intro-logo">Sunny Furniture</div><div class="intro-line"></div></div>
+    <div class="cursor" id="cursor" aria-hidden="true"></div>
+    <div class="cursor-follower" id="cursorFollower" aria-hidden="true"></div>
+    <div class="page-transition" id="pageTransition" aria-hidden="true"></div>
+
+    <div class="ann-bar" role="marquee" aria-label="Site announcements">
+        <div class="ann-track" id="annTrack">
+            <span class="ann-item">Free delivery on orders above ₹15,000</span>
+            <span class="ann-item">New arrivals — <span>Summer 2026 collection</span></span>
+            <span class="ann-item">Use code <span>WELCOME10</span> for 10% off</span>
+            <span class="ann-item">Free installation on all furniture</span>
+            <span class="ann-item">30-day hassle-free returns</span>
+            <span class="ann-item">2-year warranty on every piece</span>
+            <span class="ann-item">Customisations also available</span>
+            <span class="ann-item">Free delivery on orders above ₹15,000</span>
+            <span class="ann-item">New arrivals — <span>Summer 2026 collection</span></span>
+            <span class="ann-item">Use code <span>WELCOME10</span> for 10% off</span>
+            <span class="ann-item">Free installation on all furniture</span>
+            <span class="ann-item">30-day hassle-free returns</span>
+            <span class="ann-item">2-year warranty on every piece</span>
+            <span class="ann-item">Customisations also available</span>
+        </div>
+    </div>
+
+    <nav class="nav" id="mainNav" role="navigation" aria-label="Main navigation">
+        <a href="index.html" class="nav-logo">Sunny Furniture</a>
+        <ul class="nav-links">
+            <li><a href="living-room.html">Living</a></li>
+            <li><a href="bedroom.html">Bedroom</a></li>
+            <li><a href="dining.html">Dining</a></li>
+            <li><a href="storage.html">Storage</a></li>
+            <li><a href="outdoor.html">Outdoor</a></li>
+            <li><a href="study.html">Study</a></li>
+            <li><a href="newdecor.html">Decor</a></li>
+            <li><a href="sale.html" class="nav-sale">Sale</a></li>
+        </ul>
+        <div class="nav-actions">
+            <button class="nav-btn hoverable" aria-label="Search"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1"/><line x1="12.5" y1="12.5" x2="16.5" y2="16.5" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg></button>
+            <button class="nav-btn hoverable wish-wrap" aria-label="Wishlist — 0 items">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                    <path d="M9 15.5S2 10.8 2 6.5a4 4 0 0 1 7-2.64A4 4 0 0 1 16 6.5c0 4.3-7 9-7 9z"
+                        stroke="currentColor" stroke-width="1" stroke-linejoin="round" />
+                </svg>
+                <span class="wishlist-badge" style="display:none;" aria-hidden="true">0</span>
+            </button>
+            <button class="nav-btn cart-wrap hoverable" aria-label="Cart — 2 items">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                    <path d="M2 2h1.8L6 10.5h7.5l2-7H5" stroke="currentColor" stroke-width="1" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <circle cx="7.5" cy="14" r="1.2" fill="currentColor" />
+                    <circle cx="12.5" cy="14" r="1.2" fill="currentColor" />
+                </svg>
+                <span class="cart-badge" aria-hidden="true">2</span>
+            </button>
+            <button class="nav-btn hoverable" aria-label="Account">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                    <circle cx="9" cy="6" r="3.5" stroke="currentColor" stroke-width="1" />
+                    <path d="M2.5 16.5c0-3.5 2.9-5.5 6.5-5.5s6.5 2 6.5 5.5" stroke="currentColor" stroke-width="1"
+                        stroke-linecap="round" />
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <main>
+        <div style="max-width:1400px;margin:0 auto;padding:160px 5% 20px;display:flex;justify-content:flex-end;">
+            <a href="index.html" class="link-arrow reveal hoverable">Back to Home</a>
+        </div>
+
+        <section class="faq-hero" style="padding-top:20px;">
+            <div class="section-eyebrow reveal" style="justify-content:center">Help centre</div>
+            <h1 class="reveal delay-1">Frequently Asked Questions</h1>
+            <p class="faq-intro reveal delay-2">Find answers to the most common questions about ordering, delivery, returns, installation, and payments.</p>
+        </section>
+
+        <div class="faq-cats reveal" role="tablist" aria-label="FAQ categories">
+            <button class="faq-cat-btn active hoverable" data-cat="all">All</button>
+            <button class="faq-cat-btn hoverable" data-cat="orders">Orders</button>
+            <button class="faq-cat-btn hoverable" data-cat="delivery">Delivery</button>
+            <button class="faq-cat-btn hoverable" data-cat="returns">Returns</button>
+            <button class="faq-cat-btn hoverable" data-cat="installation">Installation</button>
+            <button class="faq-cat-btn hoverable" data-cat="payments">Payments</button>
+        </div>
+
+        <section class="faq-sections" aria-label="FAQ list">
+
+            <div class="faq-group" data-group="orders">
+                <h2 class="faq-group-title reveal">Orders</h2>
+                <div class="faq-item reveal">
+                    <button class="faq-q hoverable" aria-expanded="false">How do I place an order?<span class="fq-icon" aria-hidden="true"></span></button>
+                    <div class="faq-a"><p>Browse our collections, add items to your cart, and proceed to checkout. You can pay via UPI, credit/debit card, net banking, or opt for cash on delivery.</p></div>
+                </div>
+                <div class="faq-item reveal">
+                    <button class="faq-q hoverable" aria-expanded="false">Can I modify or cancel my order?<span class="fq-icon" aria-hidden="true"></span></button>
+                    <div class="faq-a"><p>You can modify or cancel your order within 24 hours of placing it by contacting our support team. After 24 hours, cancellation may attract a small processing fee.</p></div>
+                </div>
+                <div class="faq-item reveal">
+                    <button class="faq-q hoverable" aria-expanded="false">How do I track my order?<span class="fq-icon" aria-hidden="true"></span></button>
+                    <div class="faq-a"><p>Visit our <a href="track-order.html" style="color:var(--gold);text-decoration:underline">Track Your Order</a> page and enter your order ID (format: SF-YYYY-XXXXX) from your confirmation email.</p></div>
+                </div>
+            </div>
+
+            <div class="faq-group" data-group="delivery">
+                <h2 class="faq-group-title reveal">Delivery</h2>
+                <div class="faq-item reveal">
+                    <button class="faq-q hoverable" aria-expanded="false">How long does delivery take?<span class="fq-icon" aria-hidden="true"></span></button>
+                    <div class="faq-a"><p>Express delivery takes 4–6 working days for select regions. Standard delivery is 8–10 working days for metro cities. Tier 2 &amp; 3 cities take 7–12 working days.</p></div>
+                </div>
+                <div class="faq-item reveal">
+                    <button class="faq-q hoverable" aria-expanded="false">Is delivery free?<span class="fq-icon" aria-hidden="true"></span></button>
+                    <div class="faq-a"><p>Yes, delivery is free on all orders above ₹15,000. For orders below this amount, a flat delivery fee of ₹499 applies.</p></div>
+                </div>
+                <div class="faq-item reveal">
+                    <button class="faq-q hoverable" aria-expanded="false">Do you deliver to my city?<span class="fq-icon" aria-hidden="true"></span></button>
+                    <div class="faq-a"><p>We deliver to 500+ cities across India including all metros and most tier 2 and 3 cities. Check our <a href="delivery-info.html" style="color:var(--gold);text-decoration:underline">Delivery Info</a> page for full details.</p></div>
+                </div>
+            </div>
+
+            <div class="faq-group" data-group="returns">
+                <h2 class="faq-group-title reveal">Returns &amp; Refunds</h2>
+                <div class="faq-item reveal">
+                    <button class="faq-q hoverable" aria-expanded="false">What is your return policy?<span class="fq-icon" aria-hidden="true"></span></button>
+                    <div class="faq-a"><p>We offer a 30-day hassle-free return policy. Items must be unused and in original packaging. See our <a href="returns-refunds.html" style="color:var(--gold);text-decoration:underline">Returns &amp; Refunds</a> page for full eligibility details.</p></div>
+                </div>
+                <div class="faq-item reveal">
+                    <button class="faq-q hoverable" aria-expanded="false">How long do refunds take?<span class="fq-icon" aria-hidden="true"></span></button>
+                    <div class="faq-a"><p>Refunds are processed within 5–7 working days after the returned item passes quality inspection. The amount is credited back to your original payment method.</p></div>
+                </div>
+                <div class="faq-item reveal">
+                    <button class="faq-q hoverable" aria-expanded="false">Is return pickup free?<span class="fq-icon" aria-hidden="true"></span></button>
+                    <div class="faq-a"><p>Yes, return pickup is completely free. Our team will schedule a doorstep pickup within 48 hours of your return request.</p></div>
+                </div>
+            </div>
+
+            <div class="faq-group" data-group="installation">
+                <h2 class="faq-group-title reveal">Installation</h2>
+                <div class="faq-item reveal">
+                    <button class="faq-q hoverable" aria-expanded="false">Is installation included?<span class="fq-icon" aria-hidden="true"></span></button>
+                    <div class="faq-a"><p>Yes, free professional installation is included with every furniture order. Our trained team assembles everything in your room of choice within 24 hours of delivery.</p></div>
+                </div>
+                <div class="faq-item reveal">
+                    <button class="faq-q hoverable" aria-expanded="false">Can I reschedule installation?<span class="fq-icon" aria-hidden="true"></span></button>
+                    <div class="faq-a"><p>Yes, you can reschedule by calling us at least 12 hours before your slot. We'll arrange a new time at no additional cost.</p></div>
+                </div>
+                <div class="faq-item reveal">
+                    <button class="faq-q hoverable" aria-expanded="false">Does installation include wall mounting?<span class="fq-icon" aria-hidden="true"></span></button>
+                    <div class="faq-a"><p>Yes, wall mounting for shelves, mirrors, and similar items is included free of charge. However, electrical work (e.g. wiring for lights) is not covered.</p></div>
+                </div>
+            </div>
+
+            <div class="faq-group" data-group="payments">
+                <h2 class="faq-group-title reveal">Payments</h2>
+                <div class="faq-item reveal">
+                    <button class="faq-q hoverable" aria-expanded="false">What payment methods do you accept?<span class="fq-icon" aria-hidden="true"></span></button>
+                    <div class="faq-a"><p>We accept UPI, Visa, Mastercard, RuPay, net banking, and cash on delivery (COD).</p></div>
+                </div>
+
+                <div class="faq-item reveal">
+                    <button class="faq-q hoverable" aria-expanded="false">Is cash on delivery available?<span class="fq-icon" aria-hidden="true"></span></button>
+                    <div class="faq-a"><p>Yes, COD is available for orders up to ₹50,000 in all serviceable locations across India.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <div class="faq-cta reveal">
+            <div class="section-eyebrow" style="justify-content:center;margin-bottom:12px">Still have questions?</div>
+            <p>Our team is happy to help. Reach out and we'll get back to you within a few hours.</p>
+            <a href="contact-us.html" class="hoverable">Contact us</a>
+        </div>
+
+        <section class="newsletter" aria-label="Newsletter signup">
+            <div class="reveal">
+                <p class="nl-eyebrow">Stay inspired</p>
+                <h2 class="nl-title">Beautiful homes<br>start here</h2>
+                <p class="nl-sub">Join 50,000 homeowners. Get new arrivals, design ideas, and an exclusive 10% off your first order.</p>
+                <div class="nl-form" role="form" aria-label="Email subscription">
+                    <input class="nl-input" type="email" placeholder="Your email address" aria-label="Email address">
+                    <button class="nl-btn hoverable" type="submit">Subscribe</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer role="contentinfo">
+        <div class="footer-top">
+            <div>
+                <span class="footer-logo">Sunny Furniture</span>
+                <p class="footer-about">Furniture crafted for modern Indian homes. Designed with care, built to last a lifetime. Free delivery, free installation, always.</p>
+            </div>
+            <div>
+                <h3 class="footer-col-title">Shop</h3>
+                <a href="living-room.html" class="footer-link hoverable">Living room</a>
+                <a href="bedroom.html" class="footer-link hoverable">Bedroom</a>
+                <a href="dining.html" class="footer-link hoverable">Dining</a>
+                <a href="storage.html" class="footer-link hoverable">Storage</a>
+                <a href="study.html" class="footer-link hoverable">Study</a>
+                <a href="outdoor.html" class="footer-link hoverable">Outdoor</a>
+                <a href="sale.html" class="footer-link hoverable">Sale</a>
+            </div>
+            <div>
+                <h3 class="footer-col-title">Help</h3>
+                <a href="track-order.html" class="footer-link hoverable">Track your order</a>
+                <a href="delivery-info.html" class="footer-link hoverable">Delivery info</a>
+                <a href="returns-refunds.html" class="footer-link hoverable">Returns &amp; refunds</a>
+                <a href="installation.html" class="footer-link hoverable">Installation</a>
+                <a href="faqs.html" class="footer-link hoverable">FAQs</a>
+                <a href="contact-us.html" class="footer-link hoverable">Contact us</a>
+            </div>
+            <div>
+                <h3 class="footer-col-title">Company</h3>
+                <a href="about.html" class="footer-link hoverable">About Sunny Furniture</a>
+                <a href="philosophy.html#craftsmen" class="footer-link hoverable">Our craftsmen</a>
+                <a href="philosophy.html#sustainability" class="footer-link hoverable">Sustainability</a>
+                <a href="philosophy.html#blog" class="footer-link hoverable">Blog &amp; ideas</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span class="footer-copy">&copy; 2026 Sunny Furniture Pvt Ltd &nbsp;&middot;&nbsp; Privacy Policy &nbsp;&middot;&nbsp; Terms of Service</span>
+            <div class="footer-pay" aria-label="Accepted payment methods">
+                <span class="pay-icon" title="UPI"><svg width="36" height="22" viewBox="0 0 36 22"><rect width="36" height="22" rx="3" fill="#fff" stroke="#ddd" stroke-width=".5"/><text x="18" y="15" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" font-weight="600" fill="#4B286D">UPI</text></svg></span>
+                <span class="pay-icon" title="Visa"><svg width="36" height="22" viewBox="0 0 36 22"><rect width="36" height="22" rx="3" fill="#fff" stroke="#ddd" stroke-width=".5"/><text x="18" y="15" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" font-weight="700" font-style="italic" fill="#1A1F71">VISA</text></svg></span>
+                <span class="pay-icon" title="Mastercard"><svg width="36" height="22" viewBox="0 0 36 22"><rect width="36" height="22" rx="3" fill="#fff" stroke="#ddd" stroke-width=".5"/><circle cx="14" cy="11" r="6" fill="#EB001B" opacity=".8"/><circle cx="22" cy="11" r="6" fill="#F79E1B" opacity=".8"/></svg></span>
+                <span class="pay-icon" title="RuPay"><svg width="36" height="22" viewBox="0 0 36 22"><rect width="36" height="22" rx="3" fill="#fff" stroke="#ddd" stroke-width=".5"/><text x="18" y="15" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" font-weight="600" fill="#097A44">RuPay</text></svg></span>
+                <span class="pay-icon" title="Cash on Delivery"><svg width="36" height="22" viewBox="0 0 36 22"><rect width="36" height="22" rx="3" fill="#fff" stroke="#ddd" stroke-width=".5"/><text x="18" y="15" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" font-weight="500" fill="#555">COD</text></svg></span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./script.js"></script>
+    <script>
+        // FAQ accordion
+        document.querySelectorAll('.faq-q').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const item = btn.parentElement;
+                const wasActive = item.classList.contains('active');
+                // Close all in same group
+                item.closest('.faq-group').querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+                if (!wasActive) item.classList.add('active');
+                btn.setAttribute('aria-expanded', !wasActive);
+            });
+        });
+
+        // Category filter
+        document.querySelectorAll('.faq-cat-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.faq-cat-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const cat = btn.dataset.cat;
+                document.querySelectorAll('.faq-group').forEach(g => {
+                    g.style.display = (cat === 'all' || g.dataset.group === cat) ? '' : 'none';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

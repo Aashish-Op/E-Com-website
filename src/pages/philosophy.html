@@ -1,0 +1,427 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Philosophy — Sunny Furniture</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:opsz,wght@9..40,200;9..40,300;9..40,400;9..40,500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./index.css">
+    <style>
+        .phil-section {
+            padding: 120px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .phil-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 100px;
+            align-items: center;
+        }
+
+        .phil-section:nth-child(even) .phil-grid {
+            direction: rtl;
+        }
+
+        .phil-section:nth-child(even) .phil-text {
+            direction: ltr;
+        }
+
+        .phil-text h2 {
+            font-family: var(--serif);
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--espresso);
+        }
+
+        .phil-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--walnut);
+            margin-bottom: 1.5rem;
+        }
+
+        .phil-img {
+            aspect-ratio: 16/10;
+            overflow: hidden;
+        }
+
+        .phil-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .blog-card {
+            background: #fff;
+            padding: 30px;
+            transition: transform 0.3s var(--ease-out);
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .blog-date {
+            font-size: 0.8rem;
+            color: var(--tan);
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .blog-title {
+            font-family: var(--serif);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 968px) {
+            .phil-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .phil-text h2 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Page Intro -->
+    <div class="page-intro" aria-hidden="true">
+        <div class="intro-logo">Sunny Furniture</div>
+        <div class="intro-line"></div>
+    </div>
+
+    <!-- Cursor -->
+    <div class="cursor" id="cursor" aria-hidden="true"></div>
+    <div class="cursor-follower" id="cursorFollower" aria-hidden="true"></div>
+
+    <!-- Page transition -->
+    <div class="page-transition" id="pageTransition" aria-hidden="true"></div>
+
+    <!-- ─── ANNOUNCEMENT BAR ─────────────────────────── -->
+    <div class="ann-bar" role="marquee" aria-label="Site announcements">
+        <div class="ann-track" id="annTrack">
+            <span class="ann-item">Free delivery on orders above ₹15,000</span>
+            <span class="ann-item">New arrivals — <span>Summer 2026 collection</span></span>
+            <span class="ann-item">Use code <span>WELCOME10</span> for 10% off</span>
+            <span class="ann-item">Free installation on all furniture</span>
+            <span class="ann-item">30-day hassle-free returns</span>
+            <span class="ann-item">2-year warranty on every piece</span>
+            <span class="ann-item">Customisations also available</span>
+            <!-- Duplicate for seamless loop -->
+            <span class="ann-item">Free delivery on orders above ₹15,000</span>
+            <span class="ann-item">New arrivals — <span>Summer 2026 collection</span></span>
+            <span class="ann-item">Use code <span>WELCOME10</span> for 10% off</span>
+            <span class="ann-item">Free installation on all furniture</span>
+            <span class="ann-item">30-day hassle-free returns</span>
+            <span class="ann-item">2-year warranty on every piece</span>
+            <span class="ann-item">Customisations also available</span>
+        </div>
+    </div>
+
+    <!-- ─── NAVIGATION ───────────────────────────────── -->
+    <nav class="nav" id="mainNav" role="navigation" aria-label="Main navigation">
+        <a href="index.html" class="nav-logo">Sunny Furniture</a>
+
+        <ul class="nav-links">
+            <li><a href="living-room.html">Living</a></li>
+            <li><a href="bedroom.html">Bedroom</a></li>
+            <li><a href="dining.html">Dining</a></li>
+            <li><a href="storage.html">Storage</a></li>
+            <li><a href="outdoor.html">Outdoor</a></li>
+            <li><a href="study.html">Study</a></li>
+            <li><a href="newdecor.html">Decor</a></li>
+            <li><a href="sale.html" class="nav-sale">Sale</a></li>
+        </ul>
+
+        <div class="nav-actions">
+            <button class="nav-btn hoverable" aria-label="Search">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                    <circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1" />
+                    <line x1="12.5" y1="12.5" x2="16.5" y2="16.5" stroke="currentColor" stroke-width="1"
+                        stroke-linecap="round" />
+                </svg>
+            </button>
+            <button class="nav-btn hoverable" aria-label="Wishlist">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                    <path d="M9 15.5S2 10.8 2 6.5a4 4 0 0 1 7-2.64A4 4 0 0 1 16 6.5c0 4.3-7 9-7 9z"
+                        stroke="currentColor" stroke-width="1" stroke-linejoin="round" />
+                </svg>
+            </button>
+            <button class="nav-btn cart-wrap hoverable" aria-label="Cart — 2 items">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                    <path d="M2 2h1.8L6 10.5h7.5l2-7H5" stroke="currentColor" stroke-width="1" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <circle cx="7.5" cy="14" r="1.2" fill="currentColor" />
+                    <circle cx="12.5" cy="14" r="1.2" fill="currentColor" />
+                </svg>
+                <span class="cart-badge" aria-hidden="true">2</span>
+            </button>
+            <button class="nav-btn hoverable" aria-label="Account">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                    <circle cx="9" cy="6" r="3.5" stroke="currentColor" stroke-width="1" />
+                    <path d="M2.5 16.5c0-3.5 2.9-5.5 6.5-5.5s6.5 2 6.5 5.5" stroke="currentColor" stroke-width="1"
+                        stroke-linecap="round" />
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ─── PHILOSOPHY CONTENT ────────────────────────── -->
+    <main style="padding-top: 100px;">
+        <!-- Craftsmen Section -->
+        <section class="phil-section" id="craftsmen">
+            <div class="phil-grid">
+                <div class="phil-text">
+                    <div class="section-eyebrow reveal">The Makers</div>
+                    <h2 class="reveal delay-1">Hand-crafted by masters.</h2>
+                    <p class="reveal delay-2">We partner with over 120 traditional artisans across India, from the
+                        master carvers of Saharanpur to the expert weavers of Varanasi.</p>
+                    <p class="reveal delay-3">Each piece of Sunny Furniture carries the fingerprint of the person who
+                        made it. We ensure fair wages, safe working conditions, and the preservation of ancient
+                        techniques for future generations.</p>
+                </div>
+                <div class="phil-img reveal">
+                    <img src="./philosophy-artisan.png" alt="Artisan at work">
+                </div>
+            </div>
+        </section>
+
+        <!-- Sustainability Section -->
+        <section class="phil-section" id="sustainability" style="background: var(--ivory);">
+            <div class="phil-grid">
+                <div class="phil-text">
+                    <div class="section-eyebrow reveal">Our Earth</div>
+                    <h2 class="reveal delay-1">Kind to the planet.</h2>
+                    <p class="reveal delay-2">Furniture shouldn't cost the Earth. We use 100% FSC-certified wood,
+                        water-based finishes, and recycled packaging.</p>
+                    <p class="reveal delay-3">Our goal is to be carbon neutral by 2028. We plant a tree for every piece
+                        of furniture sold, contributing to reforestation projects across the subcontinent.</p>
+                </div>
+                <div class="phil-img reveal">
+                    <div
+                        style="background: var(--sage); width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: #fff; font-family: var(--serif); font-size: 2rem; text-align: center; padding: 40px;">
+                        "Design is not just what it looks like, it's how it respects the world around it."
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Section -->
+        <section class="phil-section" id="blog">
+            <div class="section-eyebrow reveal">Journal</div>
+            <h2 class="reveal delay-1" style="font-family: var(--serif); font-size: 3.5rem;">Design & Ideas</h2>
+
+            <div class="blog-grid">
+                <article class="blog-card reveal"
+                    style="grid-column: 1 / -1; padding: 60px; max-width: 900px; margin: 0 auto;">
+                    <div class="blog-date">April 15, 2025</div>
+                    <h2 class="blog-title" style="font-size: 3rem; margin-bottom: 2rem;">The Art of Slow Living</h2>
+                    <div class="blog-content" style="font-size: 1.15rem; line-height: 1.8; color: var(--walnut);">
+                        <p style="margin-bottom: 2rem; font-size: 1.3rem; font-style: italic; color: var(--espresso);">
+                            In a world that moves faster every day, our homes have become the last refuge of stillness.
+                            Slow living is not about doing less — it is about doing things with more intention. And
+                            nowhere is this philosophy more visible than in the furniture we choose.</p>
+
+                        <h3
+                            style="font-family: var(--serif); font-size: 2rem; color: var(--espresso); margin: 2rem 0 1rem;">
+                            Choose pieces with history</h3>
+                        <p style="margin-bottom: 2rem;">Solid wood furniture — teak, sheesham, mango — carries the
+                            memory of its grain. No two pieces are identical. When you run your hand across a
+                            handcrafted teak dining table, you are touching something that took decades to grow and
+                            weeks to craft. That is the opposite of disposable.</p>
+
+                        <h3
+                            style="font-family: var(--serif); font-size: 2rem; color: var(--espresso); margin: 2rem 0 1rem;">
+                            Edit ruthlessly</h3>
+                        <p style="margin-bottom: 2rem;">A slow living home has fewer things, but better things. Replace
+                            three cheap chairs with one beautifully made armchair. Remove the TV unit cluttered with
+                            wires and replace it with a single clean shelf holding only what you love.</p>
+
+                        <h3
+                            style="font-family: var(--serif); font-size: 2rem; color: var(--espresso); margin: 2rem 0 1rem;">
+                            Natural materials only</h3>
+                        <p style="margin-bottom: 2rem;">Linen, cotton, jute, rattan, solid wood. These materials
+                            breathe, age gracefully, and feel warm to the touch. Synthetic materials, no matter how well
+                            designed, never develop the same character over time.</p>
+
+                        <h3
+                            style="font-family: var(--serif); font-size: 2rem; color: var(--espresso); margin: 2rem 0 1rem;">
+                            Light matters more than you think</h3>
+                        <p style="margin-bottom: 2rem;">A home with good natural light needs less furniture to feel
+                            complete. Position your seating near windows. Let the changing quality of daylight through
+                            the day become part of your interior design.</p>
+                    </div>
+                </article>
+                <article class="blog-card reveal delay-1"
+                    style="grid-column: 1 / -1; padding: 60px; max-width: 900px; margin: 40px auto 0;">
+                    <div class="blog-date">March 22, 2025</div>
+                    <h2 class="blog-title" style="font-size: 3rem; margin-bottom: 2rem;">Choosing the Right Wood</h2>
+                    <div class="blog-content" style="font-size: 1.15rem; line-height: 1.8; color: var(--walnut);">
+                        <p style="margin-bottom: 2rem; font-size: 1.3rem; font-style: italic; color: var(--espresso);">
+                            India has one of the richest traditions of woodworking in the world. The wood you choose for
+                            your furniture will determine how it looks in 20 years — not just today.</p>
+
+                        <h3
+                            style="font-family: var(--serif); font-size: 2rem; color: var(--espresso); margin: 2rem 0 1rem;">
+                            Teak — the gold standard</h3>
+                        <p style="margin-bottom: 2rem;">Teak is dense, naturally oily, and extremely resistant to
+                            moisture and termites. It is the best choice for sofas, beds, and dining tables that will
+                            see daily use. Its golden-brown tone deepens beautifully with age. The downside is cost —
+                            good teak is expensive. But a well-made teak sofa frame will outlast anything in the room.
+                        </p>
+
+                        <h3
+                            style="font-family: var(--serif); font-size: 2rem; color: var(--espresso); margin: 2rem 0 1rem;">
+                            Sheesham (Indian Rosewood) — the practical choice</h3>
+                        <p style="margin-bottom: 2rem;">Sheesham is slightly softer than teak but still extremely
+                            durable. It has a rich dark grain with natural variation between pieces. It is the most
+                            popular choice for bedroom furniture and bookshelves in India because it takes stain and
+                            polish beautifully. Reasonably priced and widely available.</p>
+
+                        <h3
+                            style="font-family: var(--serif); font-size: 2rem; color: var(--espresso); margin: 2rem 0 1rem;">
+                            Mango wood — the sustainable option</h3>
+                        <p style="margin-bottom: 2rem;">Mango trees are replanted after the fruit-bearing years end,
+                            making mango wood one of the most sustainable timber choices. It has a lighter tone with an
+                            interesting grain. Best suited for coffee tables, side tables, and decorative pieces rather
+                            than heavy structural furniture.</p>
+
+                        <h3
+                            style="font-family: var(--serif); font-size: 2rem; color: var(--espresso); margin: 2rem 0 1rem;">
+                            What to check before buying</h3>
+                        <p style="margin-bottom: 2rem;">Always ask if the wood is kiln-dried. Wood that has not been
+                            properly dried will warp and crack within a year. Also check the joints — good furniture
+                            uses mortise-and-tenon joints, not just screws and glue. At Sunny Furnitures, every piece is
+                            kiln-dried and joinery-tested before it reaches your home.</p>
+                    </div>
+                </article>
+                <article class="blog-card reveal delay-2"
+                    style="grid-column: 1 / -1; padding: 60px; max-width: 900px; margin: 40px auto 0;">
+                    <div class="blog-date">February 10, 2026</div>
+                    <h2 class="blog-title" style="font-size: 3rem; margin-bottom: 2rem;">Small Space Solutions</h2>
+                    <div class="blog-content" style="font-size: 1.15rem; line-height: 1.8; color: var(--walnut);">
+                        <p style="margin-bottom: 2rem; font-size: 1.3rem; font-style: italic; color: var(--espresso);">
+                            Maximizing utility without compromising on minimalist aesthetics. Most Indian urban homes
+                            fall between 600 and 1200 square feet. Making these spaces feel generous, comfortable, and
+                            beautiful requires deliberate furniture choices — not more furniture, but smarter furniture.
+                        </p>
+
+                        <h3
+                            style="font-family: var(--serif); font-size: 2rem; color: var(--espresso); margin: 2rem 0 1rem;">
+                            The sofa is your most important decision</h3>
+                        <p style="margin-bottom: 2rem;">In a small living room, the sofa sets the scale for everything
+                            else. A 3-seater that is too large will make the room feel like a corridor. Measure your
+                            wall, subtract 60cm on each side for breathing room, and choose accordingly. A
+                            well-proportioned 2-seater with a single accent chair will almost always feel more spacious
+                            than a large 3-seater.</p>
+
+                        <h3
+                            style="font-family: var(--serif); font-size: 2rem; color: var(--espresso); margin: 2rem 0 1rem;">
+                            Legs make rooms larger</h3>
+                        <p style="margin-bottom: 2rem;">Furniture with visible legs allows light and sightlines to pass
+                            underneath, making the floor feel larger. A sofa or bed frame that sits directly on the
+                            floor visually shrinks a room. Choose pieces raised at least 15cm off the ground.</p>
+
+                        <h3
+                            style="font-family: var(--serif); font-size: 2rem; color: var(--espresso); margin: 2rem 0 1rem;">
+                            Multifunctional pieces earn their keep</h3>
+                        <p style="margin-bottom: 2rem;">A storage ottoman doubles as a coffee table and extra seating. A
+                            console table behind the sofa serves as a workspace. Nesting tables replace a fixed coffee
+                            table and can be stored flat when not needed. Every piece in a small home should justify its
+                            footprint.</p>
+
+                        <h3
+                            style="font-family: var(--serif); font-size: 2rem; color: var(--espresso); margin: 2rem 0 1rem;">
+                            Vertical space is free</h3>
+                        <p style="margin-bottom: 2rem;">Most people fill walls up to eye level and leave the upper half
+                            empty. Tall bookshelves, wall-mounted cabinets, and artwork hung high draw the eye upward
+                            and make ceilings feel higher. In a small home, vertical storage is not optional — it is
+                            essential.</p>
+
+                        <h3
+                            style="font-family: var(--serif); font-size: 2rem; color: var(--espresso); margin: 2rem 0 1rem;">
+                            Keep the palette tight</h3>
+                        <p style="margin-bottom: 2rem;">In a small space, a limited colour palette — cream walls, warm
+                            wood tones, one accent colour — makes the space read as cohesive and larger. Every time you
+                            introduce a new colour or material, the room gets visually busier and feels smaller.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <!-- ─── FOOTER ───────────────────────────────────── -->
+    <footer role="contentinfo">
+        <div class="footer-top">
+            <div>
+                <span class="footer-logo">Sunny Furniture</span>
+                <p class="footer-about">Furniture crafted for modern Indian homes. Designed with care, built to last a
+                    lifetime. Free delivery, free installation, always.</p>
+            </div>
+
+            <div>
+                <h3 class="footer-col-title">Shop</h3>
+                <a href="living-room.html" class="footer-link hoverable">Living room</a>
+                <a href="bedroom.html" class="footer-link hoverable">Bedroom</a>
+                <a href="dining.html" class="footer-link hoverable">Dining</a>
+                <a href="storage.html" class="footer-link hoverable">Storage</a>
+                <a href="study.html" class="footer-link hoverable">Study</a>
+                <a href="outdoor.html" class="footer-link hoverable">Outdoor</a>
+                <a href="sale.html" class="footer-link hoverable">Sale</a>
+            </div>
+
+            <div>
+                <h3 class="footer-col-title">Help</h3>
+                <a href="track-order.html" class="footer-link hoverable">Track your order</a>
+                <a href="delivery-info.html" class="footer-link hoverable">Delivery info</a>
+                <a href="returns-refunds.html" class="footer-link hoverable">Returns &amp; refunds</a>
+                <a href="installation.html" class="footer-link hoverable">Installation</a>
+                <a href="faqs.html" class="footer-link hoverable">FAQs</a>
+                <a href="contact-us.html" class="footer-link hoverable">Contact us</a>
+            </div>
+
+            <div>
+                <h3 class="footer-col-title">Company</h3>
+                <a href="about.html" class="footer-link hoverable">About Sunny Furniture</a>
+                <a href="philosophy.html#craftsmen" class="footer-link hoverable">Our craftsmen</a>
+                <a href="philosophy.html#sustainability" class="footer-link hoverable">Sustainability</a>
+                <a href="philosophy.html#blog" class="footer-link hoverable">Blog &amp; ideas</a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <span class="footer-copy">&copy; 2026 Sunny Furniture Pvt Ltd &nbsp;&middot;&nbsp; Privacy Policy
+                &nbsp;&middot;&nbsp; Terms of Service</span>
+            <div class="footer-pay" aria-label="Accepted payment methods">
+                <span class="pay-icon" title="UPI"><svg width="36" height="22" viewBox="0 0 36 22"><rect width="36" height="22" rx="3" fill="#fff" stroke="#ddd" stroke-width=".5"/><text x="18" y="15" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" font-weight="600" fill="#4B286D">UPI</text></svg></span>
+                <span class="pay-icon" title="Visa"><svg width="36" height="22" viewBox="0 0 36 22"><rect width="36" height="22" rx="3" fill="#fff" stroke="#ddd" stroke-width=".5"/><text x="18" y="15" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" font-weight="700" font-style="italic" fill="#1A1F71">VISA</text></svg></span>
+                <span class="pay-icon" title="Mastercard"><svg width="36" height="22" viewBox="0 0 36 22"><rect width="36" height="22" rx="3" fill="#fff" stroke="#ddd" stroke-width=".5"/><circle cx="14" cy="11" r="6" fill="#EB001B" opacity=".8"/><circle cx="22" cy="11" r="6" fill="#F79E1B" opacity=".8"/></svg></span>
+                <span class="pay-icon" title="RuPay"><svg width="36" height="22" viewBox="0 0 36 22"><rect width="36" height="22" rx="3" fill="#fff" stroke="#ddd" stroke-width=".5"/><text x="18" y="15" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" font-weight="600" fill="#097A44">RuPay</text></svg></span>
+                <span class="pay-icon" title="Cash on Delivery"><svg width="36" height="22" viewBox="0 0 36 22"><rect width="36" height="22" rx="3" fill="#fff" stroke="#ddd" stroke-width=".5"/><text x="18" y="15" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" font-weight="500" fill="#555">COD</text></svg></span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./script.js"></script>
+</body>
+
+</html>
