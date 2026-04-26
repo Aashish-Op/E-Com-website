@@ -7,16 +7,16 @@ const path = require('path');
 require('dotenv').config({ path: path.join(__dirname, '.env') });
 
 const connectDatabase = require('./config/database');
-const requestContext = require('./middleware/requestContext');
-const csrfProtection = require('./middleware/csrf');
-const { notFound, errorHandler } = require('./middleware/errorHandler');
-const paymentsRouter = require('./routes/payments');
+const requestContext = require('./src/middleware/requestContext');
+const csrfProtection = require('./src/middleware/csrf');
+const { notFound, errorHandler } = require('./src/middleware/errorHandler');
+const paymentsRouter = require('./src/routes/payments');
 
 const app = express();
 const rootDir = path.join(__dirname, '..');
 const pagesDir = path.join(rootDir, 'src', 'pages');
-const stylesDir = path.join(rootDir, 'src', 'styles');
-const scriptsDir = path.join(rootDir, 'src', 'scripts');
+const cssDir = path.join(rootDir, 'src', 'css');
+const jsDir = path.join(rootDir, 'src', 'js');
 const imagesDir = path.join(rootDir, 'src', 'assets', 'images');
 const adminDistDir = path.join(rootDir, 'admin', 'dist');
 
@@ -58,14 +58,14 @@ app.use(cookieParser());
 app.use(requestContext);
 app.use(csrfProtection);
 
-app.use('/api/auth', require('./routes/auth'));
-app.use('/api/products', require('./routes/products'));
-app.use('/api/search', require('./routes/products'));
-app.use('/api/cart', require('./routes/cart'));
-app.use('/api/orders', require('./routes/orders'));
+app.use('/api/auth', require('./src/routes/auth'));
+app.use('/api/products', require('./src/routes/products'));
+app.use('/api/search', require('./src/routes/products'));
+app.use('/api/cart', require('./src/routes/cart'));
+app.use('/api/orders', require('./src/routes/orders'));
 app.use('/api/payments', paymentsRouter);
-app.use('/api/wishlist', require('./routes/wishlist'));
-app.use('/api/admin', require('./routes/admin'));
+app.use('/api/wishlist', require('./src/routes/wishlist'));
+app.use('/api/admin', require('./src/routes/admin'));
 
 app.get('/api/health', (_req, res) => {
   res.json({
@@ -84,8 +84,10 @@ app.get(/^\/admin(?:\/.*)?$/, (_req, res) => {
 });
 
 app.use(express.static(pagesDir));
-app.use(express.static(stylesDir));
-app.use(express.static(scriptsDir));
+app.use('/css', express.static(cssDir));
+app.use('/js', express.static(jsDir));
+app.use(express.static(cssDir));
+app.use(express.static(jsDir));
 app.use(express.static(imagesDir));
 app.use('/assets/images', express.static(imagesDir));
 

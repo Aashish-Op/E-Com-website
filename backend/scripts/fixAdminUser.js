@@ -2,7 +2,7 @@ const path = require('path');
 require('dotenv').config({ path: path.join(__dirname, '..', '.env') });
 
 const connectDatabase = require('../config/database');
-const User = require('../models/User');
+const User = require('../src/models/User');
 
 async function fixAdminUser() {
   try {

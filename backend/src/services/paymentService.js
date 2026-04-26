@@ -1,5 +1,5 @@
 const crypto = require('crypto');
-const getRazorpayClient = require('../config/razorpay');
+const getRazorpayClient = require('../../config/razorpay');
 
 function hasRazorpayCredentials() {
   return Boolean(process.env.RAZORPAY_KEY_ID && process.env.RAZORPAY_KEY_SECRET);
