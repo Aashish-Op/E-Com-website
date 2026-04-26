@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us — Sunny Furniture</title>
+    <meta name="description"
+        content="Get in touch with Sunny Furniture. Call, email, or visit us for any questions about orders, delivery, returns, or custom furniture.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:opsz,wght@9..40,200;9..40,300;9..40,400;9..40,500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./index.css">
+    <style>
+        .ct-hero {
+            padding-top: 180px;
+            padding-bottom: 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-left: 5%;
+            padding-right: 5%;
+            text-align: center
+        }
+
+        .ct-hero h1 {
+            font-family: var(--serif);
+            font-size: clamp(2.8rem, 5vw, 4.2rem);
+            font-weight: 400;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: var(--espresso)
+        }
+
+        .ct-hero .ct-intro {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--walnut);
+            max-width: 650px;
+            margin: 0 auto
+        }
+
+        .ct-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            max-width: 1400px;
+            margin: 0 auto 100px;
+            padding: 0 5%
+        }
+
+        /* Contact cards */
+        .ct-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 24px
+        }
+
+        .ct-card {
+            padding: 2.2rem 2rem;
+            border: 1px solid var(--linen);
+            background: var(--warm-white);
+            transition: all .4s var(--ease-out);
+            position: relative;
+            overflow: hidden
+        }
+
+        .ct-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--espresso));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform .5s var(--ease-out)
+        }
+
+        .ct-card:hover::before {
+            transform: scaleX(1)
+        }
+
+        .ct-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(44, 30, 18, .06)
+        }
+
+        .ct-card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--linen);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.2rem;
+            transition: background .3s
+        }
+
+        .ct-card:hover .ct-card-icon {
+            background: var(--gold)
+        }
+
+        .ct-card:hover .ct-card-icon svg {
+            stroke: #fff
+        }
+
+        .ct-card-icon svg {
+            stroke: var(--espresso);
+            transition: stroke .3s
+        }
+
+        .ct-card h3 {
+            font-family: var(--serif);
+            font-size: 1.3rem;
+            font-weight: 400;
+            color: var(--espresso);
+            margin-bottom: .8rem
+        }
+
+        .ct-card p,
+        .ct-card a {
+            font-size: .95rem;
+            line-height: 1.7;
+            color: var(--walnut);
+            text-decoration: none;
+            display: block
+        }
+
+        .ct-card a:hover {
+            color: var(--gold)
+        }
+
+        .ct-card .ct-label {
+            font-size: .78rem;
+            text-transform: uppercase;
+            letter-spacing: .1em;
+            color: var(--tan);
+            margin-bottom: .2rem;
+            margin-top: .6rem
+        }
+
+        /* Contact form */
+        .ct-form-wrap {
+            padding: 3rem;
+            background: var(--warm-white);
+            border: 1px solid var(--linen);
+            position: relative
+        }
+
+        .ct-form-wrap::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), transparent)
+        }
+
+        .ct-form-wrap h2 {
+            font-family: var(--serif);
+            font-size: 1.8rem;
+            font-weight: 400;
+            color: var(--espresso);
+            margin-bottom: .6rem
+        }
+
+        .ct-form-wrap .ct-form-sub {
+            font-size: .95rem;
+            color: var(--walnut);
+            margin-bottom: 2rem;
+            line-height: 1.6
+        }
+
+        .ct-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem
+        }
+
+        .ct-field {
+            display: flex;
+            flex-direction: column;
+            gap: .4rem
+        }
+
+        .ct-field label {
+            font-size: .78rem;
+            text-transform: uppercase;
+            letter-spacing: .1em;
+            color: var(--tan);
+            font-family: 'DM Sans', sans-serif
+        }
+
+        .ct-field input,
+        .ct-field textarea,
+        .ct-field select {
+            padding: .9rem 1.2rem;
+            border: 1px solid var(--linen);
+            background: transparent;
+            font-family: 'DM Sans', sans-serif;
+            font-size: .95rem;
+            color: var(--espresso);
+            outline: none;
+            transition: border-color .3s;
+            resize: vertical
+        }
+
+        .ct-field input:focus,
+        .ct-field textarea:focus,
+        .ct-field select:focus {
+            border-color: var(--gold)
+        }
+
+        .ct-field input::placeholder,
+        .ct-field textarea::placeholder {
+            color: var(--tan)
+        }
+
+        .ct-field textarea {
+            min-height: 120px
+        }
+
+        .ct-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem
+        }
+
+        .ct-submit {
+            padding: 1.1rem 2.5rem;
+            background: var(--espresso);
+            color: #fff;
+            border: none;
+            font-family: 'DM Sans', sans-serif;
+            font-size: .9rem;
+            text-transform: uppercase;
+            letter-spacing: .12em;
+            cursor: pointer;
+            transition: background .3s;
+            align-self: flex-start;
+            margin-top: .5rem
+        }
+
+        .ct-submit:hover {
+            background: var(--gold)
+        }
+
+        /* Hours */
+        .ct-hours {
+            margin-top: 24px;
+            padding: 1.8rem 2rem;
+            border: 1px solid var(--linen);
+            background: var(--warm-white)
+        }
+
+        .ct-hours h3 {
+            font-family: var(--serif);
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: var(--espresso);
+            margin-bottom: .8rem
+        }
+
+        .ct-hours-row {
+            display: flex;
+            justify-content: space-between;
+            padding: .4rem 0;
+            font-size: .92rem
+        }
+
+        .ct-hours-day {
+            color: var(--walnut)
+        }
+
+        .ct-hours-time {
+            color: var(--espresso);
+            font-weight: 500
+        }
+
+        @media(max-width:968px) {
+            .ct-grid {
+                grid-template-columns: 1fr;
+                gap: 40px
+            }
+
+            .ct-row {
+                grid-template-columns: 1fr
+            }
+
+            .ct-hero {
+                padding-top: 140px
+            }
+        }
+
+        /* ── Success toast ── */
+        .ct-toast-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(44, 30, 18, 0.35);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            z-index: 9998;
+            opacity: 0;
+            transition: opacity 0.4s;
+            pointer-events: none;
+        }
+
+        .ct-toast-overlay.show {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .ct-toast {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.85);
+            z-index: 9999;
+            background: var(--warm-white);
+            border: 1px solid var(--linen);
+            padding: 3rem 3.5rem;
+            text-align: center;
+            max-width: 420px;
+            width: 90%;
+            opacity: 0;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            pointer-events: none;
+            box-shadow: 0 24px 80px rgba(44, 30, 18, 0.18);
+        }
+
+        .ct-toast.show {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+            pointer-events: all;
+        }
+
+        .ct-toast-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold), #c19a6b);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            animation: toast-pop 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+        }
+
+        .ct-toast-icon svg {
+            stroke: #fff;
+            stroke-width: 2.5;
+            fill: none;
+        }
+
+        .ct-toast-icon svg .check-path {
+            stroke-dasharray: 30;
+            stroke-dashoffset: 30;
+            animation: draw-check 0.5s ease 0.5s forwards;
+        }
+
+        .ct-toast h3 {
+            font-family: var(--serif);
+            font-size: 1.6rem;
+            font-weight: 400;
+            color: var(--espresso);
+            margin-bottom: 0.5rem;
+        }
+
+        .ct-toast p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--walnut);
+            margin-bottom: 1.5rem;
+        }
+
+        .ct-toast-close {
+            padding: 0.8rem 2rem;
+            background: var(--espresso);
+            color: #fff;
+            border: none;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .ct-toast-close:hover {
+            background: var(--gold);
+        }
+
+        @keyframes toast-pop {
+            from { transform: scale(0); }
+            to { transform: scale(1); }
+        }
+
+        @keyframes draw-check {
+            to { stroke-dashoffset: 0; }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-intro" aria-hidden="true">
+        <div class="intro-logo">Sunny Furniture</div>
+        <div class="intro-line"></div>
+    </div>
+    <div class="cursor" id="cursor" aria-hidden="true"></div>
+    <div class="cursor-follower" id="cursorFollower" aria-hidden="true"></div>
+    <div class="page-transition" id="pageTransition" aria-hidden="true"></div>
+
+    <div class="ann-bar" role="marquee" aria-label="Site announcements">
+        <div class="ann-track" id="annTrack">
+            <span class="ann-item">Free delivery on orders above ₹15,000</span>
+            <span class="ann-item">New arrivals — <span>Summer 2026 collection</span></span>
+            <span class="ann-item">Use code <span>WELCOME10</span> for 10% off</span>
+            <span class="ann-item">Free installation on all furniture</span>
+            <span class="ann-item">30-day hassle-free returns</span>
+            <span class="ann-item">2-year warranty on every piece</span>
+            <span class="ann-item">Customisations also available</span>
+            <span class="ann-item">Free delivery on orders above ₹15,000</span>
+            <span class="ann-item">New arrivals — <span>Summer 2026 collection</span></span>
+            <span class="ann-item">Use code <span>WELCOME10</span> for 10% off</span>
+            <span class="ann-item">Free installation on all furniture</span>
+            <span class="ann-item">30-day hassle-free returns</span>
+            <span class="ann-item">2-year warranty on every piece</span>
+            <span class="ann-item">Customisations also available</span>
+        </div>
+    </div>
+
+    <nav class="nav" id="mainNav" role="navigation" aria-label="Main navigation">
+        <a href="index.html" class="nav-logo">Sunny Furniture</a>
+        <ul class="nav-links">
+            <li><a href="living-room.html">Living</a></li>
+            <li><a href="bedroom.html">Bedroom</a></li>
+            <li><a href="dining.html">Dining</a></li>
+            <li><a href="storage.html">Storage</a></li>
+            <li><a href="outdoor.html">Outdoor</a></li>
+            <li><a href="study.html">Study</a></li>
+            <li><a href="newdecor.html">Decor</a></li>
+            <li><a href="sale.html" class="nav-sale">Sale</a></li>
+        </ul>
+        <div class="nav-actions">
+            <button class="nav-btn hoverable" aria-label="Search"><svg width="18" height="18" viewBox="0 0 18 18"
+                    fill="none">
+                    <circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1" />
+                    <line x1="12.5" y1="12.5" x2="16.5" y2="16.5" stroke="currentColor" stroke-width="1"
+                        stroke-linecap="round" />
+                </svg></button>
+            <button class="nav-btn hoverable wish-wrap" aria-label="Wishlist — 0 items">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                    <path d="M9 15.5S2 10.8 2 6.5a4 4 0 0 1 7-2.64A4 4 0 0 1 16 6.5c0 4.3-7 9-7 9z"
+                        stroke="currentColor" stroke-width="1" stroke-linejoin="round" />
+                </svg>
+                <span class="wishlist-badge" style="display:none;" aria-hidden="true">0</span>
+            </button>
+            <button class="nav-btn cart-wrap hoverable" aria-label="Cart — 2 items">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                    <path d="M2 2h1.8L6 10.5h7.5l2-7H5" stroke="currentColor" stroke-width="1" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <circle cx="7.5" cy="14" r="1.2" fill="currentColor" />
+                    <circle cx="12.5" cy="14" r="1.2" fill="currentColor" />
+                </svg>
+                <span class="cart-badge" aria-hidden="true">2</span>
+            </button>
+            <button class="nav-btn hoverable" aria-label="Account"><svg width="18" height="18" viewBox="0 0 18 18"
+                    fill="none">
+                    <circle cx="9" cy="6" r="3.5" stroke="currentColor" stroke-width="1" />
+                    <path d="M2.5 16.5c0-3.5 2.9-5.5 6.5-5.5s6.5 2 6.5 5.5" stroke="currentColor" stroke-width="1"
+                        stroke-linecap="round" />
+                </svg></button>
+        </div>
+    </nav>
+
+    <main>
+        <div style="max-width:1400px;margin:0 auto;padding:160px 5% 20px;display:flex;justify-content:flex-end;">
+            <a href="index.html" class="link-arrow reveal hoverable">Back to Home</a>
+        </div>
+
+        <section class="ct-hero" style="padding-top:20px;">
+            <div class="section-eyebrow reveal" style="justify-content:center">Help centre</div>
+            <h1 class="reveal delay-1">Contact Us</h1>
+            <p class="ct-intro reveal delay-2">We're here to help. Reach out by phone, email, or visit our showroom —
+                our team typically responds within a few hours.</p>
+        </section>
+
+        <section class="ct-grid">
+            <!-- Left — Contact info cards -->
+            <div class="ct-cards">
+
+                <!-- Phone -->
+                <div class="ct-card reveal" id="contact-phone">
+                    <div class="ct-card-icon">
+                        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke-width="1.3">
+                            <path
+                                d="M3 4.5A1.5 1.5 0 0 1 4.5 3h3.17a1 1 0 0 1 .95.68l1.08 3.24a1 1 0 0 1-.26 1.03l-1.6 1.6a11 11 0 0 0 4.61 4.61l1.6-1.6a1 1 0 0 1 1.03-.26l3.24 1.08a1 1 0 0 1 .68.95v3.17a1.5 1.5 0 0 1-1.5 1.5A15 15 0 0 1 3 4.5z" />
+                        </svg>
+                    </div>
+                    <h3>Phone</h3>
+
+                    <!-- ✏️ UPDATE THESE PHONE NUMBERS -->
+                    <div class="ct-label">Sales &amp; orders</div>
+                    <a href="tel:+919915199675">+91 99151 99675</a>
+
+                    <div class="ct-label">Customer support</div>
+                    <a href="tel:+01725089135">+0172 5089135</a>
+
+                    <div class="ct-label">WhatsApp</div>
+                    <a href="https://wa.me/919501056969" target="_blank">+91 95010 56969</a>
+                </div>
+
+                <!-- Email -->
+                <div class="ct-card reveal delay-1" id="contact-email">
+                    <div class="ct-card-icon">
+                        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke-width="1.3">
+                            <rect x="3" y="5" width="16" height="12" rx="1.5" />
+                            <polyline points="3,5 11,12 19,5" />
+                        </svg>
+                    </div>
+                    <h3>Email</h3>
+
+                    <!-- ✏️ UPDATE THIS EMAIL -->
+                    <div class="ct-label">General enquiries</div>
+                    <a href="mailto:sunnyfurniturechd@gmail.com">sunnyfurniturechd@gmail.com</a>
+                </div>
+
+                <!-- Address -->
+                <div class="ct-card reveal delay-2" id="contact-address">
+                    <div class="ct-card-icon">
+                        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke-width="1.3">
+                            <circle cx="11" cy="9" r="3" />
+                            <path d="M11 2C7 2 3 5.5 3 10c0 5.5 8 10 8 10s8-4.5 8-10c0-4.5-4-8-8-8z" />
+                        </svg>
+                    </div>
+                    <h3>Showroom &amp; Office</h3>
+
+                    <!-- ✏️ UPDATE THIS ADDRESS -->
+                    <p>
+                        Sunny Furniture <br>
+                        Shop No. 239, 239, Vignesh Kaushik Avenue, Sub. City Center, Sector 34C<br>
+                        Chandigarh, 160022<br>
+                        India
+                    </p>
+                </div>
+
+                <!-- Business hours -->
+                <div class="ct-hours reveal delay-3">
+                    <h3>Business Hours</h3>
+                    <div class="ct-hours-row"><span class="ct-hours-day">Monday – Saturday</span><span
+                            class="ct-hours-time">10:00 AM – 7:00 PM</span></div>
+                    <div class="ct-hours-row"><span class="ct-hours-day">Sunday</span><span class="ct-hours-time">11:00
+                            AM – 5:00 PM</span></div>
+                </div>
+            </div>
+
+            <!-- Right — Contact form -->
+            <div class="ct-form-wrap reveal delay-1">
+                <div class="section-eyebrow">Send a message</div>
+                <h2>We'd love to hear from you</h2>
+                <p class="ct-form-sub">Fill out the form below and our team will get back to you within 24 hours.</p>
+                <form class="ct-form" id="contactForm">
+                    <div class="ct-row">
+                        <div class="ct-field">
+                            <label for="ctName">Full name</label>
+                            <input type="text" id="ctName" placeholder="Your full name" required>
+                        </div>
+                        <div class="ct-field">
+                            <label for="ctPhone">Phone number</label>
+                            <input type="tel" id="ctPhone" placeholder="+91 XXXXX XXXXX" required>
+                        </div>
+                    </div>
+                    <div class="ct-field">
+                        <label for="ctEmail">Email address</label>
+                        <input type="email" id="ctEmail" placeholder="your@email.com" required>
+                    </div>
+                    <div class="ct-field">
+                        <label for="ctSubject">Subject</label>
+                        <select id="ctSubject">
+                            <option value="">Select a topic</option>
+                            <option value="order">Order enquiry</option>
+                            <option value="delivery">Delivery question</option>
+                            <option value="return">Return or refund</option>
+                            <option value="installation">Installation</option>
+                            <option value="custom">Custom furniture</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="ct-field">
+                        <label for="ctMessage">Message</label>
+                        <textarea id="ctMessage" placeholder="Tell us how we can help…" required></textarea>
+                    </div>
+                    <button type="submit" class="ct-submit hoverable">Send message</button>
+                </form>
+            </div>
+        </section>
+
+        <section class="newsletter" aria-label="Newsletter signup">
+            <div class="reveal">
+                <p class="nl-eyebrow">Stay inspired</p>
+                <h2 class="nl-title">Beautiful homes<br>start here</h2>
+                <p class="nl-sub">Join 50,000 homeowners. Get new arrivals, design ideas, and an exclusive 10% off your
+                    first order.</p>
+                <div class="nl-form" role="form" aria-label="Email subscription">
+                    <input class="nl-input" type="email" placeholder="Your email address" aria-label="Email address">
+                    <button class="nl-btn hoverable" type="submit">Subscribe</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer role="contentinfo">
+        <div class="footer-top">
+            <div>
+                <span class="footer-logo">Sunny Furniture</span>
+                <p class="footer-about">Furniture crafted for modern Indian homes. Designed with care, built to last a
+                    lifetime. Free delivery, free installation, always.</p>
+            </div>
+            <div>
+                <h3 class="footer-col-title">Shop</h3>
+                <a href="living-room.html" class="footer-link hoverable">Living room</a>
+                <a href="bedroom.html" class="footer-link hoverable">Bedroom</a>
+                <a href="dining.html" class="footer-link hoverable">Dining</a>
+                <a href="storage.html" class="footer-link hoverable">Storage</a>
+                <a href="study.html" class="footer-link hoverable">Study</a>
+                <a href="outdoor.html" class="footer-link hoverable">Outdoor</a>
+                <a href="sale.html" class="footer-link hoverable">Sale</a>
+            </div>
+            <div>
+                <h3 class="footer-col-title">Help</h3>
+                <a href="track-order.html" class="footer-link hoverable">Track your order</a>
+                <a href="delivery-info.html" class="footer-link hoverable">Delivery info</a>
+                <a href="returns-refunds.html" class="footer-link hoverable">Returns &amp; refunds</a>
+                <a href="installation.html" class="footer-link hoverable">Installation</a>
+                <a href="faqs.html" class="footer-link hoverable">FAQs</a>
+                <a href="contact-us.html" class="footer-link hoverable">Contact us</a>
+            </div>
+            <div>
+                <h3 class="footer-col-title">Company</h3>
+                <a href="about.html" class="footer-link hoverable">About Sunny Furniture</a>
+                <a href="philosophy.html#craftsmen" class="footer-link hoverable">Our craftsmen</a>
+                <a href="philosophy.html#sustainability" class="footer-link hoverable">Sustainability</a>
+                <a href="philosophy.html#blog" class="footer-link hoverable">Blog &amp; ideas</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span class="footer-copy">&copy; 2026 Sunny Furniture Pvt Ltd &nbsp;&middot;&nbsp; Privacy Policy
+                &nbsp;&middot;&nbsp; Terms of Service</span>
+            <div class="footer-pay" aria-label="Accepted payment methods">
+                <span class="pay-icon" title="UPI"><svg width="36" height="22" viewBox="0 0 36 22"><rect width="36" height="22" rx="3" fill="#fff" stroke="#ddd" stroke-width=".5"/><text x="18" y="15" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" font-weight="600" fill="#4B286D">UPI</text></svg></span>
+                <span class="pay-icon" title="Visa"><svg width="36" height="22" viewBox="0 0 36 22"><rect width="36" height="22" rx="3" fill="#fff" stroke="#ddd" stroke-width=".5"/><text x="18" y="15" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" font-weight="700" font-style="italic" fill="#1A1F71">VISA</text></svg></span>
+                <span class="pay-icon" title="Mastercard"><svg width="36" height="22" viewBox="0 0 36 22"><rect width="36" height="22" rx="3" fill="#fff" stroke="#ddd" stroke-width=".5"/><circle cx="14" cy="11" r="6" fill="#EB001B" opacity=".8"/><circle cx="22" cy="11" r="6" fill="#F79E1B" opacity=".8"/></svg></span>
+                <span class="pay-icon" title="RuPay"><svg width="36" height="22" viewBox="0 0 36 22"><rect width="36" height="22" rx="3" fill="#fff" stroke="#ddd" stroke-width=".5"/><text x="18" y="15" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" font-weight="600" fill="#097A44">RuPay</text></svg></span>
+                <span class="pay-icon" title="Cash on Delivery"><svg width="36" height="22" viewBox="0 0 36 22"><rect width="36" height="22" rx="3" fill="#fff" stroke="#ddd" stroke-width=".5"/><text x="18" y="15" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" font-weight="500" fill="#555">COD</text></svg></span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Success toast markup -->
+    <div class="ct-toast-overlay" id="toastOverlay"></div>
+    <div class="ct-toast" id="successToast">
+        <div class="ct-toast-icon">
+            <svg width="28" height="28" viewBox="0 0 28 28"><polyline class="check-path" points="7,14 12,19 21,9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3>Message sent!</h3>
+        <p>Thank you for reaching out. Our team will get back to you within 24 hours.</p>
+        <button class="ct-toast-close hoverable" id="toastClose">Got it</button>
+    </div>
+
+    <script src="./script.js"></script>
+    <script>
+        const toast = document.getElementById('successToast');
+        const overlay = document.getElementById('toastOverlay');
+        const closeBtn = document.getElementById('toastClose');
+
+        function showToast() {
+            overlay.classList.add('show');
+            toast.classList.add('show');
+            setTimeout(hideToast, 5000);
+        }
+
+        function hideToast() {
+            toast.classList.remove('show');
+            overlay.classList.remove('show');
+        }
+
+        closeBtn.addEventListener('click', hideToast);
+        overlay.addEventListener('click', hideToast);
+
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            this.reset();
+            showToast();
+        });
+    </script>
+</body>
+
+</html>

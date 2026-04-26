@@ -1,0 +1,574 @@
+﻿?<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop by Room — Sunny Furniture</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:opsz,wght@9..40,200;9..40,300;9..40,400;9..40,500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./index.css">
+    <style>
+        .prod-img-inner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .prod-img-wrap {
+            aspect-ratio: 4 / 3;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Page Intro -->
+    <div class="page-intro" aria-hidden="true">
+        <div class="intro-logo">Sunny Furniture</div>
+        <div class="intro-line"></div>
+    </div>
+
+    <!-- Cursor -->
+    <div class="cursor" id="cursor" aria-hidden="true"></div>
+    <div class="cursor-follower" id="cursorFollower" aria-hidden="true"></div>
+
+    <!-- Page transition -->
+    <div class="page-transition" id="pageTransition" aria-hidden="true"></div>
+
+    <!-- --- ANNOUNCEMENT BAR --------------------------- -->
+    <div class="ann-bar" role="marquee" aria-label="Site announcements">
+        <div class="ann-track" id="annTrack">
+            <span class="ann-item">Free delivery on orders above ₹15,000</span>
+            <span class="ann-item">New arrivals — <span>Summer 2026 collection</span></span>
+            <span class="ann-item">Use code <span>WELCOME10</span> for 10% off</span>
+            <span class="ann-item">Free installation on all furniture</span>
+            <span class="ann-item">30-day hassle-free returns</span>
+            <span class="ann-item">2-year warranty on every piece</span>
+            <span class="ann-item">Customisations also available</span>
+            <!-- Duplicate for seamless loop -->
+            <span class="ann-item">Free delivery on orders above ₹15,000</span>
+            <span class="ann-item">New arrivals — <span>Summer 2026 collection</span></span>
+            <span class="ann-item">Use code <span>WELCOME10</span> for 10% off</span>
+            <span class="ann-item">Free installation on all furniture</span>
+            <span class="ann-item">30-day hassle-free returns</span>
+            <span class="ann-item">2-year warranty on every piece</span>
+            <span class="ann-item">Customisations also available</span>
+        </div>
+    </div>
+
+    <!-- --- NAVIGATION --------------------------------- -->
+    <nav class="nav" id="mainNav" role="navigation" aria-label="Main navigation">
+        <a href="index.html" class="nav-logo">Sunny Furniture</a>
+
+        <ul class="nav-links">
+            <li><a href="living-room.html">Living</a></li>
+            <li><a href="bedroom.html">Bedroom</a></li>
+            <li><a href="dining.html">Dining</a></li>
+            <li><a href="storage.html">Storage</a></li>
+            <li><a href="outdoor.html">Outdoor</a></li>
+            <li><a href="study.html">Study</a></li>
+            <li><a href="newdecor.html">Decor</a></li>
+            <li><a href="sale.html" class="nav-sale">Sale</a></li>
+        </ul>
+
+        <div class="nav-actions">
+            <button class="nav-btn hoverable" aria-label="Search">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                    <circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1" />
+                    <line x1="12.5" y1="12.5" x2="16.5" y2="16.5" stroke="currentColor" stroke-width="1"
+                        stroke-linecap="round" />
+                </svg>
+            </button>
+            <button class="nav-btn hoverable wish-wrap" aria-label="Wishlist — 0 items">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                    <path d="M9 15.5S2 10.8 2 6.5a4 4 0 0 1 7-2.64A4 4 0 0 1 16 6.5c0 4.3-7 9-7 9z"
+                        stroke="currentColor" stroke-width="1" stroke-linejoin="round" />
+                </svg>
+                <span class="wishlist-badge" style="display:none;" aria-hidden="true">0</span>
+            </button>
+            <button class="nav-btn cart-wrap hoverable" aria-label="Cart — 2 items">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                    <path d="M2 2h1.8L6 10.5h7.5l2-7H5" stroke="currentColor" stroke-width="1" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <circle cx="7.5" cy="14" r="1.2" fill="currentColor" />
+                    <circle cx="12.5" cy="14" r="1.2" fill="currentColor" />
+                </svg>
+                <span class="cart-badge" aria-hidden="true">2</span>
+            </button>
+            <button class="nav-btn hoverable" aria-label="Account">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                    <circle cx="9" cy="6" r="3.5" stroke="currentColor" stroke-width="1" />
+                    <path d="M2.5 16.5c0-3.5 2.9-5.5 6.5-5.5s6.5 2 6.5 5.5" stroke="currentColor" stroke-width="1"
+                        stroke-linecap="round" />
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+
+    <!-- --- ROOM CATEGORY ----------------------------- -->
+    <section class="room-products" aria-label="Dining Products" style="padding-top: 140px; min-height: 80vh;">
+        <div class="products-header">
+            <div>
+                <div class="section-eyebrow reveal">Shop by room</div>
+                <h1 class="section-title reveal delay-1">Dining</h1>
+            </div>
+            <a href="index.html" class="link-arrow reveal hoverable">Back to Home</a>
+        </div>
+
+        <div class="products-grid reveal delay-2" role="list">
+
+            <article class="prod-card hoverable" role="listitem"
+                data-material="Solid Mango Wood & Iron Base with Marble top"
+                data-size="1.2 m Diameter (120 cm x 75 cm)">
+                <div class="prod-img-wrap" data-img="./mesaRoundtable.webp">
+                    <div class="prod-img-inner">
+                        <img src="./mesaRoundtable.webp" alt="Mesa round table" loading="lazy">
+                    </div>
+                    <button class="wish-btn hoverable" aria-label="Add to wishlist" aria-pressed="false">
+                        <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+                            <path d="M9 15.5S2 10.8 2 6.5a4 4 0 0 1 7-2.64A4 4 0 0 1 16 6.5c0 4.3-7 9-7 9z"
+                                stroke="#9C8265" stroke-width="1.2" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <button class="view-item-btn quick-add-btn hoverable"
+                        style="opacity:1; transform:translateY(0); position:absolute; bottom: 20px; width: calc(100% - 40px); left: 20px;"
+                        aria-label="View Mesa round table">
+                        View Product
+                    </button>
+                </div>
+                <div class="prod-info">
+                    <div class="prod-cat">dining</div>
+                    <div class="prod-name">Mesa round table</div>
+                    <div class="prod-bottom">
+                        <div class="prod-price-wrap">
+                            <div class="prod-price">₹12,600 <span style="text-decoration: line-through; color: #999; font-size: 0.8em;">₹18,000</span></div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="prod-card hoverable" role="listitem" data-material="Solid Teak Wood & Premium Upholstery"
+                data-size="0.5 m x 0.5 m (50 cm x 50 cm x 85 cm)">
+                <div class="prod-img-wrap" data-img="./formaChair.webp">
+                    <div class="prod-img-inner">
+                        <img src="./formaChair.webp" alt="Forma dining chair" loading="lazy">
+                    </div>
+                    <button class="wish-btn hoverable" aria-label="Add to wishlist" aria-pressed="false">
+                        <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+                            <path d="M9 15.5S2 10.8 2 6.5a4 4 0 0 1 7-2.64A4 4 0 0 1 16 6.5c0 4.3-7 9-7 9z"
+                                stroke="#9C8265" stroke-width="1.2" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <button class="view-item-btn quick-add-btn hoverable"
+                        style="opacity:1; transform:translateY(0); position:absolute; bottom: 20px; width: calc(100% - 40px); left: 20px;"
+                        aria-label="View Forma dining chair">
+                        View Product
+                    </button>
+                </div>
+                <div class="prod-info">
+                    <div class="prod-cat">dining</div>
+                    <div class="prod-name">Forma dining chair</div>
+                    <div class="prod-bottom">
+                        <div class="prod-price-wrap">
+                            <div class="prod-price">₹7,500</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="prod-card hoverable" role="listitem" data-material="Matte Powder-Coated Metal"
+                data-size="0.4 m Diameter (40 cm)">
+                <div class="prod-img-wrap" data-img="./arcLight.webp">
+                    <div class="prod-img-inner">
+                        <img src="./arcLight.webp" alt="Arc pendant light" loading="lazy">
+                    </div>
+                    <button class="wish-btn hoverable" aria-label="Add to wishlist" aria-pressed="false">
+                        <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+                            <path d="M9 15.5S2 10.8 2 6.5a4 4 0 0 1 7-2.64A4 4 0 0 1 16 6.5c0 4.3-7 9-7 9z"
+                                stroke="#9C8265" stroke-width="1.2" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <button class="view-item-btn quick-add-btn hoverable"
+                        style="opacity:1; transform:translateY(0); position:absolute; bottom: 20px; width: calc(100% - 40px); left: 20px;"
+                        aria-label="View Arc pendant light">
+                        View Product
+                    </button>
+                </div>
+                <div class="prod-info">
+                    <div class="prod-cat">dining</div>
+                    <div class="prod-name">Arc pendant light</div>
+                    <div class="prod-bottom">
+                        <div class="prod-price-wrap">
+                            <div class="prod-price">₹14,200</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="prod-card hoverable" role="listitem" data-material="Kiln-Dried Wood & Premium Veneer"
+                data-size="1.8 m x 0.9 m (180 cm x 90 cm x 75 cm)">
+                <div class="prod-img-wrap" data-img="./auraDining.webp">
+                    <div class="prod-img-inner">
+                        <img src="./auraDining.webp" alt="Aura Dining Table" loading="lazy">
+                    </div>
+                    <button class="wish-btn hoverable" aria-label="Add to wishlist" aria-pressed="false">
+                        <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+                            <path d="M9 15.5S2 10.8 2 6.5a4 4 0 0 1 7-2.64A4 4 0 0 1 16 6.5c0 4.3-7 9-7 9z"
+                                stroke="#9C8265" stroke-width="1.2" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <button class="view-item-btn quick-add-btn hoverable"
+                        style="opacity:1; transform:translateY(0); position:absolute; bottom: 20px; width: calc(100% - 40px); left: 20px;"
+                        aria-label="View Aura Dining Table">
+                        View Product
+                    </button>
+                </div>
+                <div class="prod-info">
+                    <div class="prod-cat">dining</div>
+                    <div class="prod-name">Aura Dining Table</div>
+                    <div class="prod-bottom">
+                        <div class="prod-price-wrap">
+                            <div class="prod-price">₹42,000</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="prod-card hoverable" role="listitem" data-material="Solid Mango Wood & Iron Base"
+                data-size="1.5 m x 0.4 m (150 cm x 40 cm x 80 cm)">
+                <div class="prod-img-wrap" data-img="./nylaSideboard.webp">
+                    <div class="prod-img-inner">
+                        <img src="./nylaSideboard.webp" alt="Nyla Sideboard" loading="lazy">
+                    </div>
+                    <button class="wish-btn hoverable" aria-label="Add to wishlist" aria-pressed="false">
+                        <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+                            <path d="M9 15.5S2 10.8 2 6.5a4 4 0 0 1 7-2.64A4 4 0 0 1 16 6.5c0 4.3-7 9-7 9z"
+                                stroke="#9C8265" stroke-width="1.2" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <button class="view-item-btn quick-add-btn hoverable"
+                        style="opacity:1; transform:translateY(0); position:absolute; bottom: 20px; width: calc(100% - 40px); left: 20px;"
+                        aria-label="View Nyla Sideboard">
+                        View Product
+                    </button>
+                </div>
+                <div class="prod-info">
+                    <div class="prod-cat">dining</div>
+                    <div class="prod-name">Nyla Sideboard</div>
+                    <div class="prod-bottom">
+                        <div class="prod-price-wrap">
+                            <div class="prod-price">₹36,500</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="prod-card hoverable" role="listitem"
+                data-material="Solid Teak Wood & High-Density Memory Foam"
+                data-size="0.4 m x 0.4 m (40 cm x 40 cm x 75 cm)">
+                <div class="prod-img-wrap" data-img="./barStool.webp">
+                    <div class="prod-img-inner">
+                        <img src="./barStool.webp" alt="Orbit Bar Stool" loading="lazy">
+                    </div>
+                    <button class="wish-btn hoverable" aria-label="Add to wishlist" aria-pressed="false">
+                        <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+                            <path d="M9 15.5S2 10.8 2 6.5a4 4 0 0 1 7-2.64A4 4 0 0 1 16 6.5c0 4.3-7 9-7 9z"
+                                stroke="#9C8265" stroke-width="1.2" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <button class="view-item-btn quick-add-btn hoverable"
+                        style="opacity:1; transform:translateY(0); position:absolute; bottom: 20px; width: calc(100% - 40px); left: 20px;"
+                        aria-label="View Orbit Bar Stool">
+                        View Product
+                    </button>
+                </div>
+                <div class="prod-info">
+                    <div class="prod-cat">dining</div>
+                    <div class="prod-name">Orbit Bar Stool</div>
+                    <div class="prod-bottom">
+                        <div class="prod-price-wrap">
+                            <div class="prod-price">₹14,000</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="prod-card hoverable" role="listitem" data-material="Acacia Wood & Matte Powder-Coated Metal"
+                data-size="1.0 m x 0.4 m (100 cm x 40 cm x 150 cm)">
+                <div class="prod-img-wrap" data-img="./havenCabinet.webp">
+                    <div class="prod-img-inner">
+                        <img src="./havenCabinet.webp" alt="Haven Cabinet" loading="lazy">
+                    </div>
+                    <button class="wish-btn hoverable" aria-label="Add to wishlist" aria-pressed="false">
+                        <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+                            <path d="M9 15.5S2 10.8 2 6.5a4 4 0 0 1 7-2.64A4 4 0 0 1 16 6.5c0 4.3-7 9-7 9z"
+                                stroke="#9C8265" stroke-width="1.2" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <button class="view-item-btn quick-add-btn hoverable"
+                        style="opacity:1; transform:translateY(0); position:absolute; bottom: 20px; width: calc(100% - 40px); left: 20px;"
+                        aria-label="View Haven Cabinet">
+                        View Product
+                    </button>
+                </div>
+                <div class="prod-info">
+                    <div class="prod-cat">dining</div>
+                    <div class="prod-name">Haven Cabinet</div>
+                    <div class="prod-bottom">
+                        <div class="prod-price-wrap">
+                            <div class="prod-price">₹28,000</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="prod-card hoverable" role="listitem" data-material="Solid Oak Wood & Premium Upholstery"
+                data-size="1.5 m x 0.4 m (150 cm x 40 cm x 45 cm)">
+                <div class="prod-img-wrap" data-img="./lyraBench.webp">
+                    <div class="prod-img-inner">
+                        <img src="./lyraBench.webp" alt="Lyra Bench" loading="lazy">
+                    </div>
+                    <button class="wish-btn hoverable" aria-label="Add to wishlist" aria-pressed="false">
+                        <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+                            <path d="M9 15.5S2 10.8 2 6.5a4 4 0 0 1 7-2.64A4 4 0 0 1 16 6.5c0 4.3-7 9-7 9z"
+                                stroke="#9C8265" stroke-width="1.2" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <button class="view-item-btn quick-add-btn hoverable"
+                        style="opacity:1; transform:translateY(0); position:absolute; bottom: 20px; width: calc(100% - 40px); left: 20px;"
+                        aria-label="View Lyra Bench">
+                        View Product
+                    </button>
+                </div>
+                <div class="prod-info">
+                    <div class="prod-cat">dining</div>
+                    <div class="prod-name">Lyra Bench</div>
+                    <div class="prod-bottom">
+                        <div class="prod-price-wrap">
+                            <div class="prod-price">₹12,500</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="prod-card hoverable" role="listitem" data-material="Brushed Brass & Textured Glass"
+                data-size="0.3 m Diameter (30 cm)">
+                <div class="prod-img-wrap" data-img="./celesteLight.webp">
+                    <div class="prod-img-inner">
+                        <img src="./celesteLight.webp" alt="Celeste Pendant Light" loading="lazy">
+                    </div>
+                    <button class="wish-btn hoverable" aria-label="Add to wishlist" aria-pressed="false">
+                        <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+                            <path d="M9 15.5S2 10.8 2 6.5a4 4 0 0 1 7-2.64A4 4 0 0 1 16 6.5c0 4.3-7 9-7 9z"
+                                stroke="#9C8265" stroke-width="1.2" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <button class="view-item-btn quick-add-btn hoverable"
+                        style="opacity:1; transform:translateY(0); position:absolute; bottom: 20px; width: calc(100% - 40px); left: 20px;"
+                        aria-label="View Celeste Pendant Light">
+                        View Product
+                    </button>
+                </div>
+                <div class="prod-info">
+                    <div class="prod-cat">dining</div>
+                    <div class="prod-name">Celeste Pendant Light</div>
+                    <div class="prod-bottom">
+                        <div class="prod-price-wrap">
+                            <div class="prod-price">₹8,000</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="prod-card hoverable" role="listitem"
+                data-material="Solid Mango Wood & Iron Base with Premium Upholstery"
+                data-size="0.5 m x 0.5 m (50 cm x 50 cm x 85 cm)">
+                <div class="prod-img-wrap" data-img="./stellaChair.webp">
+                    <div class="prod-img-inner">
+                        <img src="./stellaChair.webp" alt="Stella Dining Chair" loading="lazy">
+                    </div>
+                    <button class="wish-btn hoverable" aria-label="Add to wishlist" aria-pressed="false">
+                        <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+                            <path d="M9 15.5S2 10.8 2 6.5a4 4 0 0 1 7-2.64A4 4 0 0 1 16 6.5c0 4.3-7 9-7 9z"
+                                stroke="#9C8265" stroke-width="1.2" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <button class="view-item-btn quick-add-btn hoverable"
+                        style="opacity:1; transform:translateY(0); position:absolute; bottom: 20px; width: calc(100% - 40px); left: 20px;"
+                        aria-label="View Stella Dining Chair">
+                        View Product
+                    </button>
+                </div>
+                <div class="prod-info">
+                    <div class="prod-cat">dining</div>
+                    <div class="prod-name">Stella Dining Chair</div>
+                    <div class="prod-bottom">
+                        <div class="prod-price-wrap">
+                            <div class="prod-price">₹16,000</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="prod-card hoverable" role="listitem" data-material="100% Solid Teak Wood"
+                data-size="1.2 m x 0.4 m (120 cm x 40 cm x 90 cm)">
+                <div class="prod-img-wrap" data-img="./terraCabinet.webp">
+                    <div class="prod-img-inner">
+                        <img src="./terraCabinet.webp" alt="Terra Cabinet" loading="lazy">
+                    </div>
+                    <button class="wish-btn hoverable" aria-label="Add to wishlist" aria-pressed="false">
+                        <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+                            <path d="M9 15.5S2 10.8 2 6.5a4 4 0 0 1 7-2.64A4 4 0 0 1 16 6.5c0 4.3-7 9-7 9z"
+                                stroke="#9C8265" stroke-width="1.2" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <button class="view-item-btn quick-add-btn hoverable"
+                        style="opacity:1; transform:translateY(0); position:absolute; bottom: 20px; width: calc(100% - 40px); left: 20px;"
+                        aria-label="View Terra Cabinet">
+                        View Product
+                    </button>
+                </div>
+                <div class="prod-info">
+                    <div class="prod-cat">dining</div>
+                    <div class="prod-name">Terra Cabinet</div>
+                    <div class="prod-bottom">
+                        <div class="prod-price-wrap">
+                            <div class="prod-price">₹34,000</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+    <!-- --- NEWSLETTER --------------------------------- -->
+    <section class="newsletter" aria-label="Newsletter signup">
+        <div class="reveal">
+            <p class="nl-eyebrow">Stay inspired</p>
+            <h2 class="nl-title">Beautiful homes<br>start here</h2>
+            <p class="nl-sub">Join 50,000 homeowners. Get new arrivals, design ideas, and an exclusive 10% off your
+                first order.</p>
+            <div class="nl-form" role="form" aria-label="Email subscription">
+                <input class="nl-input" type="email" placeholder="Your email address" aria-label="Email address">
+                <button class="nl-btn hoverable" type="submit">Subscribe</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- --- WISHLIST SECTION --------------------------- -->
+    <section class="wishlist-section reveal" id="wishlistSection" style="display:none; background: var(--warm-white); padding-bottom: 120px;">
+        <div class="products-header">
+            <div>
+                <div class="section-eyebrow">Saved for later</div>
+                <h2 class="section-title">Your Wishlist</h2>
+            </div>
+        </div>
+        <div class="products-grid" id="wishlistGrid">
+            <!-- Dynamically populated -->
+        </div>
+    </section>
+
+    <!-- --- FOOTER ------------------------------------- -->
+    <footer role="contentinfo">
+        <div class="footer-top">
+            <div>
+                <span class="footer-logo">Sunny Furniture</span>
+                <p class="footer-about">Furniture crafted for modern Indian homes. Designed with care, built to last a
+                    lifetime. Free delivery, free installation, always.</p>
+
+            </div>
+
+            <div>
+                <h3 class="footer-col-title">Shop</h3>
+                <a href="living-room.html" class="footer-link hoverable">Living room</a>
+                <a href="bedroom.html" class="footer-link hoverable">Bedroom</a>
+                <a href="dining.html" class="footer-link hoverable">Dining</a>
+                <a href="storage.html" class="footer-link hoverable">Storage</a>
+                <a href="study.html" class="footer-link hoverable">Study</a>
+                <a href="outdoor.html" class="footer-link hoverable">Outdoor</a>
+                <a href="sale.html" class="footer-link hoverable">Sale</a>
+            </div>
+
+            <div>
+                <h3 class="footer-col-title">Help</h3>
+                <a href="track-order.html" class="footer-link hoverable">Track your order</a>
+                <a href="delivery-info.html" class="footer-link hoverable">Delivery info</a>
+                <a href="returns-refunds.html" class="footer-link hoverable">Returns &amp; refunds</a>
+                <a href="installation.html" class="footer-link hoverable">Installation</a>
+                <a href="faqs.html" class="footer-link hoverable">FAQs</a>
+                <a href="contact-us.html" class="footer-link hoverable">Contact us</a>
+            </div>
+
+            <div>
+                <h3 class="footer-col-title">Company</h3>
+                <a href="about.html" class="footer-link hoverable">About Sunny Furniture</a>
+                <a href="philosophy.html#craftsmen" class="footer-link hoverable">Our craftsmen</a>
+                <a href="philosophy.html#sustainability" class="footer-link hoverable">Sustainability</a>
+                <a href="philosophy.html#blog" class="footer-link hoverable">Blog &amp; ideas</a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <span class="footer-copy">&copy; 2026 Sunny Furniture Pvt Ltd &nbsp;&middot;&nbsp; Privacy Policy
+                &nbsp;&middot;&nbsp; Terms of Service</span>
+            <div class="footer-pay" aria-label="Accepted payment methods">
+                <span class="pay-icon" title="UPI"><svg width="36" height="22" viewBox="0 0 36 22"><rect width="36" height="22" rx="3" fill="#fff" stroke="#ddd" stroke-width=".5"/><text x="18" y="15" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" font-weight="600" fill="#4B286D">UPI</text></svg></span>
+                <span class="pay-icon" title="Visa"><svg width="36" height="22" viewBox="0 0 36 22"><rect width="36" height="22" rx="3" fill="#fff" stroke="#ddd" stroke-width=".5"/><text x="18" y="15" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" font-weight="700" font-style="italic" fill="#1A1F71">VISA</text></svg></span>
+                <span class="pay-icon" title="Mastercard"><svg width="36" height="22" viewBox="0 0 36 22"><rect width="36" height="22" rx="3" fill="#fff" stroke="#ddd" stroke-width=".5"/><circle cx="14" cy="11" r="6" fill="#EB001B" opacity=".8"/><circle cx="22" cy="11" r="6" fill="#F79E1B" opacity=".8"/></svg></span>
+                <span class="pay-icon" title="RuPay"><svg width="36" height="22" viewBox="0 0 36 22"><rect width="36" height="22" rx="3" fill="#fff" stroke="#ddd" stroke-width=".5"/><text x="18" y="15" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" font-weight="600" fill="#097A44">RuPay</text></svg></span>
+                <span class="pay-icon" title="Cash on Delivery"><svg width="36" height="22" viewBox="0 0 36 22"><rect width="36" height="22" rx="3" fill="#fff" stroke="#ddd" stroke-width=".5"/><text x="18" y="15" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" font-weight="500" fill="#555">COD</text></svg></span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- --- PRODUCT MODAL ------------------------------ -->
+    <div class="product-modal" id="productModal" role="dialog" aria-modal="true" style="display:none;"
+        aria-hidden="true">
+        <div class="pm-overlay" id="pmOverlay"></div>
+        <div class="pm-content">
+            <button class="pm-close hoverable" id="pmClose" aria-label="Close modal">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <div class="pm-body">
+                <div class="pm-image-wrap" id="pmImageWrap"></div>
+                <div class="pm-info">
+                    <div class="pm-cat" id="pmCat"></div>
+                    <h2 class="pm-name" id="pmName"></h2>
+                    <div class="pm-price" id="pmPrice"></div>
+                    <p class="pm-desc" id="pmDesc">A beautiful handcrafted piece designed for modern Indian homes.</p>
+                    <div class="pm-details"
+                        style="margin-top: 1rem; font-size: 0.95rem; color: var(--espresso); line-height: 1.5;">
+                        <p style="margin-bottom: 0.5rem;"><strong>Material:</strong> <span id="pmMaterial">Premium
+                                Quality Options</span></p>
+                        <p><strong>Size:</strong> <span id="pmSize">Standard Dimensions</span></p>
+                    </div>
+                    <div class="pm-actions" style="margin-top: 2rem; display: flex; gap: 1rem;">
+                        <button class="pm-btn pm-add-cart hoverable"
+                            style="flex: 1; padding: 1rem; background: var(--espresso); color: #fff; border: none; cursor: pointer; border-radius: 0; font-family: 'DM Sans', sans-serif; font-size: 1rem; transition: background 0.3s ease;">Add
+                            to Cart</button>
+                        <button class="pm-btn pm-like hoverable wish-btn"
+                            style="padding: 1rem; background: none; border: 1px solid var(--espresso); cursor: pointer; border-radius: 0; display: flex; align-items: center; justify-content: center; width: 60px; transition: all 0.3s ease;">
+                            <svg width="20" height="20" viewBox="0 0 18 18" fill="none">
+                                <path d="M9 15.5S2 10.8 2 6.5a4 4 0 0 1 7-2.64A4 4 0 0 1 16 6.5c0 4.3-7 9-7 9z"
+                                    stroke="currentColor" stroke-width="1" stroke-linejoin="round" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./script.js?v=1776975860"></script>
+</body>
+
+</html>
+

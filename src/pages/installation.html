@@ -1,0 +1,258 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Installation — Sunny Furniture</title>
+    <meta name="description"
+        content="Free professional installation with every Sunny Furniture order. Learn about our installation process, what's included, and scheduling.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:opsz,wght@9..40,200;9..40,300;9..40,400;9..40,500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./index.css">
+    <style>
+        .inst-hero{padding-top:180px;padding-bottom:60px;max-width:1400px;margin:0 auto;padding-left:5%;padding-right:5%;text-align:center}
+        .inst-hero h1{font-family:var(--serif);font-size:clamp(2.8rem,5vw,4.2rem);font-weight:400;line-height:1.1;margin-bottom:1.5rem;color:var(--espresso)}
+        .inst-hero .inst-intro{font-size:1.1rem;line-height:1.8;color:var(--walnut);max-width:700px;margin:0 auto}
+
+        .inst-promises{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1000px;margin:50px auto 80px;padding:0 5%}
+        .inst-promise{text-align:center;padding:2.2rem 1.5rem;border:1px solid var(--linen);background:var(--warm-white);transition:all .4s var(--ease-out)}
+        .inst-promise:hover{border-color:var(--gold);transform:translateY(-4px);box-shadow:0 12px 40px rgba(44,30,18,.06)}
+        .inst-promise-icon{width:52px;height:52px;border-radius:50%;background:var(--linen);display:flex;align-items:center;justify-content:center;margin:0 auto 1.2rem;transition:background .3s}
+        .inst-promise:hover .inst-promise-icon{background:var(--gold)}
+        .inst-promise:hover .inst-promise-icon svg{stroke:#fff}
+        .inst-promise-icon svg{stroke:var(--espresso);transition:stroke .3s}
+        .inst-promise h3{font-family:var(--serif);font-size:1.3rem;font-weight:400;color:var(--espresso);margin-bottom:.4rem}
+        .inst-promise p{font-size:.92rem;line-height:1.6;color:var(--walnut)}
+
+        .inst-process{max-width:900px;margin:0 auto 80px;padding:0 5%}
+        .inst-process-header{text-align:center;margin-bottom:48px}
+        .inst-process-header h2{font-family:var(--serif);font-size:clamp(2rem,3.5vw,2.8rem);font-weight:400;color:var(--espresso)}
+
+        .inst-step{display:grid;grid-template-columns:56px 1fr;gap:24px;padding-bottom:48px;position:relative}
+        .inst-step:not(:last-child)::after{content:'';position:absolute;left:27px;top:56px;bottom:0;width:2px;background:linear-gradient(to bottom,var(--gold),var(--linen))}
+        .inst-step-num{width:56px;height:56px;border-radius:50%;background:var(--espresso);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:1.3rem;flex-shrink:0;position:relative;z-index:1;transition:background .3s,transform .3s}
+        .inst-step:hover .inst-step-num{background:var(--gold);transform:scale(1.1)}
+        .inst-step-body h3{font-family:var(--serif);font-size:1.4rem;font-weight:400;color:var(--espresso);margin-bottom:.5rem;padding-top:4px}
+        .inst-step-body p{font-size:1rem;line-height:1.7;color:var(--walnut)}
+
+        .inst-includes{max-width:1400px;margin:0 auto 100px;padding:0 5%;display:grid;grid-template-columns:1fr 1fr;gap:40px}
+        .inst-card{padding:2.5rem;background:var(--warm-white);border:1px solid var(--linen);position:relative}
+        .inst-card::after{content:'';position:absolute;bottom:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,var(--gold),transparent)}
+        .inst-card h2{font-family:var(--serif);font-size:1.6rem;font-weight:400;color:var(--espresso);margin-bottom:1.2rem}
+        .inst-card ul{list-style:none;padding:0;margin:0}
+        .inst-card ul li{font-size:.95rem;line-height:1.7;color:var(--walnut);padding:.5rem 0 .5rem 1.4rem;position:relative}
+        .inst-card ul li::before{content:'';position:absolute;left:0;top:.95rem;width:6px;height:6px;border-radius:50%;background:var(--gold)}
+        .inst-card p{font-size:.95rem;line-height:1.8;color:var(--walnut)}
+
+        @media(max-width:768px){
+            .inst-hero{padding-top:140px}
+            .inst-promises{grid-template-columns:1fr;max-width:400px}
+            .inst-step{grid-template-columns:44px 1fr;gap:16px}
+            .inst-step-num{width:44px;height:44px;font-size:1.1rem}
+            .inst-step:not(:last-child)::after{left:21px}
+            .inst-includes{grid-template-columns:1fr}
+            .inst-card{padding:2rem 1.5rem}
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-intro" aria-hidden="true"><div class="intro-logo">Sunny Furniture</div><div class="intro-line"></div></div>
+    <div class="cursor" id="cursor" aria-hidden="true"></div>
+    <div class="cursor-follower" id="cursorFollower" aria-hidden="true"></div>
+    <div class="page-transition" id="pageTransition" aria-hidden="true"></div>
+
+    <div class="ann-bar" role="marquee" aria-label="Site announcements">
+        <div class="ann-track" id="annTrack">
+            <span class="ann-item">Free delivery on orders above ₹15,000</span>
+            <span class="ann-item">New arrivals — <span>Summer 2026 collection</span></span>
+            <span class="ann-item">Use code <span>WELCOME10</span> for 10% off</span>
+            <span class="ann-item">Free installation on all furniture</span>
+            <span class="ann-item">30-day hassle-free returns</span>
+            <span class="ann-item">2-year warranty on every piece</span>
+            <span class="ann-item">Customisations also available</span>
+            <span class="ann-item">Free delivery on orders above ₹15,000</span>
+            <span class="ann-item">New arrivals — <span>Summer 2026 collection</span></span>
+            <span class="ann-item">Use code <span>WELCOME10</span> for 10% off</span>
+            <span class="ann-item">Free installation on all furniture</span>
+            <span class="ann-item">30-day hassle-free returns</span>
+            <span class="ann-item">2-year warranty on every piece</span>
+            <span class="ann-item">Customisations also available</span>
+        </div>
+    </div>
+
+    <nav class="nav" id="mainNav" role="navigation" aria-label="Main navigation">
+        <a href="index.html" class="nav-logo">Sunny Furniture</a>
+        <ul class="nav-links">
+            <li><a href="living-room.html">Living</a></li>
+            <li><a href="bedroom.html">Bedroom</a></li>
+            <li><a href="dining.html">Dining</a></li>
+            <li><a href="storage.html">Storage</a></li>
+            <li><a href="outdoor.html">Outdoor</a></li>
+            <li><a href="study.html">Study</a></li>
+            <li><a href="newdecor.html">Decor</a></li>
+            <li><a href="sale.html" class="nav-sale">Sale</a></li>
+        </ul>
+        <div class="nav-actions">
+            <button class="nav-btn hoverable" aria-label="Search"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1"/><line x1="12.5" y1="12.5" x2="16.5" y2="16.5" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg></button>
+            <button class="nav-btn hoverable" aria-label="Wishlist"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 15.5S2 10.8 2 6.5a4 4 0 0 1 7-2.64A4 4 0 0 1 16 6.5c0 4.3-7 9-7 9z" stroke="currentColor" stroke-width="1" stroke-linejoin="round"/></svg></button>
+            <button class="nav-btn cart-wrap hoverable" aria-label="Cart — 2 items"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 2h1.8L6 10.5h7.5l2-7H5" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/><circle cx="7.5" cy="14" r="1.2" fill="currentColor"/><circle cx="12.5" cy="14" r="1.2" fill="currentColor"/></svg><span class="cart-badge" aria-hidden="true">2</span></button>
+            <button class="nav-btn hoverable" aria-label="Account"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="6" r="3.5" stroke="currentColor" stroke-width="1"/><path d="M2.5 16.5c0-3.5 2.9-5.5 6.5-5.5s6.5 2 6.5 5.5" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg></button>
+        </div>
+    </nav>
+
+    <main>
+        <div style="max-width:1400px;margin:0 auto;padding:160px 5% 20px;display:flex;justify-content:flex-end;">
+            <a href="index.html" class="link-arrow reveal hoverable">Back to Home</a>
+        </div>
+
+        <section class="inst-hero" style="padding-top:20px;">
+            <div class="section-eyebrow reveal" style="justify-content:center">Help centre</div>
+            <h1 class="reveal delay-1">Installation</h1>
+            <p class="inst-intro reveal delay-2">Every Sunny Furniture order comes with free professional installation. Our trained team assembles, positions, and cleans up — so you can start enjoying your new furniture immediately.</p>
+        </section>
+
+        <section class="inst-promises" aria-label="Installation highlights">
+            <div class="inst-promise reveal">
+                <div class="inst-promise-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="1.3"><circle cx="12" cy="12" r="9"/><polyline points="8,12 11,15 16,9" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                <h3>Always free</h3>
+                <p>Professional installation included with every furniture order at no extra cost</p>
+            </div>
+            <div class="inst-promise reveal delay-1">
+                <div class="inst-promise-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="1.3"><circle cx="12" cy="12" r="9"/><polyline points="12,7 12,12 15,14" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                <h3>Within 24 hours</h3>
+                <p>Installation is scheduled within 24 hours of your delivery</p>
+            </div>
+            <div class="inst-promise reveal delay-2">
+                <div class="inst-promise-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="1.3"><path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"/><circle cx="10" cy="7" r="4"/><path d="M21 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+                <h3>Trained team</h3>
+                <p>Two-person team carries furniture to your room of choice</p>
+            </div>
+        </section>
+
+        <section class="inst-process" aria-label="Installation process">
+            <div class="inst-process-header reveal">
+                <div class="section-eyebrow" style="justify-content:center">Step by step</div>
+                <h2>How installation works</h2>
+            </div>
+            <div class="inst-step reveal">
+                <div class="inst-step-num">1</div>
+                <div class="inst-step-body">
+                    <h3>Delivery arrives</h3>
+                    <p>Your furniture is delivered to your doorstep by our logistics partner. The delivery team brings all pieces inside your home.</p>
+                </div>
+            </div>
+            <div class="inst-step reveal delay-1">
+                <div class="inst-step-num">2</div>
+                <div class="inst-step-body">
+                    <h3>Installation scheduled</h3>
+                    <p>If installation isn't done same-day, our team contacts you within 24 hours to schedule a convenient slot — morning or afternoon.</p>
+                </div>
+            </div>
+            <div class="inst-step reveal delay-2">
+                <div class="inst-step-num">3</div>
+                <div class="inst-step-body">
+                    <h3>Assembly &amp; setup</h3>
+                    <p>Our trained technicians assemble your furniture, position it exactly where you want, and ensure everything is level and secure.</p>
+                </div>
+            </div>
+            <div class="inst-step reveal delay-3">
+                <div class="inst-step-num">4</div>
+                <div class="inst-step-body">
+                    <h3>Cleanup &amp; walkthrough</h3>
+                    <p>All packaging is removed and disposed of. The team does a final walkthrough with you to make sure everything meets your expectations.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="inst-includes" aria-label="Installation details">
+            <div class="inst-card reveal">
+                <div class="section-eyebrow">Included</div>
+                <h2>What's covered</h2>
+                <ul>
+                    <li>Full assembly of all furniture items</li>
+                    <li>Positioning in your room of choice</li>
+                    <li>Levelling and stability checks</li>
+                    <li>Hardware tightening and quality check</li>
+                    <li>Packaging removal and disposal</li>
+                    <li>Post-install walkthrough with you</li>
+                </ul>
+            </div>
+            <div class="inst-card reveal delay-1">
+                <div class="section-eyebrow">Good to know</div>
+                <h2>Important notes</h2>
+                <ul>
+                    <li>Installation is available in all cities we deliver to</li>
+                    <li>Most items are installed in 30–60 minutes</li>
+                    <li>Wall-mounting (shelves, mirrors) included free of charge</li>
+                    <li>Electrical work (e.g. wiring for lights) is not included</li>
+                    <li>Please ensure the room is accessible and clear of obstructions</li>
+                </ul>
+                <p style="margin-top:1.2rem;font-size:.88rem;color:var(--tan);">Need to reschedule? Call us at least 12 hours before your slot and we'll arrange a new time — no fees.</p>
+            </div>
+        </section>
+
+        <section class="newsletter" aria-label="Newsletter signup">
+            <div class="reveal">
+                <p class="nl-eyebrow">Stay inspired</p>
+                <h2 class="nl-title">Beautiful homes<br>start here</h2>
+                <p class="nl-sub">Join 50,000 homeowners. Get new arrivals, design ideas, and an exclusive 10% off your first order.</p>
+                <div class="nl-form" role="form" aria-label="Email subscription">
+                    <input class="nl-input" type="email" placeholder="Your email address" aria-label="Email address">
+                    <button class="nl-btn hoverable" type="submit">Subscribe</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer role="contentinfo">
+        <div class="footer-top">
+            <div>
+                <span class="footer-logo">Sunny Furniture</span>
+                <p class="footer-about">Furniture crafted for modern Indian homes. Designed with care, built to last a lifetime. Free delivery, free installation, always.</p>
+            </div>
+            <div>
+                <h3 class="footer-col-title">Shop</h3>
+                <a href="living-room.html" class="footer-link hoverable">Living room</a>
+                <a href="bedroom.html" class="footer-link hoverable">Bedroom</a>
+                <a href="dining.html" class="footer-link hoverable">Dining</a>
+                <a href="storage.html" class="footer-link hoverable">Storage</a>
+                <a href="study.html" class="footer-link hoverable">Study</a>
+                <a href="outdoor.html" class="footer-link hoverable">Outdoor</a>
+                <a href="sale.html" class="footer-link hoverable">Sale</a>
+            </div>
+            <div>
+                <h3 class="footer-col-title">Help</h3>
+                <a href="track-order.html" class="footer-link hoverable">Track your order</a>
+                <a href="delivery-info.html" class="footer-link hoverable">Delivery info</a>
+                <a href="returns-refunds.html" class="footer-link hoverable">Returns &amp; refunds</a>
+                <a href="installation.html" class="footer-link hoverable">Installation</a>
+                <a href="faqs.html" class="footer-link hoverable">FAQs</a>
+                <a href="contact-us.html" class="footer-link hoverable">Contact us</a>
+            </div>
+            <div>
+                <h3 class="footer-col-title">Company</h3>
+                <a href="about.html" class="footer-link hoverable">About Sunny Furniture</a>
+                <a href="philosophy.html#craftsmen" class="footer-link hoverable">Our craftsmen</a>
+                <a href="philosophy.html#sustainability" class="footer-link hoverable">Sustainability</a>
+                <a href="philosophy.html#blog" class="footer-link hoverable">Blog &amp; ideas</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span class="footer-copy">&copy; 2026 Sunny Furniture Pvt Ltd &nbsp;&middot;&nbsp; Privacy Policy &nbsp;&middot;&nbsp; Terms of Service</span>
+            <div class="footer-pay" aria-label="Accepted payment methods">
+                <span class="pay-icon" title="UPI"><svg width="36" height="22" viewBox="0 0 36 22"><rect width="36" height="22" rx="3" fill="#fff" stroke="#ddd" stroke-width=".5"/><text x="18" y="15" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" font-weight="600" fill="#4B286D">UPI</text></svg></span>
+                <span class="pay-icon" title="Visa"><svg width="36" height="22" viewBox="0 0 36 22"><rect width="36" height="22" rx="3" fill="#fff" stroke="#ddd" stroke-width=".5"/><text x="18" y="15" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" font-weight="700" font-style="italic" fill="#1A1F71">VISA</text></svg></span>
+                <span class="pay-icon" title="Mastercard"><svg width="36" height="22" viewBox="0 0 36 22"><rect width="36" height="22" rx="3" fill="#fff" stroke="#ddd" stroke-width=".5"/><circle cx="14" cy="11" r="6" fill="#EB001B" opacity=".8"/><circle cx="22" cy="11" r="6" fill="#F79E1B" opacity=".8"/></svg></span>
+                <span class="pay-icon" title="RuPay"><svg width="36" height="22" viewBox="0 0 36 22"><rect width="36" height="22" rx="3" fill="#fff" stroke="#ddd" stroke-width=".5"/><text x="18" y="15" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" font-weight="600" fill="#097A44">RuPay</text></svg></span>
+                <span class="pay-icon" title="Cash on Delivery"><svg width="36" height="22" viewBox="0 0 36 22"><rect width="36" height="22" rx="3" fill="#fff" stroke="#ddd" stroke-width=".5"/><text x="18" y="15" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" font-weight="500" fill="#555">COD</text></svg></span>
+            </div>
+        </div>
+    </footer>
+    <script src="./script.js"></script>
+</body>
+</html>

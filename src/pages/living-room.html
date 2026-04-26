@@ -1,0 +1,1238 @@
+﻿?<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop by Room — Sunny Furniture</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:opsz,wght@9..40,200;9..40,300;9..40,400;9..40,500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./index.css">
+    <style>
+        .prod-img-inner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .prod-img-wrap {
+            aspect-ratio: 4 / 3;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Page Intro -->
+    <div class="page-intro" aria-hidden="true">
+        <div class="intro-logo">Sunny Furniture</div>
+        <div class="intro-line"></div>
+    </div>
+
+    <!-- Cursor -->
+    <div class="cursor" id="cursor" aria-hidden="true"></div>
+    <div class="cursor-follower" id="cursorFollower" aria-hidden="true"></div>
+
+    <!-- Page transition -->
+    <div class="page-transition" id="pageTransition" aria-hidden="true"></div>
+
+    <!-- --- ANNOUNCEMENT BAR --------------------------- -->
+    <div class="ann-bar" role="marquee" aria-label="Site announcements">
+        <div class="ann-track" id="annTrack">
+            <span class="ann-item">Free delivery on orders above ₹15,000</span>
+            <span class="ann-item">New arrivals — <span>Summer 2026 collection</span></span>
+            <span class="ann-item">Use code <span>WELCOME10</span> for 10% off</span>
+            <span class="ann-item">Free installation on all furniture</span>
+            <span class="ann-item">30-day hassle-free returns</span>
+            <span class="ann-item">2-year warranty on every piece</span>
+            <span class="ann-item">Customisations also available</span>
+            <!-- Duplicate for seamless loop -->
+            <span class="ann-item">Free delivery on orders above ₹15,000</span>
+            <span class="ann-item">New arrivals — <span>Summer 2026 collection</span></span>
+            <span class="ann-item">Use code <span>WELCOME10</span> for 10% off</span>
+            <span class="ann-item">Free installation on all furniture</span>
+            <span class="ann-item">30-day hassle-free returns</span>
+            <span class="ann-item">2-year warranty on every piece</span>
+            <span class="ann-item">Customisations also available</span>
+        </div>
+    </div>
+
+    <!-- --- NAVIGATION --------------------------------- -->
+    <nav class="nav" id="mainNav" role="navigation" aria-label="Main navigation">
+        <a href="index.html" class="nav-logo">Sunny Furniture</a>
+
+        <ul class="nav-links">
+            <li><a href="living-room.html">Living</a></li>
+            <li><a href="bedroom.html">Bedroom</a></li>
+            <li><a href="dining.html">Dining</a></li>
+            <li><a href="storage.html">Storage</a></li>
+            <li><a href="outdoor.html">Outdoor</a></li>
+            <li><a href="study.html">Study</a></li>
+            <li><a href="newdecor.html">Decor</a></li>
+            <li><a href="sale.html" class="nav-sale">Sale</a></li>
+        </ul>
+
+        <div class="nav-actions">
+            <button class="nav-btn hoverable" aria-label="Search">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                    <circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1" />
+                    <line x1="12.5" y1="12.5" x2="16.5" y2="16.5" stroke="currentColor" stroke-width="1"
+                        stroke-linecap="round" />
+                </svg>
+            </button>
+            <button class="nav-btn hoverable wish-wrap" aria-label="Wishlist — 0 items">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                    <path d="M9 15.5S2 10.8 2 6.5a4 4 0 0 1 7-2.64A4 4 0 0 1 16 6.5c0 4.3-7 9-7 9z"
+                        stroke="currentColor" stroke-width="1" stroke-linejoin="round" />
+                </svg>
+                <span class="wishlist-badge" style="display:none;" aria-hidden="true">0</span>
+            </button>
+            <button class="nav-btn cart-wrap hoverable" aria-label="Cart — 2 items">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                    <path d="M2 2h1.8L6 10.5h7.5l2-7H5" stroke="currentColor" stroke-width="1" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <circle cx="7.5" cy="14" r="1.2" fill="currentColor" />
+                    <circle cx="12.5" cy="14" r="1.2" fill="currentColor" />
+                </svg>
+                <span class="cart-badge" aria-hidden="true">2</span>
+            </button>
+            <button class="nav-btn hoverable" aria-label="Account">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                    <circle cx="9" cy="6" r="3.5" stroke="currentColor" stroke-width="1" />
+                    <path d="M2.5 16.5c0-3.5 2.9-5.5 6.5-5.5s6.5 2 6.5 5.5" stroke="currentColor" stroke-width="1"
+                        stroke-linecap="round" />
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+
+    <!-- --- ROOM CATEGORY ----------------------------- -->
+    <section class="room-products" aria-label="Living Room Products" style="padding-top: 140px; min-height: 80vh;">
+        <div class="products-header">
+            <div>
+                <div class="section-eyebrow reveal">Shop by room</div>
+                <h1 class="section-title reveal delay-1">Living Room</h1>
+            </div>
+            <a href="index.html" class="link-arrow reveal hoverable">Back to Home</a>
+        </div>
+
+        <div class="products-grid reveal delay-2" role="list">
+
+            <!-- ======================================
+                 PRODUCT 1 — Aura 3-seater sofa
+                 IMAGE FILE: aura3seater.jpg (already added)
+            ======================================= -->
+            <article class="prod-card hoverable" role="listitem"
+                data-material="Kiln-Dried Wood & Premium Poly-Blend Fabric" data-size="2.1 m x 0.9 m (210 cm x 90 cm)">
+                <div class="prod-img-wrap" data-img="./aura3seater.jpg">
+                    <div class="prod-img-inner">
+                        <img src="./aura3seater.jpg" alt="Aura 3-seater sofa" fetchpriority="high">
+                    </div>
+                    <button class="wish-btn hoverable" aria-label="Add to wishlist" aria-pressed="false">
+                        <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+                            <path d="M9 15.5S2 10.8 2 6.5a4 4 0 0 1 7-2.64A4 4 0 0 1 16 6.5c0 4.3-7 9-7 9z"
+                                stroke="#9C8265" stroke-width="1.2" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <button class="view-item-btn quick-add-btn hoverable"
+                        style="opacity:1; transform:translateY(0); position:absolute; bottom: 20px; width: calc(100% - 40px); left: 20px;"
+                        aria-label="View Aura 3-seater sofa">
+                        View Product
+                    </button>
+                </div>
+                <div class="prod-info">
+                    <div class="prod-cat">living-room</div>
+                    <div class="prod-name">Aura 3-seater sofa</div>
+                    <div class="prod-bottom">
+                        <div class="prod-price-wrap">
+                            <div class="prod-price">₹42,000</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ======================================
+                 PRODUCT 2 — Mesa coffee table
+                 IMAGE FILE: mesa-coffee-table.jpg
+                 ? rename your image to this and put in project folder
+            ======================================= -->
+            <article id="mesaCoffee" class="prod-card hoverable" role="listitem" data-material="Solid Mango Wood & Iron Base"
+                data-size="1.2 m x 0.6 m (120 cm x 60 cm)">
+                <div class="prod-img-wrap" data-img="./mesaCoffee.webp">
+                    <div class="prod-img-inner">
+                        <img src="./mesaCoffee.webp" alt="Mesa coffee table" loading="lazy">
+                    </div>
+                    <button class="wish-btn hoverable" aria-label="Add to wishlist" aria-pressed="false">
+                        <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+                            <path d="M9 15.5S2 10.8 2 6.5a4 4 0 0 1 7-2.64A4 4 0 0 1 16 6.5c0 4.3-7 9-7 9z"
+                                stroke="#9C8265" stroke-width="1.2" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <button class="view-item-btn quick-add-btn hoverable"
+                        style="opacity:1; transform:translateY(0); position:absolute; bottom: 20px; width: calc(100% - 40px); left: 20px;"
+                        aria-label="View Mesa coffee table">
+                        View Product
+                    </button>
+                </div>
+                <div class="prod-info">
+                    <div class="prod-cat">living-room</div>
+                    <div class="prod-name">Mesa coffee table</div>
+                    <div class="prod-bottom">
+                        <div class="prod-price-wrap">
+                            <div class="prod-price">₹18,000</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ======================================
+                 PRODUCT 3 — Aero floor lamp
+                 IMAGE FILE: aero-floor-lamp.jpg
+                 ? rename your image to this and put in project folder
+            ======================================= -->
+            <article id="aeroLamp" class="prod-card hoverable" role="listitem" data-material="Brushed Brass & Textured Fabric Shade"
+                data-size="1.5 m High (150 cm x 40 cm)">
+                <div class="prod-img-wrap" data-img="./aeroLamp.jpg">
+                    <div class="prod-img-inner">
+                        <img src="./aeroLamp.jpg" alt="Aero floor lamp" loading="lazy">
+                    </div>
+                    <button class="wish-btn hoverable" aria-label="Add to wishlist" aria-pressed="false">
+                        <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+                            <path d="M9 15.5S2 10.8 2 6.5a4 4 0 0 1 7-2.64A4 4 0 0 1 16 6.5c0 4.3-7 9-7 9z"
+                                stroke="#9C8265" stroke-width="1.2" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <button class="view-item-btn quick-add-btn hoverable"
+                        style="opacity:1; transform:translateY(0); position:absolute; bottom: 20px; width: calc(100% - 40px); left: 20px;"
+                        aria-label="View Aero floor lamp">
+                        View Product
+                    </button>
+                </div>
+                <div class="prod-info">
+                    <div class="prod-cat">living-room</div>
+                    <div class="prod-name">Aero floor lamp</div>
+                    <div class="prod-bottom">
+                        <div class="prod-price-wrap">
+                            <div class="prod-price">₹8,500</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ======================================
+                 PRODUCT 4 — Loom accent chair
+                 IMAGE FILE: loom-accent-chair.jpg
+                 ? rename your image to this and put in project folder
+            ======================================= -->
+            <article class="prod-card hoverable" role="listitem"
+                data-material="Solid Teak Wood & High-Density Memory Foam" data-size="0.8 m x 0.8 m (80 cm x 80 cm)">
+                <div class="prod-img-wrap" data-img="./loomChair.jpg">
+                    <div class="prod-img-inner">
+                        <img src="./loomChair.jpg" alt="Loom accent chair" loading="lazy">
+                    </div>
+                    <button class="wish-btn hoverable" aria-label="Add to wishlist" aria-pressed="false">
+                        <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+                            <path d="M9 15.5S2 10.8 2 6.5a4 4 0 0 1 7-2.64A4 4 0 0 1 16 6.5c0 4.3-7 9-7 9z"
+                                stroke="#9C8265" stroke-width="1.2" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <button class="view-item-btn quick-add-btn hoverable"
+                        style="opacity:1; transform:translateY(0); position:absolute; bottom: 20px; width: calc(100% - 40px); left: 20px;"
+                        aria-label="View Loom accent chair">
+                        View Product
+                    </button>
+                </div>
+                <div class="prod-info">
+                    <div class="prod-cat">living-room</div>
+                    <div class="prod-name">Loom accent chair</div>
+                    <div class="prod-bottom">
+                        <div class="prod-price-wrap">
+                            <div class="prod-price">₹22,000</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ======================================
+                 PRODUCT 5 — Solis TV unit
+                 IMAGE FILE: solis-tv-unit.jpg
+                 ? rename your image to this and put in project folder
+            ======================================= -->
+            <article class="prod-card hoverable" role="listitem" data-material="Engineered Wood & Teak Veneer"
+                data-size="1.8 m x 0.4 m (180 cm x 40 cm x 55 cm)">
+                <div class="prod-img-wrap" data-img="./solisTvUnit.jpg">
+                    <div class="prod-img-inner">
+                        <img src="./solisTvUnit.jpg" alt="Solis TV unit" loading="lazy">
+                    </div>
+                    <button class="wish-btn hoverable" aria-label="Add to wishlist" aria-pressed="false">
+                        <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+                            <path d="M9 15.5S2 10.8 2 6.5a4 4 0 0 1 7-2.64A4 4 0 0 1 16 6.5c0 4.3-7 9-7 9z"
+                                stroke="#9C8265" stroke-width="1.2" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <button class="view-item-btn quick-add-btn hoverable"
+                        style="opacity:1; transform:translateY(0); position:absolute; bottom: 20px; width: calc(100% - 40px); left: 20px;"
+                        aria-label="View Solis TV unit">
+                        View Product
+                    </button>
+                </div>
+                <div class="prod-info">
+                    <div class="prod-cat">living-room</div>
+                    <div class="prod-name">Solis TV unit</div>
+                    <div class="prod-bottom">
+                        <div class="prod-price-wrap">
+                            <div class="prod-price">₹35,000</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ======================================
+                 PRODUCT 6 — Terra jute rug
+                 IMAGE FILE: terra-jute-rug.jpg
+                 ? rename your image to this and put in project folder
+            ======================================= -->
+            <article class="prod-card hoverable" role="listitem" data-material="100% Cotton / Jute Blend"
+                data-size="2.4 m x 1.8 m (240 cm x 180 cm)">
+                <div class="prod-img-wrap" data-img="./juteRug.webp">
+                    <div class="prod-img-inner">
+                        <img src="./juteRug.webp" alt="Terra jute rug" loading="lazy">
+                    </div>
+                    <button class="wish-btn hoverable" aria-label="Add to wishlist" aria-pressed="false">
+                        <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+                            <path d="M9 15.5S2 10.8 2 6.5a4 4 0 0 1 7-2.64A4 4 0 0 1 16 6.5c0 4.3-7 9-7 9z"
+                                stroke="#9C8265" stroke-width="1.2" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <button class="view-item-btn quick-add-btn hoverable"
+                        style="opacity:1; transform:translateY(0); position:absolute; bottom: 20px; width: calc(100% - 40px); left: 20px;"
+                        aria-label="View Terra jute rug">
+                        View Product
+                    </button>
+                </div>
+                <div class="prod-info">
+                    <div class="prod-cat">living-room</div>
+                    <div class="prod-name">Terra jute rug</div>
+                    <div class="prod-bottom">
+                        <div class="prod-price-wrap">
+                            <div class="prod-price">₹12,000</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ======================================
+                 PRODUCT 7 — Nyla end table
+                 IMAGE FILE: nyla-end-table.jpg
+                 ? rename your image to this and put in project folder
+            ======================================= -->
+            <article class="prod-card hoverable" role="listitem" data-material="Solid Mango Wood & Iron Base"
+                data-size="1.2 m x 0.6 m (120 cm x 60 cm)">
+                <div class="prod-img-wrap" data-img="./nylaEnd.webp">
+                    <div class="prod-img-inner">
+                        <img src="./nylaEnd.webp" alt="Nyla end table" loading="lazy">
+                    </div>
+                    <button class="wish-btn hoverable" aria-label="Add to wishlist" aria-pressed="false">
+                        <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+                            <path d="M9 15.5S2 10.8 2 6.5a4 4 0 0 1 7-2.64A4 4 0 0 1 16 6.5c0 4.3-7 9-7 9z"
+                                stroke="#9C8265" stroke-width="1.2" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <button class="view-item-btn quick-add-btn hoverable"
+                        style="opacity:1; transform:translateY(0); position:absolute; bottom: 20px; width: calc(100% - 40px); left: 20px;"
+                        aria-label="View Nyla end table">
+                        View Product
+                    </button>
+                </div>
+                <div class="prod-info">
+                    <div class="prod-cat">living-room</div>
+                    <div class="prod-name">Nyla end table</div>
+                    <div class="prod-bottom">
+                        <div class="prod-price-wrap">
+                            <div class="prod-price">₹8,500</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ======================================
+                 PRODUCT 8 — Crescent lounge chair
+                 IMAGE FILE: crescent-lounge-chair.jpg
+                 ? rename your image to this and put in project folder
+            ======================================= -->
+            <article class="prod-card hoverable" role="listitem"
+                data-material="Solid Teak Wood & High-Density Memory Foam" data-size="0.8 m x 0.8 m (80 cm x 80 cm)">
+                <div class="prod-img-wrap" data-img="./loungeChair.jpg">
+                    <div class="prod-img-inner">
+                        <img src="./loungeChair.jpg" alt="Crescent lounge chair" loading="lazy">
+                    </div>
+                    <button class="wish-btn hoverable" aria-label="Add to wishlist" aria-pressed="false">
+                        <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+                            <path d="M9 15.5S2 10.8 2 6.5a4 4 0 0 1 7-2.64A4 4 0 0 1 16 6.5c0 4.3-7 9-7 9z"
+                                stroke="#9C8265" stroke-width="1.2" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <button class="view-item-btn quick-add-btn hoverable"
+                        style="opacity:1; transform:translateY(0); position:absolute; bottom: 20px; width: calc(100% - 40px); left: 20px;"
+                        aria-label="View Crescent lounge chair">
+                        View Product
+                    </button>
+                </div>
+                <div class="prod-info">
+                    <div class="prod-cat">living-room</div>
+                    <div class="prod-name">Crescent lounge chair</div>
+                    <div class="prod-bottom">
+                        <div class="prod-price-wrap">
+                            <div class="prod-price">₹19,600 <span style="text-decoration: line-through; color: #999; font-size: 0.8em;">₹28,000</span></div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ======================================
+                 PRODUCT 9 — Orbit sofa
+                 IMAGE FILE: orbit-sofa.jpg
+                 ? rename your image to this and put in project folder
+            ======================================= -->
+            <article class="prod-card hoverable hidden-product" role="listitem"
+                data-material="Kiln-Dried Wood & Premium Poly-Blend Fabric" data-size="2.1 m x 0.9 m (210 cm x 90 cm)">
+                <div class="prod-img-wrap" data-img="./orbitSofa.jpg">
+                    <div class="prod-img-inner">
+                        <img src="./orbitSofa.jpg" alt="Orbit sofa" loading="lazy">
+                    </div>
+                    <button class="wish-btn hoverable" aria-label="Add to wishlist" aria-pressed="false">
+                        <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+                            <path d="M9 15.5S2 10.8 2 6.5a4 4 0 0 1 7-2.64A4 4 0 0 1 16 6.5c0 4.3-7 9-7 9z"
+                                stroke="#9C8265" stroke-width="1.2" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <button class="view-item-btn quick-add-btn hoverable"
+                        style="opacity:1; transform:translateY(0); position:absolute; bottom: 20px; width: calc(100% - 40px); left: 20px;"
+                        aria-label="View Orbit sofa">
+                        View Product
+                    </button>
+                </div>
+                <div class="prod-info">
+                    <div class="prod-cat">living-room</div>
+                    <div class="prod-name">Orbit Sofa</div>
+                    <div class="prod-bottom">
+                        <div class="prod-price-wrap">
+                            <div class="prod-price">₹15,000</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ======================================
+                 PRODUCT 10 — Sona bookshelf
+                 IMAGE FILE: sona-bookshelf.jpg
+                 ? rename your image to this and put in project folder
+            ======================================= -->
+            <article class="prod-card hoverable hidden-product" role="listitem" data-material="Acacia Wood & Matte Powder-Coated Metal"
+                data-size="1.9 m x 0.9 m (190 cm x 90 cm)">
+                <div class="prod-img-wrap" data-img="./sonaShelf.avif">
+                    <div class="prod-img-inner">
+                        <img src="./sonaShelf.avif" alt="Sona bookshelf" loading="lazy">
+                    </div>
+                    <button class="wish-btn hoverable" aria-label="Add to wishlist" aria-pressed="false">
+                        <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+                            <path d="M9 15.5S2 10.8 2 6.5a4 4 0 0 1 7-2.64A4 4 0 0 1 16 6.5c0 4.3-7 9-7 9z"
+                                stroke="#9C8265" stroke-width="1.2" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <button class="view-item-btn quick-add-btn hoverable"
+                        style="opacity:1; transform:translateY(0); position:absolute; bottom: 20px; width: calc(100% - 40px); left: 20px;"
+                        aria-label="View Sona bookshelf">
+                        View Product
+                    </button>
+                </div>
+                <div class="prod-info">
+                    <div class="prod-cat">living-room</div>
+                    <div class="prod-name">Sona bookshelf</div>
+                    <div class="prod-bottom">
+                        <div class="prod-price-wrap">
+                            <div class="prod-price">₹24,000</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ======================================
+                 PRODUCT 11 — Vero nesting tables
+                 IMAGE FILE: vero-nesting-tables.jpg
+                 ? rename your image to this and put in project folder
+            ======================================= -->
+            <article class="prod-card hoverable hidden-product" role="listitem" data-material="Solid Mango Wood & Iron Base"
+                data-size="1.2 m x 0.6 m (120 cm x 60 cm)">
+                <div class="prod-img-wrap" data-img="./nestingTable.jpg">
+                    <div class="prod-img-inner">
+                        <img src="./nestingTable.jpg" alt="Vero nesting tables" loading="lazy">
+                    </div>
+                    <button class="wish-btn hoverable" aria-label="Add to wishlist" aria-pressed="false">
+                        <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+                            <path d="M9 15.5S2 10.8 2 6.5a4 4 0 0 1 7-2.64A4 4 0 0 1 16 6.5c0 4.3-7 9-7 9z"
+                                stroke="#9C8265" stroke-width="1.2" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <button class="view-item-btn quick-add-btn hoverable"
+                        style="opacity:1; transform:translateY(0); position:absolute; bottom: 20px; width: calc(100% - 40px); left: 20px;"
+                        aria-label="View Vero nesting tables">
+                        View Product
+                    </button>
+                </div>
+                <div class="prod-info">
+                    <div class="prod-cat">living-room</div>
+                    <div class="prod-name">Vero nesting tables</div>
+                    <div class="prod-bottom">
+                        <div class="prod-price-wrap">
+                            <div class="prod-price">₹14,000</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ======================================
+                 PRODUCT 12 — Aura 2-seater sofa
+                 IMAGE FILE: aura-2-seater.jpg
+                 ? rename your image to this and put in project folder
+            ======================================= -->
+            <article id="aura2" class="prod-card hoverable hidden-product" role="listitem"
+                data-material="Kiln-Dried Wood & Premium Poly-Blend Fabric" data-size="2.1 m x 0.9 m (210 cm x 90 cm)">
+                <div class="prod-img-wrap" data-img="./aura2.png">
+                    <div class="prod-img-inner">
+                        <img src="./aura2.png" alt="Aura 2-seater sofa" loading="lazy">
+                    </div>
+                    <button class="wish-btn hoverable" aria-label="Add to wishlist" aria-pressed="false">
+                        <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+                            <path d="M9 15.5S2 10.8 2 6.5a4 4 0 0 1 7-2.64A4 4 0 0 1 16 6.5c0 4.3-7 9-7 9z"
+                                stroke="#9C8265" stroke-width="1.2" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <button class="view-item-btn quick-add-btn hoverable"
+                        style="opacity:1; transform:translateY(0); position:absolute; bottom: 20px; width: calc(100% - 40px); left: 20px;"
+                        aria-label="View Aura 2-seater sofa">
+                        View Product
+                    </button>
+                </div>
+                <div class="prod-info">
+                    <div class="prod-cat">living-room</div>
+                    <div class="prod-name">Aura 2-seater sofa</div>
+                    <div class="prod-bottom">
+                        <div class="prod-price-wrap">
+                            <div class="prod-price">₹22,400 <span style="text-decoration: line-through; color: #999; font-size: 0.8em;">₹32,000</span></div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ======================================
+                 PRODUCT 13 — Rattan pouf
+                 IMAGE FILE: rattan-pouf.jpg
+                 ? rename your image to this and put in project folder
+            ======================================= -->
+            <article class="prod-card hoverable hidden-product" role="listitem" data-material="Hand-woven Rattan & Cotton Fill"
+                data-size="0.5 m x 0.5 m (50 cm x 50 cm)">
+                <div class="prod-img-wrap" data-img="./rattanPouf.jpg">
+                    <div class="prod-img-inner">
+                        <img src="./rattanPouf.jpg" alt="Rattan pouf" loading="lazy">
+                    </div>
+                    <button class="wish-btn hoverable" aria-label="Add to wishlist" aria-pressed="false">
+                        <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+                            <path d="M9 15.5S2 10.8 2 6.5a4 4 0 0 1 7-2.64A4 4 0 0 1 16 6.5c0 4.3-7 9-7 9z"
+                                stroke="#9C8265" stroke-width="1.2" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <button class="view-item-btn quick-add-btn hoverable"
+                        style="opacity:1; transform:translateY(0); position:absolute; bottom: 20px; width: calc(100% - 40px); left: 20px;"
+                        aria-label="View Rattan pouf">
+                        View Product
+                    </button>
+                </div>
+                <div class="prod-info">
+                    <div class="prod-cat">living-room</div>
+                    <div class="prod-name">Rattan pouf</div>
+                    <div class="prod-bottom">
+                        <div class="prod-price-wrap">
+                            <div class="prod-price">₹4,500</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ======================================
+                 PRODUCT 14 — Lyra Armchair
+                 IMAGE FILE: lyra-armchair.jpg
+                 ? rename your image to this and put in project folder
+            ======================================= -->
+            <article class="prod-card hoverable hidden-product" role="listitem"
+                data-material="Solid Teak Wood & High-Density Memory Foam" data-size="0.8 m x 0.8 m (80 cm x 80 cm)">
+                <div class="prod-img-wrap" data-img="./lyraArm.jpg">
+                    <div class="prod-img-inner">
+                        <img src="./lyraArm.jpg" alt="Lyra Armchair" loading="lazy">
+                    </div>
+                    <button class="wish-btn hoverable" aria-label="Add to wishlist" aria-pressed="false">
+                        <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+                            <path d="M9 15.5S2 10.8 2 6.5a4 4 0 0 1 7-2.64A4 4 0 0 1 16 6.5c0 4.3-7 9-7 9z"
+                                stroke="#9C8265" stroke-width="1.2" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <button class="view-item-btn quick-add-btn hoverable"
+                        style="opacity:1; transform:translateY(0); position:absolute; bottom: 20px; width: calc(100% - 40px); left: 20px;"
+                        aria-label="View Lyra Armchair">View Product</button>
+                </div>
+                <div class="prod-info">
+                    <div class="prod-cat">living-room</div>
+                    <div class="prod-name">Lyra Armchair</div>
+                    <div class="prod-bottom">
+                        <div class="prod-price-wrap">
+                            <div class="prod-price">₹18,500</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ======================================
+                 PRODUCT 15 — Celeste Sofa
+                 IMAGE FILE: celeste-sofa.jpg
+                 ? rename your image to this and put in project folder
+            ======================================= -->
+            <article class="prod-card hoverable hidden-product" role="listitem"
+                data-material="Kiln-Dried Wood & Premium Poly-Blend Fabric" data-size="2.1 m x 0.9 m (210 cm x 90 cm)">
+                <div class="prod-img-wrap" data-img="./celesteSofa.jpg">
+                    <div class="prod-img-inner">
+                        <img src="./celesteSofa.jpg" alt="Celeste Sofa" loading="lazy">
+                    </div>
+                    <button class="wish-btn hoverable" aria-label="Add to wishlist" aria-pressed="false">
+                        <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+                            <path d="M9 15.5S2 10.8 2 6.5a4 4 0 0 1 7-2.64A4 4 0 0 1 16 6.5c0 4.3-7 9-7 9z"
+                                stroke="#9C8265" stroke-width="1.2" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <button class="view-item-btn quick-add-btn hoverable"
+                        style="opacity:1; transform:translateY(0); position:absolute; bottom: 20px; width: calc(100% - 40px); left: 20px;"
+                        aria-label="View Celeste Sofa">View Product</button>
+                </div>
+                <div class="prod-info">
+                    <div class="prod-cat">living-room</div>
+                    <div class="prod-name">Celeste Sofa</div>
+                    <div class="prod-bottom">
+                        <div class="prod-price-wrap">
+                            <div class="prod-price">₹45,000</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ======================================
+                 PRODUCT 16 — Stella Coffee Table
+                 IMAGE FILE: stella-coffee-table.jpg
+                 ? rename your image to this and put in project folder
+            ======================================= -->
+            <article class="prod-card hoverable hidden-product" role="listitem" data-material="Solid Mango Wood & Iron Base"
+                data-size="1.2 m x 0.6 m (120 cm x 60 cm)">
+                <div class="prod-img-wrap" data-img="./stellaCoffee.webp">
+                    <div class="prod-img-inner">
+                        <img src="./stellaCoffee.webp" alt="Stella Coffee Table" loading="lazy">
+                    </div>
+                    <button class="wish-btn hoverable" aria-label="Add to wishlist" aria-pressed="false">
+                        <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+                            <path d="M9 15.5S2 10.8 2 6.5a4 4 0 0 1 7-2.64A4 4 0 0 1 16 6.5c0 4.3-7 9-7 9z"
+                                stroke="#9C8265" stroke-width="1.2" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <button class="view-item-btn quick-add-btn hoverable"
+                        style="opacity:1; transform:translateY(0); position:absolute; bottom: 20px; width: calc(100% - 40px); left: 20px;"
+                        aria-label="View Stella Coffee Table">View Product</button>
+                </div>
+                <div class="prod-info">
+                    <div class="prod-cat">living-room</div>
+                    <div class="prod-name">Stella Coffee Table</div>
+                    <div class="prod-bottom">
+                        <div class="prod-price-wrap">
+                            <div class="prod-price">₹22,000</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ======================================
+                 PRODUCT 17 — Atlas Rug
+                 IMAGE FILE: atlas-rug.jpg
+                 ? rename your image to this and put in project folder
+            ======================================= -->
+            <article class="prod-card hoverable hidden-product" role="listitem" data-material="100% Cotton / Jute Blend"
+                data-size="2.4 m x 1.8 m (240 cm x 180 cm)">
+                <div class="prod-img-wrap" data-img="./atlasRug.jpeg">
+                    <div class="prod-img-inner">
+                        <img src="./atlasRug.jpeg" alt="Atlas Rug" loading="lazy">
+                    </div>
+                    <button class="wish-btn hoverable" aria-label="Add to wishlist" aria-pressed="false">
+                        <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+                            <path d="M9 15.5S2 10.8 2 6.5a4 4 0 0 1 7-2.64A4 4 0 0 1 16 6.5c0 4.3-7 9-7 9z"
+                                stroke="#9C8265" stroke-width="1.2" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <button class="view-item-btn quick-add-btn hoverable"
+                        style="opacity:1; transform:translateY(0); position:absolute; bottom: 20px; width: calc(100% - 40px); left: 20px;"
+                        aria-label="View Atlas Rug">View Product</button>
+                </div>
+                <div class="prod-info">
+                    <div class="prod-cat">living-room</div>
+                    <div class="prod-name">Atlas Rug</div>
+                    <div class="prod-bottom">
+                        <div class="prod-price-wrap">
+                            <div class="prod-price">₹15,000</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ======================================
+                 PRODUCT 18 — Oasis TV Unit
+                 IMAGE FILE: oasis-tv-unit.jpg
+                 ? rename your image to this and put in project folder
+            ======================================= -->
+            <article class="prod-card hoverable hidden-product" role="listitem" data-material="Engineered Wood & Teak Veneer"
+                data-size="1.8 m x 0.4 m (180 cm x 40 cm x 55 cm)">
+                <div class="prod-img-wrap" data-img="./oasisTv.jpg">
+                    <div class="prod-img-inner">
+                        <img src="./oasisTv.jpg" alt="Oasis TV Unit" loading="lazy">
+                    </div>
+                    <button class="wish-btn hoverable" aria-label="Add to wishlist" aria-pressed="false">
+                        <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+                            <path d="M9 15.5S2 10.8 2 6.5a4 4 0 0 1 7-2.64A4 4 0 0 1 16 6.5c0 4.3-7 9-7 9z"
+                                stroke="#9C8265" stroke-width="1.2" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <button class="view-item-btn quick-add-btn hoverable"
+                        style="opacity:1; transform:translateY(0); position:absolute; bottom: 20px; width: calc(100% - 40px); left: 20px;"
+                        aria-label="View Oasis TV Unit">View Product</button>
+                </div>
+                <div class="prod-info">
+                    <div class="prod-cat">living-room</div>
+                    <div class="prod-name">Oasis TV Unit</div>
+                    <div class="prod-bottom">
+                        <div class="prod-price-wrap">
+                            <div class="prod-price">₹32,500</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ======================================
+                 PRODUCT 19 — Haven Bookshelf
+                 IMAGE FILE: haven-bookshelf.jpg
+                 ? rename your image to this and put in project folder
+            ======================================= -->
+            <article class="prod-card hoverable hidden-product" role="listitem" data-material="Acacia Wood & Matte Powder-Coated Metal"
+                data-size="1.9 m x 0.9 m (190 cm x 90 cm)">
+                <div class="prod-img-wrap" data-img="./havenShelf.webp">
+                    <div class="prod-img-inner">
+                        <img src="./havenShelf.webp" alt="Haven Bookshelf" loading="lazy">
+                    </div>
+                    <button class="wish-btn hoverable" aria-label="Add to wishlist" aria-pressed="false">
+                        <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+                            <path d="M9 15.5S2 10.8 2 6.5a4 4 0 0 1 7-2.64A4 4 0 0 1 16 6.5c0 4.3-7 9-7 9z"
+                                stroke="#9C8265" stroke-width="1.2" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <button class="view-item-btn quick-add-btn hoverable"
+                        style="opacity:1; transform:translateY(0); position:absolute; bottom: 20px; width: calc(100% - 40px); left: 20px;"
+                        aria-label="View Haven Bookshelf">View Product</button>
+                </div>
+                <div class="prod-info">
+                    <div class="prod-cat">living-room</div>
+                    <div class="prod-name">Haven Bookshelf</div>
+                    <div class="prod-bottom">
+                        <div class="prod-price-wrap">
+                            <div class="prod-price">₹26,000</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ======================================
+                 PRODUCT 20 — Lumina Lamp
+                 IMAGE FILE: lumina-lamp.jpg
+                 ? rename your image to this and put in project folder
+            ======================================= -->
+            <article class="prod-card hoverable hidden-product" role="listitem" data-material="Brushed Brass & Textured Fabric Shade"
+                data-size="1.5 m High (150 cm x 40 cm)">
+                <div class="prod-img-wrap" data-img="./luminaLamp.jpg">
+                    <div class="prod-img-inner">
+                        <img src="./luminaLamp.jpg" alt="Lumina Lamp" loading="lazy">
+                    </div>
+                    <button class="wish-btn hoverable" aria-label="Add to wishlist" aria-pressed="false">
+                        <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+                            <path d="M9 15.5S2 10.8 2 6.5a4 4 0 0 1 7-2.64A4 4 0 0 1 16 6.5c0 4.3-7 9-7 9z"
+                                stroke="#9C8265" stroke-width="1.2" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <button class="view-item-btn quick-add-btn hoverable"
+                        style="opacity:1; transform:translateY(0); position:absolute; bottom: 20px; width: calc(100% - 40px); left: 20px;"
+                        aria-label="View Lumina Lamp">View Product</button>
+                </div>
+                <div class="prod-info">
+                    <div class="prod-cat">living-room</div>
+                    <div class="prod-name">Lumina Lamp</div>
+                    <div class="prod-bottom">
+                        <div class="prod-price-wrap">
+                            <div class="prod-price">₹7,500</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ======================================
+                 PRODUCT 21 — Echo Pouf
+                 IMAGE FILE: echo-pouf.jpg
+                 ? rename your image to this and put in project folder
+            ======================================= -->
+            <article class="prod-card hoverable hidden-product" role="listitem" data-material="Hand-woven Rattan & Cotton Fill"
+                data-size="0.5 m x 0.5 m (50 cm x 50 cm)">
+                <div class="prod-img-wrap" data-img="./echoPouf.jpg">
+                    <div class="prod-img-inner">
+                        <img src="./echoPouf.jpg" alt="Echo Pouf" loading="lazy">
+                    </div>
+                    <button class="wish-btn hoverable" aria-label="Add to wishlist" aria-pressed="false">
+                        <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+                            <path d="M9 15.5S2 10.8 2 6.5a4 4 0 0 1 7-2.64A4 4 0 0 1 16 6.5c0 4.3-7 9-7 9z"
+                                stroke="#9C8265" stroke-width="1.2" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <button class="view-item-btn quick-add-btn hoverable"
+                        style="opacity:1; transform:translateY(0); position:absolute; bottom: 20px; width: calc(100% - 40px); left: 20px;"
+                        aria-label="View Echo Pouf">View Product</button>
+                </div>
+                <div class="prod-info">
+                    <div class="prod-cat">living-room</div>
+                    <div class="prod-name">Echo Pouf</div>
+                    <div class="prod-bottom">
+                        <div class="prod-price-wrap">
+                            <div class="prod-price">₹5,000</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ======================================
+                 PRODUCT 22 — Zen End Table
+                 IMAGE FILE: zen-end-table.jpg
+                 ? rename your image to this and put in project folder
+            ======================================= -->
+            <article class="prod-card hoverable hidden-product" role="listitem" data-material="Solid Mango Wood & Iron Base"
+                data-size="1.2 m x 0.6 m (120 cm x 60 cm)">
+                <div class="prod-img-wrap" data-img="./zenTable.jpg">
+                    <div class="prod-img-inner">
+                        <img src="./zenTable.jpg" alt="Zen End Table" loading="lazy">
+                    </div>
+                    <button class="wish-btn hoverable" aria-label="Add to wishlist" aria-pressed="false">
+                        <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+                            <path d="M9 15.5S2 10.8 2 6.5a4 4 0 0 1 7-2.64A4 4 0 0 1 16 6.5c0 4.3-7 9-7 9z"
+                                stroke="#9C8265" stroke-width="1.2" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <button class="view-item-btn quick-add-btn hoverable"
+                        style="opacity:1; transform:translateY(0); position:absolute; bottom: 20px; width: calc(100% - 40px); left: 20px;"
+                        aria-label="View Zen End Table">View Product</button>
+                </div>
+                <div class="prod-info">
+                    <div class="prod-cat">living-room</div>
+                    <div class="prod-name">Zen End Table</div>
+                    <div class="prod-bottom">
+                        <div class="prod-price-wrap">
+                            <div class="prod-price">₹11,000</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ======================================
+                 PRODUCT 23 — Nova Lounge Chair
+                 IMAGE FILE: nova-lounge-chair.jpg
+                 ? rename your image to this and put in project folder
+            ======================================= -->
+            <article class="prod-card hoverable hidden-product" role="listitem"
+                data-material="Solid Teak Wood & High-Density Memory Foam" data-size="0.8 m x 0.8 m (80 cm x 80 cm)">
+                <div class="prod-img-wrap" data-img="./novaLounge.webp">
+                    <div class="prod-img-inner">
+                        <img src="./novaLounge.webp" alt="Nova Lounge Chair" loading="lazy">
+                    </div>
+                    <button class="wish-btn hoverable" aria-label="Add to wishlist" aria-pressed="false">
+                        <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+                            <path d="M9 15.5S2 10.8 2 6.5a4 4 0 0 1 7-2.64A4 4 0 0 1 16 6.5c0 4.3-7 9-7 9z"
+                                stroke="#9C8265" stroke-width="1.2" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <button class="view-item-btn quick-add-btn hoverable"
+                        style="opacity:1; transform:translateY(0); position:absolute; bottom: 20px; width: calc(100% - 40px); left: 20px;"
+                        aria-label="View Nova Lounge Chair">View Product</button>
+                </div>
+                <div class="prod-info">
+                    <div class="prod-cat">living-room</div>
+                    <div class="prod-name">Nova Lounge Chair</div>
+                    <div class="prod-bottom">
+                        <div class="prod-price-wrap">
+                            <div class="prod-price">₹29,500</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ======================================
+                 PRODUCT 24 — Aero Sofa
+                 IMAGE FILE: aero-sofa.jpg
+                 ? rename your image to this and put in project folder
+            ======================================= -->
+            <article class="prod-card hoverable hidden-product" role="listitem"
+                data-material="Kiln-Dried Wood & Premium Poly-Blend Fabric" data-size="2.1 m x 0.9 m (210 cm x 90 cm)">
+                <div class="prod-img-wrap" data-img="./aeroSofa.jpg">
+                    <div class="prod-img-inner">
+                        <img src="./aeroSofa.jpg" alt="Aero Sofa" loading="lazy">
+                    </div>
+                    <button class="wish-btn hoverable" aria-label="Add to wishlist" aria-pressed="false">
+                        <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+                            <path d="M9 15.5S2 10.8 2 6.5a4 4 0 0 1 7-2.64A4 4 0 0 1 16 6.5c0 4.3-7 9-7 9z"
+                                stroke="#9C8265" stroke-width="1.2" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <button class="view-item-btn quick-add-btn hoverable"
+                        style="opacity:1; transform:translateY(0); position:absolute; bottom: 20px; width: calc(100% - 40px); left: 20px;"
+                        aria-label="View Aero Sofa">View Product</button>
+                </div>
+                <div class="prod-info">
+                    <div class="prod-cat">living-room</div>
+                    <div class="prod-name">Aero Sofa</div>
+                    <div class="prod-bottom">
+                        <div class="prod-price-wrap">
+                            <div class="prod-price">₹48,000</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ======================================
+                 PRODUCT 25 — Mesa TV Unit
+                 IMAGE FILE: mesa-tv-unit.jpg
+                 ? rename your image to this and put in project folder
+            ======================================= -->
+            <article class="prod-card hoverable hidden-product" role="listitem" data-material="Engineered Wood & Teak Veneer"
+                data-size="1.8 m x 0.4 m (180 cm x 40 cm x 55 cm)">
+                <div class="prod-img-wrap" data-img="./messaTv.jpg">
+                    <div class="prod-img-inner">
+                        <img src="./messaTv.jpg" alt="Mesa TV Unit" loading="lazy">
+                    </div>
+                    <button class="wish-btn hoverable" aria-label="Add to wishlist" aria-pressed="false">
+                        <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+                            <path d="M9 15.5S2 10.8 2 6.5a4 4 0 0 1 7-2.64A4 4 0 0 1 16 6.5c0 4.3-7 9-7 9z"
+                                stroke="#9C8265" stroke-width="1.2" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <button class="view-item-btn quick-add-btn hoverable"
+                        style="opacity:1; transform:translateY(0); position:absolute; bottom: 20px; width: calc(100% - 40px); left: 20px;"
+                        aria-label="View Mesa TV Unit">View Product</button>
+                </div>
+                <div class="prod-info">
+                    <div class="prod-cat">living-room</div>
+                    <div class="prod-name">Mesa TV Unit</div>
+                    <div class="prod-bottom">
+                        <div class="prod-price-wrap">
+                            <div class="prod-price">₹36,000</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ======================================
+                 PRODUCT 26 — Solis 2 seater
+                 IMAGE FILE: solis2 seater.jpg
+                 ? rename your image to this and put in project folder
+            ======================================= -->
+            <article class="prod-card hoverable hidden-product" role="listitem"
+                data-material="Kiln-Dried Wood & Premium Poly-Blend Fabric" data-size="2.1 m x 0.9 m (210 cm x 90 cm)">
+                <div class="prod-img-wrap" data-img="./solis2.png">
+                    <div class="prod-img-inner">
+                        <img src="./solis2.png" alt="Solis 2 seater" loading="lazy">
+                    </div>
+                    <button class="wish-btn hoverable" aria-label="Add to wishlist" aria-pressed="false">
+                        <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+                            <path d="M9 15.5S2 10.8 2 6.5a4 4 0 0 1 7-2.64A4 4 0 0 1 16 6.5c0 4.3-7 9-7 9z"
+                                stroke="#9C8265" stroke-width="1.2" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <button class="view-item-btn quick-add-btn hoverable"
+                        style="opacity:1; transform:translateY(0); position:absolute; bottom: 20px; width: calc(100% - 40px); left: 20px;"
+                        aria-label="View Solis 2-seater">View Product</button>
+                </div>
+                <div class="prod-info">
+                    <div class="prod-cat">living-room</div>
+                    <div class="prod-name">Solis 2-Seater</div>
+                    <div class="prod-bottom">
+                        <div class="prod-price-wrap">
+                            <div class="prod-price">₹28,500</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ======================================
+                 PRODUCT 27 — Terra Lamp
+                 IMAGE FILE: terra-lamp.jpg
+                 ? rename your image to this and put in project folder
+            ======================================= -->
+            <article class="prod-card hoverable hidden-product" role="listitem" data-material="Brushed Brass & Textured Fabric Shade"
+                data-size="1.5 m High (150 cm x 40 cm)">
+                <div class="prod-img-wrap" data-img="./terraLamp.webp">
+                    <div class="prod-img-inner">
+                        <img src="./terraLamp.webp" alt="Terra Lamp" loading="lazy">
+                    </div>
+                    <button class="wish-btn hoverable" aria-label="Add to wishlist" aria-pressed="false">
+                        <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+                            <path d="M9 15.5S2 10.8 2 6.5a4 4 0 0 1 7-2.64A4 4 0 0 1 16 6.5c0 4.3-7 9-7 9z"
+                                stroke="#9C8265" stroke-width="1.2" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <button class="view-item-btn quick-add-btn hoverable"
+                        style="opacity:1; transform:translateY(0); position:absolute; bottom: 20px; width: calc(100% - 40px); left: 20px;"
+                        aria-label="View Terra Lamp">View Product</button>
+                </div>
+                <div class="prod-info">
+                    <div class="prod-cat">living-room</div>
+                    <div class="prod-name">Terra Lamp</div>
+                    <div class="prod-bottom">
+                        <div class="prod-price-wrap">
+                            <div class="prod-price">₹12,000</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ======================================
+                 PRODUCT 28 — Nyla Armchair
+                 IMAGE FILE: nyla-armchair.jpg
+                 ? rename your image to this and put in project folder
+            ======================================= -->
+            <article class="prod-card hoverable hidden-product" role="listitem"
+                data-material="Solid Teak Wood & High-Density Memory Foam" data-size="0.8 m x 0.8 m (80 cm x 80 cm)">
+                <div class="prod-img-wrap" data-img="./nylaArm.webp">
+                    <div class="prod-img-inner">
+                        <img src="./nylaArm.webp" alt="Nyla Armchair" loading="lazy">
+                    </div>
+                    <button class="wish-btn hoverable" aria-label="Add to wishlist" aria-pressed="false">
+                        <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+                            <path d="M9 15.5S2 10.8 2 6.5a4 4 0 0 1 7-2.64A4 4 0 0 1 16 6.5c0 4.3-7 9-7 9z"
+                                stroke="#9C8265" stroke-width="1.2" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <button class="view-item-btn quick-add-btn hoverable"
+                        style="opacity:1; transform:translateY(0); position:absolute; bottom: 20px; width: calc(100% - 40px); left: 20px;"
+                        aria-label="View Nyla Armchair">View Product</button>
+                </div>
+                <div class="prod-info">
+                    <div class="prod-cat">living-room</div>
+                    <div class="prod-name">Nyla Armchair</div>
+                    <div class="prod-bottom">
+                        <div class="prod-price-wrap">
+                            <div class="prod-price">₹21,000</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ======================================
+                 PRODUCT 29 — Crescent Rug
+                 IMAGE FILE: crescent-rug.jpg
+                 ? rename your image to this and put in project folder
+            ======================================= -->
+            <article class="prod-card hoverable hidden-product" role="listitem" data-material="100% Cotton / Jute Blend"
+                data-size="2.4 m x 1.8 m (240 cm x 180 cm)">
+                <div class="prod-img-wrap" data-img="./rug.jpg">
+                    <div class="prod-img-inner">
+                        <img src="./rug.jpg" alt="Crescent Rug" loading="lazy">
+                    </div>
+                    <button class="wish-btn hoverable" aria-label="Add to wishlist" aria-pressed="false">
+                        <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+                            <path d="M9 15.5S2 10.8 2 6.5a4 4 0 0 1 7-2.64A4 4 0 0 1 16 6.5c0 4.3-7 9-7 9z"
+                                stroke="#9C8265" stroke-width="1.2" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <button class="view-item-btn quick-add-btn hoverable"
+                        style="opacity:1; transform:translateY(0); position:absolute; bottom: 20px; width: calc(100% - 40px); left: 20px;"
+                        aria-label="View Crescent Rug">View Product</button>
+                </div>
+                <div class="prod-info">
+                    <div class="prod-cat">living-room</div>
+                    <div class="prod-name">Crescent Rug</div>
+                    <div class="prod-bottom">
+                        <div class="prod-price-wrap">
+                            <div class="prod-price">₹17,500</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ======================================
+                 PRODUCT 30 — Orbit Sofa
+                 IMAGE FILE: orbit-sofa.jpg
+                 ? rename your image to this and put in project folder
+            ======================================= -->
+            <article class="prod-card hoverable hidden-product" role="listitem"
+                data-material="Kiln-Dried Wood & Premium Poly-Blend Fabric" data-size="2.1 m x 0.9 m (210 cm x 90 cm)">
+                <div class="prod-img-wrap" data-img="./orbitSofa.jpg">
+                    <div class="prod-img-inner">
+                        <img src="./orbitSofa.jpg" alt="Orbit Sofa" loading="lazy">
+                    </div>
+                    <button class="wish-btn hoverable" aria-label="Add to wishlist" aria-pressed="false">
+                        <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+                            <path d="M9 15.5S2 10.8 2 6.5a4 4 0 0 1 7-2.64A4 4 0 0 1 16 6.5c0 4.3-7 9-7 9z"
+                                stroke="#9C8265" stroke-width="1.2" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <button class="view-item-btn quick-add-btn hoverable"
+                        style="opacity:1; transform:translateY(0); position:absolute; bottom: 20px; width: calc(100% - 40px); left: 20px;"
+                        aria-label="View Orbit Sofa">View Product</button>
+                </div>
+                <div class="prod-info">
+                    <div class="prod-cat">living-room</div>
+                    <div class="prod-name">Orbit Sofa</div>
+                    <div class="prod-bottom">
+                        <div class="prod-price-wrap">
+                            <div class="prod-price">₹52,000</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+
+        <div class="load-more-wrap reveal">
+            <button class="btn-load-more hoverable" id="loadMoreBtn">Load More Products</button>
+        </div>
+    </section>
+
+    <!-- --- NEWSLETTER --------------------------------- -->
+    <section class="newsletter" aria-label="Newsletter signup">
+        <div class="reveal">
+            <p class="nl-eyebrow">Stay inspired</p>
+            <h2 class="nl-title">Beautiful homes<br>start here</h2>
+            <p class="nl-sub">Join 50,000 homeowners. Get new arrivals, design ideas, and an exclusive 10% off your
+                first order.</p>
+            <div class="nl-form" role="form" aria-label="Email subscription">
+                <input class="nl-input" type="email" placeholder="Your email address" aria-label="Email address">
+                <button class="nl-btn hoverable" type="submit">Subscribe</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- --- WISHLIST SECTION --------------------------- -->
+    <section class="wishlist-section reveal" id="wishlistSection" style="display:none; background: var(--warm-white); padding-bottom: 120px;">
+        <div class="products-header">
+            <div>
+                <div class="section-eyebrow">Saved for later</div>
+                <h2 class="section-title">Your Wishlist</h2>
+            </div>
+        </div>
+        <div class="products-grid" id="wishlistGrid">
+            <!-- Dynamically populated -->
+        </div>
+    </section>
+
+    <!-- --- FOOTER ------------------------------------- -->
+    <footer role="contentinfo">
+        <div class="footer-top">
+            <div>
+                <span class="footer-logo">Sunny Furniture</span>
+                <p class="footer-about">Furniture crafted for modern Indian homes. Designed with care, built to last a
+                    lifetime. Free delivery, free installation, always.</p>
+            </div>
+            <div>
+                <h3 class="footer-col-title">Shop</h3>
+                <a href="living-room.html" class="footer-link hoverable">Living room</a>
+                <a href="bedroom.html" class="footer-link hoverable">Bedroom</a>
+                <a href="dining.html" class="footer-link hoverable">Dining</a>
+                <a href="storage.html" class="footer-link hoverable">Storage</a>
+                <a href="study.html" class="footer-link hoverable">Study</a>
+                <a href="outdoor.html" class="footer-link hoverable">Outdoor</a>
+                <a href="sale.html" class="footer-link hoverable">Sale</a>
+            </div>
+            <div>
+                <h3 class="footer-col-title">Help</h3>
+                <a href="track-order.html" class="footer-link hoverable">Track your order</a>
+                <a href="delivery-info.html" class="footer-link hoverable">Delivery info</a>
+                <a href="returns-refunds.html" class="footer-link hoverable">Returns &amp; refunds</a>
+                <a href="installation.html" class="footer-link hoverable">Installation</a>
+                <a href="faqs.html" class="footer-link hoverable">FAQs</a>
+                <a href="contact-us.html" class="footer-link hoverable">Contact us</a>
+            </div>
+            <div>
+                <h3 class="footer-col-title">Company</h3>
+                <a href="about.html" class="footer-link hoverable">About Sunny Furniture</a>
+                <a href="philosophy.html#craftsmen" class="footer-link hoverable">Our craftsmen</a>
+                <a href="philosophy.html#sustainability" class="footer-link hoverable">Sustainability</a>
+                <a href="philosophy.html#blog" class="footer-link hoverable">Blog &amp; ideas</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span class="footer-copy">&copy; 2026 Sunny Furniture Pvt Ltd &nbsp;&middot;&nbsp; Privacy Policy
+                &nbsp;&middot;&nbsp; Terms of Service</span>
+            <div class="footer-pay" aria-label="Accepted payment methods">
+                <span class="pay-icon" title="UPI"><svg width="36" height="22" viewBox="0 0 36 22"><rect width="36" height="22" rx="3" fill="#fff" stroke="#ddd" stroke-width=".5"/><text x="18" y="15" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" font-weight="600" fill="#4B286D">UPI</text></svg></span>
+                <span class="pay-icon" title="Visa"><svg width="36" height="22" viewBox="0 0 36 22"><rect width="36" height="22" rx="3" fill="#fff" stroke="#ddd" stroke-width=".5"/><text x="18" y="15" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" font-weight="700" font-style="italic" fill="#1A1F71">VISA</text></svg></span>
+                <span class="pay-icon" title="Mastercard"><svg width="36" height="22" viewBox="0 0 36 22"><rect width="36" height="22" rx="3" fill="#fff" stroke="#ddd" stroke-width=".5"/><circle cx="14" cy="11" r="6" fill="#EB001B" opacity=".8"/><circle cx="22" cy="11" r="6" fill="#F79E1B" opacity=".8"/></svg></span>
+                <span class="pay-icon" title="RuPay"><svg width="36" height="22" viewBox="0 0 36 22"><rect width="36" height="22" rx="3" fill="#fff" stroke="#ddd" stroke-width=".5"/><text x="18" y="15" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" font-weight="600" fill="#097A44">RuPay</text></svg></span>
+                <span class="pay-icon" title="Cash on Delivery"><svg width="36" height="22" viewBox="0 0 36 22"><rect width="36" height="22" rx="3" fill="#fff" stroke="#ddd" stroke-width=".5"/><text x="18" y="15" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" font-weight="500" fill="#555">COD</text></svg></span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- --- PRODUCT MODAL ------------------------------ -->
+    <div class="product-modal" id="productModal" role="dialog" aria-modal="true" style="display:none;"
+        aria-hidden="true">
+        <div class="pm-overlay" id="pmOverlay"></div>
+        <div class="pm-content">
+            <button class="pm-close hoverable" id="pmClose" aria-label="Close modal">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <div class="pm-body">
+                <div class="pm-image-wrap" id="pmImageWrap"></div>
+                <div class="pm-info">
+                    <div class="pm-cat" id="pmCat"></div>
+                    <h2 class="pm-name" id="pmName"></h2>
+                    <div class="pm-price" id="pmPrice"></div>
+                    <p class="pm-desc" id="pmDesc">A beautiful handcrafted piece designed for modern Indian homes.</p>
+                    <div class="pm-details"
+                        style="margin-top: 1rem; font-size: 0.95rem; color: var(--espresso); line-height: 1.5;">
+                        <p style="margin-bottom: 0.5rem;"><strong>Material:</strong> <span id="pmMaterial">Premium
+                                Quality Options</span></p>
+                        <p><strong>Size:</strong> <span id="pmSize">Standard Dimensions</span></p>
+                    </div>
+                    <div class="pm-actions" style="margin-top: 2rem; display: flex; gap: 1rem;">
+                        <button class="pm-btn pm-add-cart hoverable"
+                            style="flex: 1; padding: 1rem; background: var(--espresso); color: #fff; border: none; cursor: pointer; border-radius: 0; font-family: 'DM Sans', sans-serif; font-size: 1rem; transition: background 0.3s ease;">Add
+                            to Cart</button>
+                        <button class="pm-btn pm-like hoverable wish-btn"
+                            style="padding: 1rem; background: none; border: 1px solid var(--espresso); cursor: pointer; border-radius: 0; display: flex; align-items: center; justify-content: center; width: 60px; transition: all 0.3s ease;">
+                            <svg width="20" height="20" viewBox="0 0 18 18" fill="none">
+                                <path d="M9 15.5S2 10.8 2 6.5a4 4 0 0 1 7-2.64A4 4 0 0 1 16 6.5c0 4.3-7 9-7 9z"
+                                    stroke="currentColor" stroke-width="1" stroke-linejoin="round" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./script.js?v=1776975860"></script>
+</body>
+
+</html>
+

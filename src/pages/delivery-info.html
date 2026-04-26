@@ -1,0 +1,639 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delivery Info — Sunny Furniture</title>
+    <meta name="description"
+        content="Everything you need to know about Sunny Furniture delivery — timelines, coverage areas, express options, and free installation details.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:opsz,wght@9..40,200;9..40,300;9..40,400;9..40,500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./index.css">
+    <style>
+        /* ── Hero ── */
+        .del-hero {
+            padding-top: 180px;
+            padding-bottom: 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-left: 5%;
+            padding-right: 5%;
+            text-align: center;
+        }
+
+        .del-hero h1 {
+            font-family: var(--serif);
+            font-size: clamp(2.8rem, 5vw, 4.2rem);
+            font-weight: 400;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: var(--espresso);
+        }
+
+        .del-hero .del-intro {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--walnut);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* ── Timeline ── */
+        .del-timeline {
+            max-width: 900px;
+            margin: 60px auto 80px;
+            padding: 0 5%;
+        }
+
+        .del-step {
+            display: grid;
+            grid-template-columns: 56px 1fr;
+            gap: 24px;
+            padding-bottom: 48px;
+            position: relative;
+        }
+
+        .del-step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 27px;
+            top: 56px;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--gold), var(--linen));
+        }
+
+        .del-step-num {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--espresso);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--serif);
+            font-size: 1.3rem;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 1;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .del-step:hover .del-step-num {
+            background: var(--gold);
+            transform: scale(1.1);
+        }
+
+        .del-step-body h3 {
+            font-family: var(--serif);
+            font-size: 1.4rem;
+            font-weight: 400;
+            color: var(--espresso);
+            margin-bottom: 0.5rem;
+            padding-top: 4px;
+        }
+
+        .del-step-body p {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--walnut);
+        }
+
+        /* ── Coverage table ── */
+        .del-coverage {
+            max-width: 1400px;
+            margin: 0 auto 100px;
+            padding: 0 5%;
+        }
+
+        .del-coverage-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .del-coverage-header h2 {
+            font-family: var(--serif);
+            font-size: clamp(2rem, 3.5vw, 2.8rem);
+            font-weight: 400;
+            color: var(--espresso);
+        }
+
+        .del-table-wrap {
+            overflow-x: auto;
+        }
+
+        .del-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+        }
+
+        .del-table thead th {
+            text-align: left;
+            padding: 1.2rem 1.5rem;
+            background: var(--espresso);
+            color: #fff;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-size: 0.8rem;
+        }
+
+        .del-table thead th:first-child {
+            border-radius: 4px 0 0 0;
+        }
+
+        .del-table thead th:last-child {
+            border-radius: 0 4px 0 0;
+        }
+
+        .del-table tbody td {
+            padding: 1.1rem 1.5rem;
+            border-bottom: 1px solid var(--linen);
+            color: var(--walnut);
+            line-height: 1.5;
+        }
+
+        .del-table tbody tr {
+            transition: background 0.3s;
+        }
+
+        .del-table tbody tr:hover {
+            background: rgba(156, 130, 101, 0.04);
+        }
+
+        .del-table .zone-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+        }
+
+        .zone-express {
+            background: rgba(193, 154, 107, 0.15);
+            color: var(--gold);
+        }
+
+        .zone-standard {
+            background: rgba(44, 30, 18, 0.08);
+            color: var(--espresso);
+        }
+
+        .zone-extended {
+            background: rgba(156, 130, 101, 0.1);
+            color: var(--tan);
+        }
+
+        /* ── FAQ accordion ── */
+        .del-faq {
+            max-width: 800px;
+            margin: 0 auto 100px;
+            padding: 0 5%;
+        }
+
+        .del-faq-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .del-faq-header h2 {
+            font-family: var(--serif);
+            font-size: clamp(2rem, 3.5vw, 2.8rem);
+            font-weight: 400;
+            color: var(--espresso);
+        }
+
+        .del-faq-item {
+            border-bottom: 1px solid var(--linen);
+        }
+
+        .del-faq-q {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.4rem 0;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.05rem;
+            color: var(--espresso);
+            text-align: left;
+            transition: color 0.3s;
+        }
+
+        .del-faq-q:hover {
+            color: var(--gold);
+        }
+
+        .del-faq-q .faq-icon {
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+            position: relative;
+            margin-left: 1rem;
+        }
+
+        .del-faq-q .faq-icon::before,
+        .del-faq-q .faq-icon::after {
+            content: '';
+            position: absolute;
+            background: currentColor;
+            transition: transform 0.3s;
+        }
+
+        .del-faq-q .faq-icon::before {
+            width: 14px;
+            height: 1.5px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .del-faq-q .faq-icon::after {
+            width: 1.5px;
+            height: 14px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .del-faq-item.active .del-faq-q .faq-icon::after {
+            transform: translate(-50%, -50%) rotate(90deg);
+        }
+
+        .del-faq-a {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s;
+        }
+
+        .del-faq-item.active .del-faq-a {
+            max-height: 300px;
+        }
+
+        .del-faq-a p {
+            padding: 0 0 1.4rem;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: var(--walnut);
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 768px) {
+            .del-hero {
+                padding-top: 140px;
+            }
+
+            .del-step {
+                grid-template-columns: 44px 1fr;
+                gap: 16px;
+            }
+
+            .del-step-num {
+                width: 44px;
+                height: 44px;
+                font-size: 1.1rem;
+            }
+
+            .del-step:not(:last-child)::after {
+                left: 21px;
+            }
+
+            .del-table {
+                font-size: 0.85rem;
+            }
+
+            .del-table thead th,
+            .del-table tbody td {
+                padding: 0.8rem 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Page Intro -->
+    <div class="page-intro" aria-hidden="true">
+        <div class="intro-logo">Sunny Furniture</div>
+        <div class="intro-line"></div>
+    </div>
+
+    <!-- Cursor -->
+    <div class="cursor" id="cursor" aria-hidden="true"></div>
+    <div class="cursor-follower" id="cursorFollower" aria-hidden="true"></div>
+
+    <!-- Page transition -->
+    <div class="page-transition" id="pageTransition" aria-hidden="true"></div>
+
+    <!-- ─── ANNOUNCEMENT BAR ─────────────────────────── -->
+    <div class="ann-bar" role="marquee" aria-label="Site announcements">
+        <div class="ann-track" id="annTrack">
+            <span class="ann-item">Free delivery on orders above ₹15,000</span>
+            <span class="ann-item">New arrivals — <span>Summer 2026 collection</span></span>
+            <span class="ann-item">Use code <span>WELCOME10</span> for 10% off</span>
+            <span class="ann-item">Free installation on all furniture</span>
+            <span class="ann-item">30-day hassle-free returns</span>
+            <span class="ann-item">2-year warranty on every piece</span>
+            <span class="ann-item">Customisations also available</span>
+            <span class="ann-item">Free delivery on orders above ₹15,000</span>
+            <span class="ann-item">New arrivals — <span>Summer 2026 collection</span></span>
+            <span class="ann-item">Use code <span>WELCOME10</span> for 10% off</span>
+            <span class="ann-item">Free installation on all furniture</span>
+            <span class="ann-item">30-day hassle-free returns</span>
+            <span class="ann-item">2-year warranty on every piece</span>
+            <span class="ann-item">Customisations also available</span>
+        </div>
+    </div>
+
+    <!-- ─── NAVIGATION ───────────────────────────────── -->
+    <nav class="nav" id="mainNav" role="navigation" aria-label="Main navigation">
+        <a href="index.html" class="nav-logo">Sunny Furniture</a>
+        <ul class="nav-links">
+            <li><a href="living-room.html">Living</a></li>
+            <li><a href="bedroom.html">Bedroom</a></li>
+            <li><a href="dining.html">Dining</a></li>
+            <li><a href="storage.html">Storage</a></li>
+            <li><a href="outdoor.html">Outdoor</a></li>
+            <li><a href="study.html">Study</a></li>
+            <li><a href="newdecor.html">Decor</a></li>
+            <li><a href="sale.html" class="nav-sale">Sale</a></li>
+        </ul>
+        <div class="nav-actions">
+            <button class="nav-btn hoverable" aria-label="Search">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                    <circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1" />
+                    <line x1="12.5" y1="12.5" x2="16.5" y2="16.5" stroke="currentColor" stroke-width="1"
+                        stroke-linecap="round" />
+                </svg>
+            </button>
+            <button class="nav-btn hoverable" aria-label="Wishlist">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                    <path d="M9 15.5S2 10.8 2 6.5a4 4 0 0 1 7-2.64A4 4 0 0 1 16 6.5c0 4.3-7 9-7 9z"
+                        stroke="currentColor" stroke-width="1" stroke-linejoin="round" />
+                </svg>
+            </button>
+            <button class="nav-btn cart-wrap hoverable" aria-label="Cart — 2 items">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                    <path d="M2 2h1.8L6 10.5h7.5l2-7H5" stroke="currentColor" stroke-width="1" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <circle cx="7.5" cy="14" r="1.2" fill="currentColor" />
+                    <circle cx="12.5" cy="14" r="1.2" fill="currentColor" />
+                </svg>
+                <span class="cart-badge" aria-hidden="true">2</span>
+            </button>
+            <button class="nav-btn hoverable" aria-label="Account">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                    <circle cx="9" cy="6" r="3.5" stroke="currentColor" stroke-width="1" />
+                    <path d="M2.5 16.5c0-3.5 2.9-5.5 6.5-5.5s6.5 2 6.5 5.5" stroke="currentColor" stroke-width="1"
+                        stroke-linecap="round" />
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ─── DELIVERY INFO CONTENT ────────────────────── -->
+    <main>
+        <div
+            style="max-width: 1400px; margin: 0 auto; padding: 160px 5% 20px; display: flex; justify-content: flex-end;">
+            <a href="index.html" class="link-arrow reveal hoverable">Back to Home</a>
+        </div>
+
+        <section class="del-hero" style="padding-top: 20px;">
+            <div class="section-eyebrow reveal" style="justify-content: center">Help centre</div>
+            <h1 class="reveal delay-1">Delivery Information</h1>
+            <p class="del-intro reveal delay-2">
+                We deliver across India — from metros to tier 3 cities. Every order includes free doorstep delivery and
+                professional installation at no extra cost. Here's everything you need to know.
+            </p>
+        </section>
+
+        <!-- ─── DELIVERY TIMELINE ────────────────────────── -->
+        <section class="del-timeline" aria-label="Delivery process timeline">
+            <div class="del-step reveal">
+                <div class="del-step-num">1</div>
+                <div class="del-step-body">
+                    <h3>Order confirmed</h3>
+                    <p>You'll receive an email and SMS with your order ID and estimated delivery date within minutes of
+                        placing your order.</p>
+                </div>
+            </div>
+            <div class="del-step reveal delay-1">
+                <div class="del-step-num">2</div>
+                <div class="del-step-body">
+                    <h3>Packed &amp; dispatched</h3>
+                    <p>Your furniture is carefully wrapped in protective packaging and handed to our logistics partner.
+                        You'll get a tracking link via SMS.</p>
+                </div>
+            </div>
+            <div class="del-step reveal delay-2">
+                <div class="del-step-num">3</div>
+                <div class="del-step-body">
+                    <h3>Out for delivery</h3>
+                    <p>Our logistics partner contacts you 24 hours before delivery to confirm your preferred time slot.
+                        Large items are delivered by a 2-person team.</p>
+                </div>
+            </div>
+            <div class="del-step reveal delay-3">
+                <div class="del-step-num">4</div>
+                <div class="del-step-body">
+                    <h3>Delivered &amp; installed</h3>
+                    <p>Your furniture is carried to the room of your choice. Installation is completed the same day or
+                        scheduled for the next morning if delivery arrives late evening.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ─── COVERAGE TABLE ───────────────────────────── -->
+        <section class="del-coverage reveal" aria-label="Delivery coverage">
+            <div class="del-coverage-header">
+                <div class="section-eyebrow" style="justify-content:center">Where we deliver</div>
+                <h2>Delivery zones &amp; timelines</h2>
+            </div>
+            <div class="del-table-wrap">
+                <table class="del-table">
+                    <thead>
+                        <tr>
+                            <th>Zone</th>
+                            <th>Regions / Cities</th>
+                            <th>Timeline</th>
+                            <th>Shipping</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="zone-badge zone-express">Express</span></td>
+                            <td>Chandigarh, Haryana, Delhi, Punjab, Uttar Pradesh, Himachal Pradesh</td>
+                            <td>4–6 working days</td>
+                            <td>Free above ₹15,000</td>
+                        </tr>
+                        <tr>
+                            <td><span class="zone-badge zone-standard">Standard</span></td>
+                            <td>All metro cities across India</td>
+                            <td>8–10 working days</td>
+                            <td>Free above ₹15,000</td>
+                        </tr>
+                        <tr>
+                            <td><span class="zone-badge zone-extended">Extended</span></td>
+                            <td>Tier 2 &amp; 3 cities — 500+ locations</td>
+                            <td>7–12 working days</td>
+                            <td>Free above ₹15,000</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ─── FAQ ──────────────────────────────────────── -->
+        <section class="del-faq reveal" aria-label="Delivery FAQs">
+            <div class="del-faq-header">
+                <div class="section-eyebrow" style="justify-content:center">Common questions</div>
+                <h2>Delivery FAQs</h2>
+            </div>
+
+            <div class="del-faq-item">
+                <button class="del-faq-q hoverable" aria-expanded="false">
+                    Is delivery really free?
+                    <span class="faq-icon" aria-hidden="true"></span>
+                </button>
+                <div class="del-faq-a">
+                    <p>Yes — delivery is completely free on all orders above ₹15,000. For orders below this amount, a
+                        flat fee of ₹499 is applied.</p>
+                </div>
+            </div>
+
+            <div class="del-faq-item">
+                <button class="del-faq-q hoverable" aria-expanded="false">
+                    Can I choose my delivery time slot?
+                    <span class="faq-icon" aria-hidden="true"></span>
+                </button>
+                <div class="del-faq-a">
+                    <p>Our logistics partner will call you 24 hours before delivery to confirm a convenient time slot.
+                        You can choose morning (9 AM–1 PM) or afternoon (2 PM–6 PM).</p>
+                </div>
+            </div>
+
+            <div class="del-faq-item">
+                <button class="del-faq-q hoverable" aria-expanded="false">
+                    What if I'm not home during delivery?
+                    <span class="faq-icon" aria-hidden="true"></span>
+                </button>
+                <div class="del-faq-a">
+                    <p>If no one is available, the delivery team will reschedule for the next available slot at no extra
+                        charge. You'll receive an SMS to confirm.</p>
+                </div>
+            </div>
+
+            <div class="del-faq-item">
+                <button class="del-faq-q hoverable" aria-expanded="false">
+                    Is installation included?
+                    <span class="faq-icon" aria-hidden="true"></span>
+                </button>
+                <div class="del-faq-a">
+                    <p>Yes — free professional installation is included with every furniture order. Our trained team
+                        assembles everything in your room of choice. Installation is scheduled within 24 hours of
+                        delivery.</p>
+                </div>
+            </div>
+
+            <div class="del-faq-item">
+                <button class="del-faq-q hoverable" aria-expanded="false">
+                    Do you deliver to my city?
+                    <span class="faq-icon" aria-hidden="true"></span>
+                </button>
+                <div class="del-faq-a">
+                    <p>We deliver to 500+ cities across India including all metros, state capitals, and most tier 2 and
+                        3 cities. Contact us if you're unsure — we're expanding coverage constantly.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter -->
+        <section class="newsletter" aria-label="Newsletter signup">
+            <div class="reveal">
+                <p class="nl-eyebrow">Stay inspired</p>
+                <h2 class="nl-title">Beautiful homes<br>start here</h2>
+                <p class="nl-sub">Join 50,000 homeowners. Get new arrivals, design ideas, and an exclusive 10% off your
+                    first order.</p>
+                <div class="nl-form" role="form" aria-label="Email subscription">
+                    <input class="nl-input" type="email" placeholder="Your email address" aria-label="Email address">
+                    <button class="nl-btn hoverable" type="submit">Subscribe</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ─── FOOTER ───────────────────────────────────── -->
+    <footer role="contentinfo">
+        <div class="footer-top">
+            <div>
+                <span class="footer-logo">Sunny Furniture</span>
+                <p class="footer-about">Furniture crafted for modern Indian homes. Designed with care, built to last a
+                    lifetime. Free delivery, free installation, always.</p>
+            </div>
+            <div>
+                <h3 class="footer-col-title">Shop</h3>
+                <a href="living-room.html" class="footer-link hoverable">Living room</a>
+                <a href="bedroom.html" class="footer-link hoverable">Bedroom</a>
+                <a href="dining.html" class="footer-link hoverable">Dining</a>
+                <a href="storage.html" class="footer-link hoverable">Storage</a>
+                <a href="study.html" class="footer-link hoverable">Study</a>
+                <a href="outdoor.html" class="footer-link hoverable">Outdoor</a>
+                <a href="sale.html" class="footer-link hoverable">Sale</a>
+            </div>
+            <div>
+                <h3 class="footer-col-title">Help</h3>
+                <a href="track-order.html" class="footer-link hoverable">Track your order</a>
+                <a href="delivery-info.html" class="footer-link hoverable">Delivery info</a>
+                <a href="returns-refunds.html" class="footer-link hoverable">Returns &amp; refunds</a>
+                <a href="installation.html" class="footer-link hoverable">Installation</a>
+                <a href="faqs.html" class="footer-link hoverable">FAQs</a>
+                <a href="contact-us.html" class="footer-link hoverable">Contact us</a>
+            </div>
+            <div>
+                <h3 class="footer-col-title">Company</h3>
+                <a href="about.html" class="footer-link hoverable">About Sunny Furniture</a>
+                <a href="philosophy.html#craftsmen" class="footer-link hoverable">Our craftsmen</a>
+                <a href="philosophy.html#sustainability" class="footer-link hoverable">Sustainability</a>
+                <a href="philosophy.html#blog" class="footer-link hoverable">Blog &amp; ideas</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span class="footer-copy">&copy; 2026 Sunny Furniture Pvt Ltd &nbsp;&middot;&nbsp; Privacy Policy
+                &nbsp;&middot;&nbsp; Terms of Service</span>
+            <div class="footer-pay" aria-label="Accepted payment methods">
+                <span class="pay-icon" title="UPI"><svg width="36" height="22" viewBox="0 0 36 22"><rect width="36" height="22" rx="3" fill="#fff" stroke="#ddd" stroke-width=".5"/><text x="18" y="15" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" font-weight="600" fill="#4B286D">UPI</text></svg></span>
+                <span class="pay-icon" title="Visa"><svg width="36" height="22" viewBox="0 0 36 22"><rect width="36" height="22" rx="3" fill="#fff" stroke="#ddd" stroke-width=".5"/><text x="18" y="15" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" font-weight="700" font-style="italic" fill="#1A1F71">VISA</text></svg></span>
+                <span class="pay-icon" title="Mastercard"><svg width="36" height="22" viewBox="0 0 36 22"><rect width="36" height="22" rx="3" fill="#fff" stroke="#ddd" stroke-width=".5"/><circle cx="14" cy="11" r="6" fill="#EB001B" opacity=".8"/><circle cx="22" cy="11" r="6" fill="#F79E1B" opacity=".8"/></svg></span>
+                <span class="pay-icon" title="RuPay"><svg width="36" height="22" viewBox="0 0 36 22"><rect width="36" height="22" rx="3" fill="#fff" stroke="#ddd" stroke-width=".5"/><text x="18" y="15" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" font-weight="600" fill="#097A44">RuPay</text></svg></span>
+                <span class="pay-icon" title="Cash on Delivery"><svg width="36" height="22" viewBox="0 0 36 22"><rect width="36" height="22" rx="3" fill="#fff" stroke="#ddd" stroke-width=".5"/><text x="18" y="15" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" font-weight="500" fill="#555">COD</text></svg></span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./script.js"></script>
+    <script>
+        // FAQ accordion
+        document.querySelectorAll('.del-faq-q').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const item = btn.parentElement;
+                const isActive = item.classList.contains('active');
+                document.querySelectorAll('.del-faq-item').forEach(i => i.classList.remove('active'));
+                if (!isActive) item.classList.add('active');
+                btn.setAttribute('aria-expanded', !isActive);
+            });
+        });
+    </script>
+</body>
+
+</html>
