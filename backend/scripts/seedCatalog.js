@@ -4,11 +4,11 @@ const cheerio = require('cheerio');
 require('dotenv').config({ path: path.join(__dirname, '..', '.env') });
 
 const connectDatabase = require('../config/database');
-const Product = require('../models/Product');
-const Coupon = require('../models/Coupon');
-const User = require('../models/User');
-const slugify = require('../utils/slugify');
-const { toPaise } = require('../utils/money');
+const Product = require('../src/models/Product');
+const Coupon = require('../src/models/Coupon');
+const User = require('../src/models/User');
+const slugify = require('../src/utils/slugify');
+const { toPaise } = require('../src/utils/money');
 
 const rootDir = path.join(__dirname, '..', '..');
 const pagesDir = path.join(rootDir, 'src', 'pages');

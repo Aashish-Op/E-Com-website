@@ -995,27 +995,27 @@ section {
 
 /* Category card color backgrounds */
 .cat-living {
-  background-image: url('./aura3seater.jpg');
+  background-image: url('/assets/images/aura3seater.jpg');
 }
 
 .cat-bedroom {
-  background-image: url('./altoQueenBed.webp');
+  background-image: url('/assets/images/altoQueenBed.webp');
 }
 
 .cat-dining {
-  background-image: url('./mesaRoundtable.webp');
+  background-image: url('/assets/images/mesaRoundtable.webp');
 }
 
 .cat-study {
-  background-image: url('./voltaDesk.jpg');
+  background-image: url('/assets/images/voltaDesk.jpg');
 }
 
 .cat-outdoor {
-  background-image: url('./teraaLoungeChair.jpg');
+  background-image: url('/assets/images/teraaLoungeChair.jpg');
 }
 
 .cat-storage {
-  background-image: url('./apexCab.webp');
+  background-image: url('/assets/images/apexCab.webp');
 }
 
 /* =====================================================

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -12,7 +12,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:opsz,wght@9..40,200;9..40,300;9..40,400;9..40,500&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="/css/index.css">
     <style>
         /* ── Hero ── */
         .del-hero {
@@ -621,19 +621,8 @@
         </div>
     </footer>
 
-    <script src="./script.js"></script>
-    <script>
-        // FAQ accordion
-        document.querySelectorAll('.del-faq-q').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const item = btn.parentElement;
-                const isActive = item.classList.contains('active');
-                document.querySelectorAll('.del-faq-item').forEach(i => i.classList.remove('active'));
-                if (!isActive) item.classList.add('active');
-                btn.setAttribute('aria-expanded', !isActive);
-            });
-        });
-    </script>
+    <script src="/js/script.js"></script>
+    <script src="/js/pages/delivery-info.js"></script>
 </body>
 
 </html>

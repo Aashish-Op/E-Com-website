@@ -43,7 +43,7 @@ test('registers and returns current user', async () => {
 });
 
 test('lists products and supports cart add by name', async () => {
-  const Product = require('../models/Product');
+  const Product = require('../src/models/Product');
   await Product.create({
     slug: 'aura-3-seater-sofa',
     name: 'Aura 3-seater sofa',
@@ -63,7 +63,7 @@ test('lists products and supports cart add by name', async () => {
 });
 
 test('creates a COD order and decrements stock', async () => {
-  const Product = require('../models/Product');
+  const Product = require('../src/models/Product');
   const product = await Product.create({
     slug: 'aura-3-seater-sofa',
     name: 'Aura 3-seater sofa',
