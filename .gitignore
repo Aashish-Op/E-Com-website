@@ -3,6 +3,8 @@ backend/node_modules/
 admin/node_modules/
 
 # Environment variables (SENSITIVE - DO NOT PUSH)
+.env 
+backend/.env
 # Logs
 *.log
 *.out.log
