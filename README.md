@@ -146,4 +146,8 @@ For support, contact: [Your contact information]
 ## Project Documentation
 
 - [Setup Guide](SETUP.md)
-- [Production Deployment Plan](PRODUCTION_DEPLOYMENT_PLAN.md)
+- [Production Deployment Plan](PRODUCTION_DEPLOYMENT_PLAN.md) 
+npm install && npm run admin:install && npm run admin:build 
+
+npm start 
+root = .
