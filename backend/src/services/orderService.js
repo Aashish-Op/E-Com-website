@@ -84,6 +84,22 @@ async function releaseReservedStock(order) {
   await order.save();
 }
 
+async function releasePendingReservations(context) {
+  const ownership = [];
+  if (context.user?._id) ownership.push({ user: context.user._id });
+  if (context.cartToken) ownership.push({ cartToken: context.cartToken });
+  if (!ownership.length) return;
+
+  const orders = await Order.find({
+    stockMode: 'reserved',
+    paymentStatus: 'pending',
+    $or: ownership
+  });
+  for (const order of orders) {
+    await releaseReservedStock(order);
+  }
+}
+
 async function captureReservedStock(order) {
   if (order.stockMode !== 'reserved') return;
   for (const item of order.items) {
@@ -106,6 +122,7 @@ async function createOrderFromCart(context, payload) {
   const totals = await calculateTotals(cart);
   const paymentMethod = payload.paymentMethod || 'cod';
   const reserve = paymentMethod === 'razorpay';
+  await releasePendingReservations(context);
   await moveStock(cart.items, reserve ? 'reserve' : 'decrement');
 
   const order = await Order.create({
@@ -129,8 +146,10 @@ async function createOrderFromCart(context, payload) {
     timeline: [{ status: 'placed', note: paymentMethod === 'cod' ? 'COD order placed' : 'Razorpay payment initiated' }]
   });
 
-  await clearCart(context);
-  await emailService.sendOrderConfirmation(order).catch(() => {});
+  if (paymentMethod === 'cod') {
+    await clearCart(context);
+    await emailService.sendOrderConfirmation(order).catch(() => {});
+  }
   return order;
 }
 
@@ -142,6 +161,10 @@ async function markOrderPaid(order, payment) {
   order.razorpaySignature = payment.signature;
   order.timeline.push({ status: 'paid', note: 'Payment confirmed by Razorpay' });
   await order.save();
+  await clearCart({
+    user: order.user ? { _id: order.user } : null,
+    cartToken: order.cartToken
+  });
   await emailService.sendOrderConfirmation(order).catch(() => {});
   return order;
 }

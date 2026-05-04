@@ -1265,6 +1265,13 @@ section {
   letter-spacing: -0.01em;
 }
 
+.prod-compare {
+  font-size: 0.82rem;
+  color: var(--tan);
+  text-decoration: line-through;
+  margin-left: 8px;
+}
+
 .prod-emi {
   font-size: 9px;
   color: var(--tan);
@@ -2631,6 +2638,174 @@ footer {
   transition: background 0.3s;
 }
 .auth-btn:hover { background: var(--walnut); }
+
+/* =====================================================
+   ACCOUNT PANEL
+===================================================== */
+.account-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10020;
+  background: rgba(42, 31, 20, 0.48);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.account-overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.account-panel {
+  width: min(440px, 100%);
+  min-height: 100vh;
+  background: var(--warm-white);
+  padding: 42px 34px;
+  overflow-y: auto;
+  transform: translateX(100%);
+  transition: transform 0.45s var(--ease-out);
+  box-shadow: -24px 0 70px rgba(42, 31, 20, 0.16);
+}
+
+.account-overlay.open .account-panel {
+  transform: translateX(0);
+}
+
+.account-close {
+  position: absolute;
+  top: 22px;
+  right: 24px;
+  background: none;
+  border: 0;
+  color: var(--walnut);
+}
+
+.account-profile {
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--linen);
+}
+
+.account-profile h2 {
+  font-family: var(--serif);
+  font-size: 2rem;
+  font-weight: 400;
+  color: var(--espresso);
+  margin: 6px 0 12px;
+}
+
+.account-profile p {
+  margin: 4px 0;
+  color: var(--tan);
+  font-size: 0.92rem;
+}
+
+.account-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin: 18px 0 28px;
+}
+
+.account-stats div {
+  border: 1px solid var(--linen);
+  padding: 16px;
+  display: grid;
+  gap: 4px;
+}
+
+.account-stats strong {
+  font-family: var(--serif);
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: var(--espresso);
+}
+
+.account-stats span {
+  color: var(--tan);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.account-section {
+  display: grid;
+  gap: 14px;
+}
+
+.account-orders {
+  display: grid;
+  gap: 12px;
+}
+
+.account-order {
+  border: 1px solid var(--linen);
+  padding: 16px;
+  display: grid;
+  gap: 10px;
+}
+
+.account-order > div:first-child {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.account-order strong {
+  color: var(--espresso);
+}
+
+.account-order small,
+.account-order-items,
+.account-empty {
+  color: var(--tan);
+  font-size: 0.85rem;
+}
+
+.account-order-total {
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  color: var(--espresso);
+}
+
+.account-order-items {
+  display: grid;
+  gap: 4px;
+}
+
+.account-order-status {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.account-order-status span {
+  border: 1px solid var(--linen);
+  padding: 5px 9px;
+  color: var(--walnut);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.account-empty {
+  border: 1px dashed var(--linen);
+  padding: 18px;
+  text-align: center;
+}
+
+.account-logout {
+  width: 100%;
+  margin-top: 24px;
+  padding: 14px;
+  background: var(--espresso);
+  color: var(--cream);
+  border: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
 
 .auth-divider {
   display: flex;
