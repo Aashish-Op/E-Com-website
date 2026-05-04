@@ -59,6 +59,10 @@ function nameToId(name) {
   let currentUser = null;
   let csrfToken = null;
   let apiAvailable = true;
+  try {
+    const storedUser = JSON.parse(localStorage.getItem('sf_user') || 'null');
+    if (storedUser?.email) currentUser = storedUser;
+  } catch (_err) {}
 
   const categoryPages = {
     'living-room': 'living-room.html',
@@ -68,6 +72,16 @@ function nameToId(name) {
     outdoor: 'outdoor.html',
     study: 'study.html',
     decor: 'newdecor.html'
+  };
+
+  const pageCategories = {
+    'living-room.html': 'living-room',
+    'bedroom.html': 'bedroom',
+    'dining.html': 'dining',
+    'storage.html': 'storage',
+    'outdoor.html': 'outdoor',
+    'study.html': 'study',
+    'newdecor.html': 'decor'
   };
 
   function getCookie(name) {
@@ -116,6 +130,11 @@ function nameToId(name) {
   }
 
   function money(paise) {
+    return new Intl.NumberFormat('en-IN', {
+      style: 'currency',
+      currency: 'INR',
+      maximumFractionDigits: 0
+    }).format(Math.round((paise || 0) / 100));
     return '₹' + Math.round((paise || 0) / 100).toLocaleString('en-IN');
   }
 
@@ -135,6 +154,23 @@ function nameToId(name) {
     if (badge) {
       badge.textContent = count;
       badge.style.display = count > 0 ? 'flex' : 'none';
+    }
+  }
+
+  function setCurrentUser(user) {
+    currentUser = user || null;
+    const accountButton = document.querySelector('[aria-label="Account"]');
+    if (currentUser) {
+      localStorage.setItem('sf_user', JSON.stringify({
+        id: currentUser.id,
+        email: currentUser.email,
+        name: currentUser.name,
+        phone: currentUser.phone
+      }));
+      if (accountButton) accountButton.setAttribute('title', currentUser.name || currentUser.email);
+    } else {
+      localStorage.removeItem('sf_user');
+      if (accountButton) accountButton.removeAttribute('title');
     }
   }
 
@@ -246,6 +282,14 @@ function nameToId(name) {
       return;
     }
     ensureCheckoutFields();
+    if (currentUser) {
+      const nameInput = document.getElementById('checkoutName');
+      const emailInput = document.getElementById('checkoutEmail');
+      const phoneInput = document.getElementById('checkoutPhone');
+      if (nameInput && !nameInput.value) nameInput.value = currentUser.name || '';
+      if (emailInput && !emailInput.value) emailInput.value = currentUser.email || '';
+      if (phoneInput && !phoneInput.value) phoneInput.value = currentUser.phone || '';
+    }
     const itemsContainer = document.getElementById('checkoutItems');
     if (itemsContainer) {
       itemsContainer.innerHTML = cart.items.map(item => `
@@ -380,8 +424,7 @@ function nameToId(name) {
     const email = document.querySelector('#loginForm input[type="email"]')?.value.trim();
     const password = document.querySelector('#loginForm input[type="password"]')?.value;
     const data = await api('/auth/login', { method: 'POST', body: { email, password } });
-    currentUser = data.user;
-    localStorage.setItem('sf_user', JSON.stringify({ email: currentUser.email, name: currentUser.name }));
+    setCurrentUser(data.user);
     document.getElementById('authOverlay')?.classList.remove('open');
     await renderApiCart();
   }
@@ -396,10 +439,275 @@ function nameToId(name) {
         password: document.getElementById('signupPass')?.value
       }
     });
-    currentUser = data.user;
-    localStorage.setItem('sf_user', JSON.stringify({ email: currentUser.email, name: currentUser.name }));
+    setCurrentUser(data.user);
     document.getElementById('authOverlay')?.classList.remove('open');
     await renderApiCart();
+  }
+
+  function formatCategory(category) {
+    return String(category || '')
+      .split('-')
+      .map(part => part.charAt(0).toUpperCase() + part.slice(1))
+      .join(' ');
+  }
+
+  function currentCatalogPath() {
+    const file = location.pathname.split('/').pop() || 'index.html';
+    if (file === 'sale.html') return '/products?sale=true&limit=60';
+    if (file === 'index.html' || file === '') return '/products?featured=true&limit=16';
+    const category = pageCategories[file];
+    return category ? '/products?category=' + encodeURIComponent(category) + '&limit=60' : null;
+  }
+
+  function productImage(product) {
+    return product.image || product.images?.[0]?.url || '/aura3seater.jpg';
+  }
+
+  function buildProductCard(product, index) {
+    const img = productImage(product);
+    const available = Number(product.availableStock ?? product.stock ?? 0);
+    const material = product.materials?.summary || 'Premium materials';
+    const size = product.dimensions?.summary || 'Standard dimensions';
+    const desc = product.description || 'A handcrafted piece designed for modern Indian homes.';
+    const price = product.price || money(product.pricePaise);
+    const compareAt = product.compareAtPrice || (product.compareAtPricePaise ? money(product.compareAtPricePaise) : '');
+    const badges = [
+      product.isOnSale ? '<span class="badge badge-sale">Sale</span>' : '',
+      product.isFeatured ? '<span class="badge badge-new">Featured</span>' : '',
+      available <= 3 ? '<span class="badge badge-low">Low stock</span>' : ''
+    ].filter(Boolean).join('');
+
+    return `
+      <article id="${escapeHtml(product.slug)}" class="prod-card hoverable${index >= 8 ? ' hidden-product' : ''}" role="listitem"
+        data-api-product="true"
+        data-api-slug="${escapeHtml(product.slug)}"
+        data-category="${escapeHtml(product.category)}"
+        data-material="${escapeHtml(material)}"
+        data-size="${escapeHtml(size)}"
+        data-desc="${escapeHtml(desc)}">
+        <div class="prod-img-wrap" data-img="${escapeHtml(img)}">
+          <div class="prod-img-inner">
+            <img src="${escapeHtml(img)}" alt="${escapeHtml(product.images?.[0]?.alt || product.name)}" loading="${index < 4 ? 'eager' : 'lazy'}">
+          </div>
+          ${badges ? `<div class="prod-badges">${badges}</div>` : ''}
+          <button class="wish-btn hoverable" aria-label="Add to wishlist" aria-pressed="false">
+            <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+              <path d="M9 15.5S2 10.8 2 6.5a4 4 0 0 1 7-2.64A4 4 0 0 1 16 6.5c0 4.3-7 9-7 9z" stroke="#9C8265" stroke-width="1.2" stroke-linejoin="round" />
+            </svg>
+          </button>
+          <button class="view-item-btn quick-add-btn hoverable" aria-label="View ${escapeHtml(product.name)}">View Product</button>
+        </div>
+        <div class="prod-info">
+          <div class="prod-cat">${escapeHtml(product.category)}</div>
+          <div class="prod-name">${escapeHtml(product.name)}</div>
+          <div class="prod-bottom">
+            <div class="prod-price-wrap">
+              <div class="prod-price">${escapeHtml(price)}</div>
+              ${compareAt ? `<div class="prod-compare">${escapeHtml(compareAt)}</div>` : ''}
+            </div>
+          </div>
+        </div>
+      </article>`;
+  }
+
+  function openApiProductModal(card) {
+    const modal = document.getElementById('productModal');
+    if (!modal || !card) return false;
+
+    const name = card.querySelector('.prod-name')?.textContent || '';
+    const cat = card.querySelector('.prod-cat')?.textContent || '';
+    const price = card.querySelector('.prod-price')?.textContent || '';
+    const imgWrap = card.querySelector('.prod-img-wrap');
+    const img = imgWrap?.getAttribute('data-img') || imgWrap?.querySelector('img')?.getAttribute('src') || '';
+
+    const nameEl = document.getElementById('pmName');
+    const catEl = document.getElementById('pmCat');
+    const priceEl = document.getElementById('pmPrice');
+    const imgWrapEl = document.getElementById('pmImageWrap');
+    const matEl = document.getElementById('pmMaterial');
+    const sizeEl = document.getElementById('pmSize');
+    const descEl = document.getElementById('pmDesc');
+
+    if (nameEl) nameEl.textContent = name;
+    if (catEl) catEl.textContent = cat;
+    if (priceEl) priceEl.textContent = price;
+    if (matEl) matEl.textContent = card.getAttribute('data-material') || 'Premium materials';
+    if (sizeEl) sizeEl.textContent = card.getAttribute('data-size') || 'Standard dimensions';
+    if (descEl) descEl.textContent = card.getAttribute('data-desc') || 'A handcrafted piece designed for modern Indian homes.';
+    if (imgWrapEl && img) {
+      imgWrapEl.innerHTML = `<img src="${escapeHtml(img)}" style="width: 100%; height: auto; display: block;" alt="${escapeHtml(name)}">`;
+    }
+
+    modal.style.display = 'flex';
+    modal.setAttribute('aria-hidden', 'false');
+    void modal.offsetWidth;
+    modal.classList.add('show');
+    return true;
+  }
+
+  function refreshLoadMoreState(grid) {
+    const loadMoreBtn = grid.closest('section')?.querySelector('#loadMoreBtn') || document.getElementById('loadMoreBtn');
+    if (!loadMoreBtn) return;
+    loadMoreBtn.style.display = grid.querySelector('.prod-card.hidden-product') ? '' : 'none';
+  }
+
+  function openProductFromHash(grid) {
+    const hash = decodeURIComponent(location.hash.slice(1));
+    if (!hash) return;
+    const card = document.getElementById(hash) || Array.from(grid.querySelectorAll('.prod-card')).find(item => item.dataset.apiSlug === hash);
+    if (!card) return;
+    card.classList.remove('hidden-product');
+    card.style.display = 'flex';
+    refreshLoadMoreState(grid);
+    setTimeout(() => {
+      card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      openApiProductModal(card);
+    }, 120);
+  }
+
+  async function hydrateProductGrid() {
+    const path = currentCatalogPath();
+    const grid = document.querySelector('.products-grid[role="list"]:not(#wishlistGrid)');
+    if (!path || !grid) return;
+
+    try {
+      let data = await api(path);
+      if ((location.pathname.endsWith('/') || location.pathname.endsWith('index.html') || location.pathname === '/') && !data.products?.length) {
+        data = await api('/products?limit=16');
+      }
+      if (!data.products?.length) return;
+      grid.dataset.apiProducts = 'true';
+      document.body.dataset.apiProductsHydrated = 'true';
+      grid.innerHTML = data.products.map(buildProductCard).join('');
+      refreshLoadMoreState(grid);
+      openProductFromHash(grid);
+    } catch (err) {
+      console.warn('Product API unavailable, keeping static catalog.', err);
+      apiAvailable = false;
+    }
+  }
+
+  function applyProductFilter(filterValue) {
+    const grid = document.querySelector('.products-grid[data-api-products="true"]');
+    if (!grid) return false;
+    const filter = String(filterValue || 'all').trim().toLowerCase();
+    grid.querySelectorAll('.prod-card').forEach(card => {
+      const cat = card.dataset.category || card.querySelector('.prod-cat')?.textContent?.trim().toLowerCase() || '';
+      const isSale = Boolean(card.querySelector('.badge-sale'));
+      const matches = filter === 'all' || cat === filter || cat + 's' === filter || filter === cat + 's' || (filter === 'sale' && isSale);
+      card.style.display = matches ? 'flex' : 'none';
+    });
+    return true;
+  }
+
+  function openAuthOverlay() {
+    const overlay = document.getElementById('authOverlay');
+    if (overlay) overlay.classList.add('open');
+  }
+
+  function ensureAccountOverlay() {
+    if (!document.getElementById('accountOverlay')) {
+      document.body.insertAdjacentHTML('beforeend', `
+        <div class="account-overlay" id="accountOverlay">
+          <aside class="account-panel" aria-label="Customer account">
+            <button class="account-close hoverable" id="accountClose" aria-label="Close account">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><line x1="4" y1="4" x2="16" y2="16" stroke="currentColor" stroke-width="1.2"/><line x1="16" y1="4" x2="4" y2="16" stroke="currentColor" stroke-width="1.2"/></svg>
+            </button>
+            <div class="account-profile">
+              <div class="section-eyebrow">Account</div>
+              <h2 id="accountName">Your account</h2>
+              <p id="accountEmail"></p>
+              <p id="accountPhone"></p>
+            </div>
+            <div class="account-stats">
+              <div><strong id="accountOrderCount">0</strong><span>Orders</span></div>
+              <div><strong id="accountWishlistCount">0</strong><span>Wishlist</span></div>
+            </div>
+            <div class="account-section">
+              <div class="section-eyebrow">Recent orders</div>
+              <div id="accountOrders" class="account-orders"></div>
+            </div>
+            <button class="account-logout hoverable" id="accountLogout">Log out</button>
+          </aside>
+        </div>
+      `);
+    }
+
+    const overlay = document.getElementById('accountOverlay');
+    if (!overlay.dataset.bound) {
+      overlay.dataset.bound = 'true';
+      document.getElementById('accountClose')?.addEventListener('click', () => overlay.classList.remove('open'));
+      overlay.addEventListener('click', event => {
+        if (event.target === overlay) overlay.classList.remove('open');
+      });
+      document.getElementById('accountLogout')?.addEventListener('click', async () => {
+        await api('/auth/logout', { method: 'POST' }).catch(() => {});
+        setCurrentUser(null);
+        overlay.classList.remove('open');
+        renderApiCart().catch(() => {});
+      });
+    }
+    return overlay;
+  }
+
+  function renderAccountOrders(orders) {
+    const ordersEl = document.getElementById('accountOrders');
+    const countEl = document.getElementById('accountOrderCount');
+    if (countEl) countEl.textContent = String(orders.length);
+    if (!ordersEl) return;
+    if (!orders.length) {
+      ordersEl.innerHTML = '<div class="account-empty">No orders yet. Your future purchases will appear here.</div>';
+      return;
+    }
+    ordersEl.innerHTML = orders.map(order => {
+      const created = order.createdAt ? new Date(order.createdAt).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }) : '';
+      const items = (order.items || []).slice(0, 3).map(item => `<span>${escapeHtml(item.name)} x${item.quantity}</span>`).join('');
+      return `
+        <article class="account-order">
+          <div>
+            <strong>${escapeHtml(order.orderNumber)}</strong>
+            <small>${escapeHtml(created)}</small>
+          </div>
+          <div class="account-order-total">${escapeHtml(order.total)}</div>
+          <div class="account-order-items">${items}</div>
+          <div class="account-order-status">
+            <span>${escapeHtml(order.paymentStatus)}</span>
+            <span>${escapeHtml(order.fulfillmentStatus)}</span>
+          </div>
+        </article>`;
+    }).join('');
+  }
+
+  async function openAccountPanel() {
+    if (!currentUser?.email) {
+      openAuthOverlay();
+      return;
+    }
+
+    const overlay = ensureAccountOverlay();
+    let wishlist = [];
+    try {
+      wishlist = JSON.parse(localStorage.getItem('sf_wishlist') || '[]');
+    } catch (_err) {}
+    document.getElementById('accountName').textContent = currentUser.name || 'Sunny customer';
+    document.getElementById('accountEmail').textContent = currentUser.email || '';
+    document.getElementById('accountPhone').textContent = currentUser.phone || '';
+    document.getElementById('accountWishlistCount').textContent = String(wishlist.length || 0);
+    document.getElementById('accountOrders').innerHTML = '<div class="account-empty">Loading your orders...</div>';
+    overlay.classList.add('open');
+
+    try {
+      const data = await api('/orders');
+      renderAccountOrders(data.orders || []);
+    } catch (err) {
+      if (err.message === 'Authentication required') {
+        setCurrentUser(null);
+        overlay.classList.remove('open');
+        openAuthOverlay();
+      } else {
+        document.getElementById('accountOrders').innerHTML = `<div class="account-empty">${escapeHtml(err.message)}</div>`;
+      }
+    }
   }
 
   async function apiSearch(query) {
@@ -471,6 +779,34 @@ function nameToId(name) {
   }, true);
 
   document.addEventListener('click', async event => {
+    const accountButton = event.target.closest('[aria-label="Account"]');
+    if (accountButton) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      await openAccountPanel();
+      return;
+    }
+
+    const filterTab = event.target.closest('.filter-tab');
+    if (filterTab && document.body.dataset.apiProductsHydrated === 'true') {
+      const applied = applyProductFilter(filterTab.dataset.filter || filterTab.textContent);
+      if (applied) {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        document.querySelectorAll('.filter-tab').forEach(tab => tab.classList.remove('active'));
+        filterTab.classList.add('active');
+        return;
+      }
+    }
+
+    const productCard = event.target.closest('.prod-card[data-api-product="true"]');
+    if (productCard && !event.target.closest('.wish-btn, .prod-swatches')) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      openApiProductModal(productCard);
+      return;
+    }
+
     const cartButton = event.target.closest('.cart-wrap');
     if (cartButton) {
       event.preventDefault();
@@ -566,13 +902,13 @@ function nameToId(name) {
     ensureCsrf().catch(() => {});
     api('/auth/me')
       .then(data => {
-        currentUser = data.user;
-        if (currentUser) localStorage.setItem('sf_user', JSON.stringify({ email: currentUser.email, name: currentUser.name }));
+        setCurrentUser(data.user);
       })
       .catch(() => {})
       .finally(() => {
         if (apiAvailable) renderApiCart().catch(() => {});
       });
+    hydrateProductGrid();
     ensureTrackContactField();
   });
 
@@ -580,7 +916,9 @@ function nameToId(name) {
     installLateOverrides,
     addToCart: addToCartApi,
     openCart: openApiCart,
-    renderCart: renderApiCart
+    renderCart: renderApiCart,
+    refreshProducts: hydrateProductGrid,
+    openAccount: openAccountPanel
   };
   installLateOverrides();
 })();

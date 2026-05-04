@@ -27,6 +27,21 @@ beforeEach(async () => {
   await mongoose.connection.db.dropDatabase();
 });
 
+async function loginAdmin(email = 'admin@example.com') {
+  const User = require('../src/models/User');
+  await User.create({
+    name: 'Admin User',
+    email,
+    phone: '9876543210',
+    role: 'admin',
+    passwordHash: await User.hashPassword('secret123')
+  });
+
+  const agent = request.agent(app);
+  await agent.post('/api/auth/login').send({ email, password: 'secret123' }).expect(200);
+  return agent;
+}
+
 test('health endpoint responds', async () => {
   const res = await request(app).get('/api/health').expect(200);
   expect(res.body.success).toBe(true);
@@ -121,4 +136,83 @@ test('keeps cart after Razorpay order creation so shopper can switch to COD', as
   const freshProduct = await Product.findById(product._id);
   expect(freshProduct.stock).toBe(2);
   expect(freshProduct.reservedStock).toBe(0);
+});
+
+test('admin product CRUD controls storefront visibility', async () => {
+  const agent = await loginAdmin();
+
+  const created = await agent.post('/api/admin/products').send({
+    name: 'Volta Study Desk',
+    category: 'study',
+    description: 'Compact walnut desk for focused work.',
+    pricePaise: 1850000,
+    compareAtPricePaise: 2200000,
+    stock: 8,
+    images: [{ url: '/voltaDesk.jpg', alt: 'Volta Study Desk' }],
+    tags: ['desk', 'study'],
+    isFeatured: true,
+    isOnSale: true,
+    status: 'active'
+  }).expect(201);
+
+  const productId = created.body.product.id;
+  const publicStudy = await request(app).get('/api/products?category=study').expect(200);
+  expect(publicStudy.body.products.map(product => product.name)).toContain('Volta Study Desk');
+
+  await agent.put('/api/admin/products/' + productId).send({
+    status: 'draft',
+    stock: 12,
+    pricePaise: 1750000
+  }).expect(200);
+
+  const hiddenFromStorefront = await request(app).get('/api/products?category=study').expect(200);
+  expect(hiddenFromStorefront.body.products).toHaveLength(0);
+
+  await agent.put('/api/admin/products/' + productId).send({ status: 'active' }).expect(200);
+  const saleProducts = await request(app).get('/api/products?sale=true').expect(200);
+  expect(saleProducts.body.products.map(product => product.slug)).toContain('volta-study-desk');
+
+  await agent.delete('/api/admin/products/' + productId).expect(200);
+  const afterDelete = await request(app).get('/api/products?category=study').expect(200);
+  expect(afterDelete.body.products).toHaveLength(0);
+
+  const archived = await agent.get('/api/admin/products?status=archived').expect(200);
+  expect(archived.body.products).toHaveLength(1);
+});
+
+test('logged-in customers can view their orders without blocking guest checkout', async () => {
+  const Product = require('../src/models/Product');
+  const product = await Product.create({
+    slug: 'loom-lounge-chair',
+    name: 'Loom Lounge Chair',
+    category: 'living-room',
+    pricePaise: 1450000,
+    stock: 4,
+    images: [{ url: '/loomChair.jpg', alt: 'Loom Lounge Chair' }]
+  });
+
+  const guest = request.agent(app);
+  await guest.post('/api/cart/add').send({ slug: product.slug, quantity: 1 }).expect(201);
+  await guest.post('/api/orders/checkout/cod').send({
+    contact: { name: 'Guest Buyer', email: 'guest@example.com', phone: '9876543210' },
+    shippingAddress: { fullName: 'Guest Buyer', phone: '9876543210', street: '1 Main Road', city: 'Delhi', pincode: '110001' }
+  }).expect(201);
+  await guest.get('/api/orders').expect(401);
+
+  const customer = request.agent(app);
+  await customer.post('/api/auth/register').send({
+    name: 'Customer Two',
+    email: 'customer-two@example.com',
+    phone: '9876543211',
+    password: 'secret123'
+  }).expect(201);
+  await customer.post('/api/cart/add').send({ slug: product.slug, quantity: 1 }).expect(201);
+  const order = await customer.post('/api/orders/checkout/cod').send({
+    contact: { name: 'Customer Two', email: 'customer-two@example.com', phone: '9876543211' },
+    shippingAddress: { fullName: 'Customer Two', phone: '9876543211', street: '2 Main Road', city: 'Delhi', pincode: '110002' }
+  }).expect(201);
+
+  const orders = await customer.get('/api/orders').expect(200);
+  expect(orders.body.orders).toHaveLength(1);
+  expect(orders.body.orders[0].orderNumber).toBe(order.body.order.orderNumber);
 });

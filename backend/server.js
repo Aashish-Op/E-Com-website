@@ -43,12 +43,13 @@ app.use(cors({
   credentials: true
 }));
 
-app.use(rateLimit({
+const apiLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   limit: Number(process.env.RATE_LIMIT_MAX || 600),
   standardHeaders: true,
-  legacyHeaders: false
-}));
+  legacyHeaders: false,
+  skip: req => req.path === '/health'
+});
 
 app.post('/api/payments/webhook', express.raw({ type: 'application/json' }), paymentsRouter.webhookHandler);
 
@@ -57,6 +58,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(requestContext);
 app.use(csrfProtection);
+app.use('/api', apiLimiter);
 
 app.use('/api/auth', require('./src/routes/auth'));
 app.use('/api/products', require('./src/routes/products'));
