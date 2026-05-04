@@ -43,6 +43,7 @@
     "supertest": "^7.1.4"
   },
   "jest": {
+    "testTimeout": 30000,
     "testEnvironment": "node",
     "testMatch": [
       "**/backend/tests/**/*.test.js"

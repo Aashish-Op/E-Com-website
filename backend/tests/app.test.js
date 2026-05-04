@@ -8,6 +8,10 @@ let app;
 beforeAll(async () => {
   process.env.JWT_SECRET = 'test-secret';
   process.env.CSRF_STRICT = 'false';
+  process.env.RAZORPAY_KEY_ID = '';
+  process.env.RAZORPAY_KEY_SECRET = '';
+  process.env.EMAIL_HOST = '';
+  process.env.EMAIL_USER = '';
   mongo = await MongoMemoryServer.create();
   process.env.MONGODB_URI = mongo.getUri();
   app = require('../server').app;
@@ -83,4 +87,38 @@ test('creates a COD order and decrements stock', async () => {
   expect(order.body.order.orderNumber).toMatch(/^SF-/);
   const freshProduct = await Product.findById(product._id);
   expect(freshProduct.stock).toBe(1);
+});
+
+test('keeps cart after Razorpay order creation so shopper can switch to COD', async () => {
+  const Product = require('../src/models/Product');
+  const product = await Product.create({
+    slug: 'rattan-patio-chair',
+    name: 'Rattan Patio Chair',
+    category: 'outdoor',
+    pricePaise: 1295000,
+    stock: 3,
+    images: [{ url: '/rattanChair.webp', alt: 'Rattan Patio Chair' }]
+  });
+
+  const agent = request.agent(app);
+  const checkoutPayload = {
+    contact: { name: 'Customer One', email: 'customer@example.com', phone: '9876543210' },
+    shippingAddress: { fullName: 'Customer One', phone: '9876543210', street: '1 Main Road', city: 'Delhi', pincode: '110001' }
+  };
+
+  await agent.post('/api/cart/add').send({ slug: product.slug, quantity: 1 }).expect(201);
+  const razorpayOrder = await agent.post('/api/payments/create-order').send(checkoutPayload).expect(201);
+  expect(razorpayOrder.body.razorpay.testMode).toBe(true);
+
+  const cartAfterRazorpay = await agent.get('/api/cart').expect(200);
+  expect(cartAfterRazorpay.body.cart.items).toHaveLength(1);
+
+  const codOrder = await agent.post('/api/orders/checkout/cod').send(checkoutPayload).expect(201);
+  expect(codOrder.body.order.paymentMethod).toBe('cod');
+
+  const cartAfterCod = await agent.get('/api/cart').expect(200);
+  expect(cartAfterCod.body.cart.items).toHaveLength(0);
+  const freshProduct = await Product.findById(product._id);
+  expect(freshProduct.stock).toBe(2);
+  expect(freshProduct.reservedStock).toBe(0);
 });
