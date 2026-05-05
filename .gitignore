@@ -16,7 +16,6 @@ yarn-error.log*
 
 # Build output
 admin/dist/
-.cloudflare-pages-output/
 dist/
 build/
 
