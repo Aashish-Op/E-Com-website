@@ -12,6 +12,8 @@
     "test": "cross-env NODE_ENV=test jest --runInBand",
     "admin:install": "npm install --prefix admin",
     "admin:build": "npm run build --prefix admin",
+    "cf:prepare": "npm run admin:build && node scripts/prepare-cloudflare-pages.js",
+    "cf:deploy": "npm run cf:prepare && wrangler pages deploy .cloudflare-pages-output --project-name sunny-furniture-showcase --branch main",
     "heroku-postbuild": "npm run admin:install && npm run admin:build"
   },
   "engines": {
