@@ -421,7 +421,358 @@ npm start
 10. Seed production Atlas locally with `npm run seed`.
 11. Smoke test the same URLs.
 
-## 11. Razorpay Production Setup
+## 11. Cloudflare Deployment (Workers + Pages)
+
+Use this if you want to leverage Cloudflare's global edge network and free/cheap hosting.
+
+Why Cloudflare:
+- Cloudflare Workers can host Node.js-like applications with automatic scaling.
+- Cloudflare Pages can serve static files with CDN caching.
+- Global edge network ensures fast delivery worldwide.
+- Free tier supports small projects; paid tier starts very affordable.
+- Built-in DDoS protection and security features.
+- Easy environment variable management.
+- DNS management integrated with Cloudflare.
+
+**Important Note:** Standard Node.js/Express apps need some adaptation for Cloudflare Workers. This guide uses Cloudflare Workers with Wrangler for hosting your Express app.
+
+### Step 1: Prerequisites (5 minutes)
+
+1. Sign up for Cloudflare: https://www.cloudflare.com
+2. Install Wrangler CLI:
+
+```powershell
+npm install -g @cloudflare/wrangler
+```
+
+3. Authenticate Wrangler:
+
+```powershell
+wrangler login
+```
+
+4. Ensure your domain is pointing to Cloudflare nameservers (or add it to Cloudflare).
+
+### Step 2: Prepare Your Project for Cloudflare Workers (10 minutes)
+
+1. In your project root, create a `wrangler.toml` file:
+
+```toml
+name = "sunny-furniture-worker"
+type = "javascript"
+main = "server.js"
+compatibility_date = "2024-01-01"
+
+[build]
+command = "npm install && npm run admin:install && npm run admin:build"
+cwd = "."
+
+[env.production]
+name = "sunny-furniture-prod"
+routes = [
+  { pattern = "example.com/*", zone_id = "YOUR_ZONE_ID" }
+]
+
+[[kv_namespaces]]
+binding = "KV_STORAGE"
+id = "YOUR_KV_NAMESPACE_ID"
+
+[observability]
+enabled = true
+```
+
+2. Modify `backend/server.js` to be compatible with Cloudflare Workers:
+
+Add this at the top of the file if using ES modules or add a compatibility wrapper:
+
+```javascript
+// Add this for Cloudflare Workers compatibility
+if (typeof global === 'undefined') {
+  globalThis.global = globalThis;
+}
+```
+
+3. Install Wrangler in your project:
+
+```powershell
+npm install wrangler --save-dev
+```
+
+### Step 3: Set Environment Variables in Cloudflare (10 minutes)
+
+1. In Wrangler dashboard or via CLI, set all production variables:
+
+```powershell
+wrangler secret put NODE_ENV
+wrangler secret put CSRF_STRICT
+wrangler secret put MONGODB_URI
+wrangler secret put JWT_SECRET
+wrangler secret put JWT_EXPIRE
+wrangler secret put ADMIN_EMAIL
+wrangler secret put ADMIN_PASSWORD
+wrangler secret put ADMIN_NAME
+wrangler secret put RAZORPAY_KEY_ID
+wrangler secret put RAZORPAY_KEY_SECRET
+wrangler secret put RAZORPAY_WEBHOOK_SECRET
+wrangler secret put EMAIL_HOST
+wrangler secret put EMAIL_PORT
+wrangler secret put EMAIL_SECURE
+wrangler secret put EMAIL_USER
+wrangler secret put EMAIL_PASSWORD
+wrangler secret put EMAIL_FROM
+wrangler secret put CLOUDINARY_CLOUD_NAME
+wrangler secret put CLOUDINARY_API_KEY
+wrangler secret put CLOUDINARY_API_SECRET
+wrangler secret put FRONTEND_URL
+wrangler secret put ADMIN_URL
+```
+
+When prompted, enter the value for each secret. Example:
+
+```powershell
+wrangler secret put NODE_ENV
+? Enter a secret value: production
+```
+
+Alternatively, create a `.env.production` file and use:
+
+```powershell
+wrangler secret:bulk .env.production --env production
+```
+
+### Step 4: Prepare Your Git Repository (5 minutes)
+
+1. Ensure `backend/.env` is not committed:
+
+```powershell
+git status
+```
+
+2. Commit all deployment files:
+
+```powershell
+git add .
+git commit -m "Add Cloudflare Workers deployment configuration"
+git push
+```
+
+### Step 5: Deploy to Cloudflare Workers (5 minutes)
+
+Deploy from your local machine:
+
+```powershell
+wrangler deploy --env production
+```
+
+Or deploy directly from GitHub:
+
+1. Go to Cloudflare Pages: https://pages.cloudflare.com
+2. Select `Connect to Git` > GitHub repo
+3. Build settings:
+   - **Build command:** `npm install && npm run admin:install && npm run admin:build && npm start`
+   - **Build output directory:** Leave blank or set to `src/`
+
+4. Add environment variables in the Cloudflare Pages UI (Settings > Environment Variables)
+5. Click Deploy
+
+### Step 6: Set Up Custom Domain (5 minutes)
+
+1. In Cloudflare Dashboard, go to Workers > Routes
+2. Add a custom route:
+
+```text
+https://www.yourdomain.com/*
+```
+
+3. Connect to your Worker service.
+4. Alternatively, point your domain DNS to Cloudflare nameservers.
+5. HTTPS is automatic with Cloudflare.
+
+### Step 7: Configure DNS (5 minutes)
+
+1. Cloudflare Dashboard > DNS > Records
+2. Add your domain records:
+
+```text
+Type: A
+Name: www
+Content: YOUR_CLOUDFLARE_WORKER_URL
+Proxy status: Proxied (orange cloud)
+
+Type: A
+Name: @
+Content: YOUR_CLOUDFLARE_WORKER_URL
+Proxy status: Proxied
+```
+
+3. Wait for DNS propagation (usually 5-30 minutes).
+4. Test:
+
+```powershell
+nslookup www.yourdomain.com
+```
+
+### Step 8: Test Deployed Application (10 minutes)
+
+Test the critical URLs:
+
+```text
+https://www.yourdomain.com/
+https://www.yourdomain.com/admin/
+https://www.yourdomain.com/api/health
+https://www.yourdomain.com/api/products?limit=3
+```
+
+Expected results:
+- Storefront loads with images
+- Admin login page accessible
+- API health endpoint returns 200 OK
+- COD checkout works
+
+### Step 9: Seed Production Database (5 minutes)
+
+Run locally against production Atlas:
+
+```powershell
+$env:MONGODB_URI = "mongodb+srv://sunny_app:YOUR_PASSWORD@cluster0.xxxxx.mongodb.net/sunny-furniture?retryWrites=true&w=majority"
+$env:ADMIN_EMAIL = "owner@yourdomain.com"
+$env:ADMIN_PASSWORD = "YOUR_STRONG_ADMIN_PASSWORD"
+npm run seed
+```
+
+Only run once. Then remove the env vars from PowerShell session.
+
+### Step 10: Razorpay Webhook Configuration (5 minutes)
+
+1. Razorpay Dashboard > Settings > Webhooks
+2. Add webhook URL:
+
+```text
+https://www.yourdomain.com/api/payments/webhook
+```
+
+3. Select events:
+   - payment.authorized
+   - payment.captured
+   - payment.failed
+
+4. Enable and save.
+
+### Step 11: Test Payment Flow (10 minutes)
+
+1. Place a test COD order:
+   - Go to https://www.yourdomain.com
+   - Add product to cart
+   - Checkout with COD
+   - Confirm order appears in admin
+
+2. Test Razorpay (if using):
+   - Go to checkout
+   - Select Razorpay option
+   - Use test card: `4111111111111111`
+   - Expiry: any future date
+   - CVV: any 3 digits
+   - Confirm payment succeeds
+
+3. Verify webhook:
+   - Razorpay Dashboard > Webhooks
+   - Check delivery status (should be green)
+
+### Cloudflare Monitoring & Logs (Ongoing)
+
+1. Real-time logs:
+
+```powershell
+wrangler tail --env production
+```
+
+2. Dashboard analytics:
+   - Cloudflare Dashboard > Analytics
+   - Monitor requests, cache hit rates, and errors
+
+3. Performance:
+   - Cloudflare Dashboard > Speed
+   - Review page load insights
+
+### Scaling & Limits
+
+Free tier:
+- Up to 100,000 requests per day
+- Includes Workers
+- Includes Pages
+
+Paid tier ($20+/month):
+- Unlimited requests
+- Better performance
+- Advanced analytics
+
+If exceeding limits:
+1. Upgrade to Cloudflare Pro/Business
+2. Consider pairing with a backend provider like Render for heavier loads
+3. Implement caching strategies
+
+### Troubleshooting Cloudflare Deployment
+
+**Issue: Worker deployment fails with "module not found"**
+- Solution: Ensure all dependencies are in `package.json`
+- Wrangler only bundles listed dependencies
+
+**Issue: Environment variables not loading**
+- Solution: Use `wrangler secret put` for sensitive data
+- Use `wrangler.toml` for public config
+- Restart worker after setting secrets
+
+**Issue: CORS errors from frontend**
+- Solution: Add CORS headers in Express middleware:
+
+```javascript
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', process.env.FRONTEND_URL);
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  next();
+});
+```
+
+**Issue: Webhook not triggering**
+- Solution: Verify webhook URL is publicly accessible
+- Check Razorpay webhook delivery logs
+- Ensure CSRF protection doesn't block webhooks:
+
+```javascript
+app.post('/api/payments/webhook', csrfProtection, (req, res) => {
+  // Handle webhook
+});
+```
+
+Or skip CSRF for webhook endpoint:
+
+```javascript
+// Skip CSRF for Razorpay webhook
+app.post('/api/payments/webhook', (req, res) => {
+  // No CSRF middleware
+});
+```
+
+**Issue: Slow initial requests**
+- Solution: Workers cold starts are normal
+- Use Cloudflare Cache rules to cache responses
+- Upgrade to Cloudflare Workers Durable Objects for persistent storage
+
+---
+
+**Quick Cloudflare Timeline:**
+- 0-5 min: Install Wrangler, authenticate
+- 5-15 min: Create wrangler.toml and prepare project
+- 15-30 min: Set environment variables
+- 30-35 min: Deploy to Workers
+- 35-40 min: Configure DNS and custom domain
+- 40-50 min: Test all endpoints and seed database
+- 50-60 min: Configure Razorpay webhook and smoke test
+
+---
+
+## 12. Razorpay Production Setup
 
 Where: Razorpay Dashboard.
 
@@ -482,7 +833,7 @@ Then:
 5. Place one small real payment.
 6. Confirm paid order in admin and payment in Razorpay Dashboard.
 
-## 12. SendGrid Email Setup
+## 13. SendGrid Email Setup
 
 Where: SendGrid/Twilio dashboard.
 
@@ -507,7 +858,7 @@ EMAIL_FROM=Sunny Furniture <orders@clientdomain.com>
 5. Check inbox, spam, and promotions.
 6. If deliverability is poor, finish SendGrid domain authentication DNS records.
 
-## 13. Cloudinary Setup
+## 14. Cloudinary Setup
 
 Where: Cloudinary Console.
 
@@ -530,7 +881,7 @@ CLOUDINARY_API_SECRET=YOUR_CLOUDINARY_API_SECRET
 6. Confirm the image URL is a Cloudinary URL.
 7. Confirm the storefront displays it.
 
-## 14. Custom Domain
+## 15. Custom Domain
 
 Do this after the platform URL works.
 
@@ -562,7 +913,7 @@ https://www.sunnyfurniture.in/api/payments/webhook
 
 7. Test again on the custom domain.
 
-## 15. Production Smoke Test
+## 16. Production Smoke Test
 
 Public storefront:
 
@@ -609,7 +960,7 @@ Email:
 - COD order email arrives.
 - Order status email arrives.
 
-## 16. Client Handover
+## 17. Client Handover
 
 Give the client:
 
@@ -639,7 +990,7 @@ First-week operations:
 - Check Atlas usage and backups.
 - Keep a manual backup/export habit until automated backups are confirmed.
 
-## 17. If Something Breaks During The One Hour
+## 18. If Something Breaks During The One Hour
 
 Use this fallback order:
 
@@ -656,7 +1007,7 @@ npm run admin:build
 
 6. If MongoDB connection fails, check Atlas Network Access, username/password, database name, and URL encoding.
 
-## 18. Final Launch Checklist
+## 19. Final Launch Checklist
 
 - [ ] Real secrets are rotated.
 - [ ] `backend/.env` is not committed.
@@ -679,7 +1030,7 @@ npm run admin:build
 - [ ] `FRONTEND_URL` and `ADMIN_URL` match the final HTTPS URL.
 - [ ] Client has ownership/access for all production accounts.
 
-## 19. Official Docs Checked
+## 20. Official Docs Checked
 
 - Render Web Services: https://render.com/docs/web-services
 - Render Node Express deploy: https://render.com/docs/deploy-node-express-app

@@ -12,7 +12,15 @@
     "test": "cross-env NODE_ENV=test jest --runInBand",
     "admin:install": "npm install --prefix admin",
     "admin:build": "npm run build --prefix admin",
-    "heroku-postbuild": "npm run admin:install && npm run admin:build"
+    "worker:assets": "node backend/scripts/buildWorkerAssets.js",
+    "heroku-postbuild": "npm run admin:install && npm run admin:build",
+    "setup:cloudflare": "node backend/scripts/setupCloudflareSecrets.js production",
+    "setup:cloudflare:dev": "node backend/scripts/setupCloudflareSecrets.js development",
+    "setup:production": "node backend/scripts/setupProductionSecrets.js production",
+    "deploy:cloudflare": "node backend/scripts/deployCloudflare.js production",
+    "deploy:cloudflare:dev": "node backend/scripts/deployCloudflare.js development",
+    "deploy:production": "node backend/scripts/productionDeploy.js production",
+    "deploy:workers": "wrangler deploy --env production"
   },
   "engines": {
     "node": "24.x"
@@ -43,7 +51,6 @@
     "supertest": "^7.1.4"
   },
   "jest": {
-    "testTimeout": 30000,
     "testEnvironment": "node",
     "testMatch": [
       "**/backend/tests/**/*.test.js"
