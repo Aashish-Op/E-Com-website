@@ -1286,19 +1286,25 @@ function nameToId(name) {
           foundCard.classList.remove('hidden-product');
           if (window.revealObserver) window.revealObserver.observe(foundCard);
         }
-        
-        // Ensure it's visible (filter tabs might have hidden it)
-        foundCard.style.display = 'flex';
 
-        foundCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        
-        // Highlight briefly
-        const originalShadow = foundCard.style.boxShadow;
-        foundCard.style.boxShadow = '0 0 0 2px var(--gold)';
-        setTimeout(() => foundCard.style.boxShadow = originalShadow, 3000);
+        const isProductCard = foundCard.classList.contains('prod-card');
 
-        // Open modal
-        openModalForCard(foundCard);
+        if (isProductCard) {
+          // Ensure it's visible (filter tabs might have hidden it)
+          foundCard.style.display = 'flex';
+
+          foundCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+          // Highlight briefly
+          const originalShadow = foundCard.style.boxShadow;
+          foundCard.style.boxShadow = '0 0 0 2px var(--gold)';
+          setTimeout(() => foundCard.style.boxShadow = originalShadow, 3000);
+
+          // Open modal
+          openModalForCard(foundCard);
+        } else {
+          foundCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
       }
     }, 600);
   }
